@@ -11,5 +11,7 @@ namespace ParrisConnection.Models.Wall
         public int Id { get; set; }
         [StringLength(255)]
         public string Post { get; set; }
+
+        public List<Comment> Comments { get; set; }
     }
 }
