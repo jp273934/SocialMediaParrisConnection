@@ -1,0 +1,21 @@
+﻿@model ParrisConnection.Models.Wall.Status
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-5">
+            @using (Html.BeginForm("AddStatus", "SingleStatus"))
+            {
+                <div class="form-group">
+                    @Html.TextAreaFor(s => s.Post, new { @class = "form-control" })
+                </div>
+                <button type="submit" class="btn btn-primary">Update Status</button>
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,29 @@
+﻿@using System.Activities.Statements
+@model ParrisConnection.Models.WallViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4">
+
+        </div>
+        <div class="col-lg-4">
+            @Html.ActionLink("Update Status","Index", "SingleStatus")
+            <br/>
+            
+            @foreach (var post in Model.Statuses)
+            {
+                <label>@post.Post</label><br />
+            }
+        </div>
+        <div class="col-lg-4">
+            
+        </div>
+    </div>
+</div>
+
