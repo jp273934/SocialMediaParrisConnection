@@ -211,6 +211,18 @@
     <Compile Include="Migrations\201610291517585_AddedComments.Designer.cs">
       <DependentUpon>201610291517585_AddedComments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610291606004_AddedComment.cs" />
+    <Compile Include="Migrations\201610291606004_AddedComment.Designer.cs">
+      <DependentUpon>201610291606004_AddedComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610291721540_AddedStatusIdToComment.cs" />
+    <Compile Include="Migrations\201610291721540_AddedStatusIdToComment.Designer.cs">
+      <DependentUpon>201610291721540_AddedStatusIdToComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610291726543_AddCommentDataSet.cs" />
+    <Compile Include="Migrations\201610291726543_AddCommentDataSet.Designer.cs">
+      <DependentUpon>201610291726543_AddCommentDataSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -303,6 +315,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610291517585_AddedComments.resx">
       <DependentUpon>201610291517585_AddedComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610291606004_AddedComment.resx">
+      <DependentUpon>201610291606004_AddedComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610291721540_AddedStatusIdToComment.resx">
+      <DependentUpon>201610291721540_AddedStatusIdToComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610291726543_AddCommentDataSet.resx">
+      <DependentUpon>201610291726543_AddCommentDataSet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

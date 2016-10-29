@@ -8,6 +8,10 @@ namespace ParrisConnection.Models.Wall
 {
     public class Status
     {
+        public Status()
+        {
+            Comments = new List<Comment>();
+        }
         public int Id { get; set; }
         [StringLength(255)]
         public string Post { get; set; }

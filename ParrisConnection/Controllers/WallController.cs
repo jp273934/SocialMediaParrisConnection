@@ -20,12 +20,37 @@ namespace ParrisConnection.Controllers
 
         public ActionResult Index()
         {
+            var comments = _context.Comments.ToList();
+            var statuses = _context.Statuses.ToList();
+
+            foreach (var item in statuses)
+            {
+                item.Comments = comments.Where(c => c.StatusId == item.Id).ToList();
+            }
+
             var wall = new WallViewModel
             {
-                Statuses = _context.Statuses.ToList()
+                Statuses = statuses
             };
 
             return View(wall);
+        }
+
+        [HttpPost]
+        public ActionResult CreateComment(int statusId, string comment)
+        {
+            var post = new Comment
+            {
+                PostComment = comment
+            };
+
+            _context.Statuses.Single(s => s.Id == statusId).Comments.Add(post);
+
+             _context.SaveChanges();
+         
+
+            
+            return RedirectToAction("Index", "Wall");
         }
     }
 }

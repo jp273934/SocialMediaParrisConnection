@@ -5,20 +5,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-4">
 
         </div>
         <div class="col-lg-4">
-            @Html.ActionLink("Update Status","Index", "SingleStatus")
+            @Html.ActionLink("Update Status","Index", "SingleStatus", null , new {@class = "btn btn-primary"})
             <br/>
             
             @foreach (var post in Model.Statuses)
             {
-                <label>@post.Post</label><br />
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>@post.Post</p>
+                        
+                        @using (Html.BeginForm("CreateComment", "Wall", new {statusId = @post.Id}, FormMethod.Post))
+                        {
+                            @Html.TextBox("Comment", null, new { @class = "form-control" })
+                            <button type="submit" class="btn btn-primary">Comment</button>
+                        }
+                      
+                            <ul>
+                                @foreach (var comment in post.Comments)
+                                {
+                                    <li>
+                                        <p> @comment.PostComment </p>
+                                    </li>
+                                }
+                            </ul>
+                      
+                    </div>
+                </div>
+
             }
         </div>
         <div class="col-lg-4">
