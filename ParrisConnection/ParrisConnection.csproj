@@ -228,6 +228,14 @@
     <Compile Include="Migrations\201610292243376_AddedProfilePhotos.Designer.cs">
       <DependentUpon>201610292243376_AddedProfilePhotos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610301336555_StatusLazyLoading.cs" />
+    <Compile Include="Migrations\201610301336555_StatusLazyLoading.Designer.cs">
+      <DependentUpon>201610301336555_StatusLazyLoading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610301340258_LoadingStatus.cs" />
+    <Compile Include="Migrations\201610301340258_LoadingStatus.Designer.cs">
+      <DependentUpon>201610301340258_LoadingStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -335,6 +343,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610292243376_AddedProfilePhotos.resx">
       <DependentUpon>201610292243376_AddedProfilePhotos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610301336555_StatusLazyLoading.resx">
+      <DependentUpon>201610301336555_StatusLazyLoading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610301340258_LoadingStatus.resx">
+      <DependentUpon>201610301340258_LoadingStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

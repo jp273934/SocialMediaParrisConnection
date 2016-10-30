@@ -16,6 +16,6 @@ namespace ParrisConnection.Models.Wall
         [StringLength(255)]
         public string Post { get; set; }
 
-        public List<Comment> Comments { get; set; }
+        public virtual List<Comment> Comments { get; set; }
     }
 }

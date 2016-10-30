@@ -21,17 +21,9 @@ namespace ParrisConnection.Controllers
 
         public ActionResult Index()
         {
-            var comments = _context.Comments.ToList();
-            var statuses = _context.Statuses.ToList();
-
-            foreach (var item in statuses)
-            {
-                item.Comments = comments.Where(c => c.StatusId == item.Id).ToList();
-            }
-
             var wall = new WallViewModel
             {
-                Statuses = statuses
+                Statuses = _context.Statuses.ToList()
             };
 
             return View(wall);
