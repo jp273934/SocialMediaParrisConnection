@@ -25,7 +25,13 @@ namespace ParrisConnection.Models
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<ProfilePhoto> ProfilePhotos { get; set; }
-
+        public DbSet<Employer> Employers { get; set; }
+        public DbSet<Education> Educations { get; set; }
+        public DbSet<Quote> Quotes { get; set; }
+        public DbSet<Phone> Phones { get; set; }
+        public DbSet<PhoneType> PhoneTypes  { get; set; }
+        public DbSet<EmailType> EmailTypes { get; set; }
+        public DbSet<Email> Emails { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

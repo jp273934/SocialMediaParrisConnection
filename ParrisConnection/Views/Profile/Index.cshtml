@@ -4,29 +4,31 @@
     ViewBag.Title = "Profile";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <br />
 <div class="row">
     <div class="col-lg-2">
         @if (Model.ProfilePhoto.FilePath != null)
         {
-            <img src="~/ProfilePhotos/@Model.ProfilePhoto.FilePath" style="height: 20vh; width: 20vh;"/>
+            <img src="~/ProfilePhotos/@Model.ProfilePhoto.FilePath" style="height: 20vh; width: 20vh;" />
         }
         else
         {
-            <img src="#"/>
+            <img src="#" />
         }
-        
 
-        @using (Html.BeginForm("EditProfilePicture", "Profile", FormMethod.Post, new {enctype = "multipart/form-data"}))
+
+        @using (Html.BeginForm("EditProfilePicture", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <label for="file">Update Profice Image :</label>
-            <input type="file" name="file" id="file"/><br><br>
-            <input type="submit" value="Upload Image" class="btn btn-primary"/>
+            <input type="file" name="file" id="file" /><br><br>
+            <input type="submit" value="Upload Image" class="btn btn-primary" />
             <br><br>
         }
         <p>Some kind of description</p>
     </div>
     <div class="col-lg-10">
+        <br />
         <div>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
@@ -43,10 +45,55 @@
                             Work History
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <div class="form-group">
-                                        <label>Texas Commission on Fire Protection</label>
-                                        <p>Programmer Analyst</p>
+                                    <div id="AddEmploymentForm" style="display: none">
+                                        @using (@Html.BeginForm("AddEmployment", "Profile", FormMethod.Post))
+                                        {
+                                            <div class="row">
+                                                <div class="col-lg-1">
+                                                    <input type="checkbox" id="EmployerCheckBox">
+                                                </div>
+                                                <div class="col-lg-11">
+                                                    <label>Is Present Employment?</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Employer</label>
+                                                @Html.TextBoxFor(e => e.NewEmployment.Name, new { @class = "form-control" })
+                                                
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Job Title</label>
+                                                @Html.TextBoxFor(e => e.NewEmployment.JobTitle, new { @class = "form-control" })
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Start Date</label>
+                                                @Html.TextBoxFor(e => e.NewEmployment.StartDate, new {@class = "form-control datepicker"})
+                                            </div>
+
+                                            <div class="form-group" id="EndDateGroup">
+                                                <label>End Date</label>
+                                                @Html.TextBoxFor(e => e.NewEmployment.EndDate, new { @class = "form-control datepicker" })
+                                            </div>
+
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Add Employment</button>
+                                            </div>
+                                        }
                                     </div>
+
+                                    @foreach (var employment in @Model.Employers)
+                                    {
+                                        <div class="form-group">
+                                            <label>@employment.Name</label>
+                                            <p>@employment.JobTitle @employment.DatesDisplay</p>
+                                        </div>
+                                    }
+
+                                </div>
+                                <div class="panel-footer">
+                                    <a id="AddEmployerLink">Add Employment</a>
                                 </div>
                             </div>
                         </div>
@@ -54,11 +101,14 @@
                             Education
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <div class="form-group">
-                                        <label>Texas A & M University</label>
-                                        <p>B.S. Computer Information Systems</p>
-                                        <p>Dates</p>
-                                    </div>
+                                    @foreach (var education in Model.Educations)
+                                    {
+                                        <div class="form-group">
+                                            <label>@education.Name</label>
+                                            <p>@education.Degree</p>
+                                            <p>@education.DatesDisplay</p>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -66,9 +116,12 @@
                             Favorite Quotes
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <div class="form-group">
-                                        <p>Some Quotes -Author</p>
-                                    </div>
+                                    @foreach (var quote in @Model.Quotes)
+                                    {
+                                        <div class="form-group">
+                                            <p>@quote.Name @quote.AuthorDisplay</p>
+                                        </div>
+                                    }                                    
                                 </div>
                             </div>
                         </div>
@@ -83,9 +136,12 @@
                             Phones
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <div class="form-group">
-                                        <label>Mobile :</label> 936-648-3192
-                                    </div>
+                                    @foreach (var phone in @Model.Phones)
+                                    {
+                                        <div class="form-group">
+                                            <label>@phone.PhoneType.TypeDisplay</label> @phone.Number
+                                        </div>
+                                    }                                   
                                 </div>
                             </div>
                         </div>
@@ -93,9 +149,12 @@
                             Email
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <div class="form-group">
-                                        <label>Personal :</label> jparris195@gmail.com
-                                    </div>
+                                    @foreach (var email in @Model.Emails)
+                                    {
+                                        <div class="form-group">
+                                            <label>@email.EmailType.TypeDisplay</label> @email.EmailAddress
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -113,6 +172,5 @@
         </div>
     </div>
 </div>
-
 
 

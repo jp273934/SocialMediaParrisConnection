@@ -26,7 +26,12 @@ namespace ParrisConnection.Controllers
 
             var viewModel = new ProfileViewModel
             {
-                ProfilePhoto = profilePhotos.Count > 0 ? profilePhotos[0] : new ProfilePhoto()
+                ProfilePhoto = profilePhotos.Count > 0 ? profilePhotos[0] : new ProfilePhoto(),
+                Employers = _context.Employers.ToList(),
+                Educations = _context.Educations.ToList(),
+                Quotes = _context.Quotes.ToList(),
+                Phones = _context.Phones.ToList(),
+                Emails = _context.Emails.ToList()
             };
 
             return View(viewModel);
@@ -42,9 +47,7 @@ namespace ParrisConnection.Controllers
                     string path = Path.Combine(Server.MapPath("~/ProfilePhotos"), Path.GetFileName(file.FileName));
                     file.SaveAs(path);
 
-                    var profilePhotos = _context.ProfilePhotos.ToList();
-
-                    profilePhotos.Clear();
+                    _context.ProfilePhotos.ToList().Clear();
 
                     var photo = new ProfilePhoto
                     {
@@ -60,6 +63,16 @@ namespace ParrisConnection.Controllers
                     ViewBag.Message = "Error : " + e.Message;
                 }
             }
+            return RedirectToAction("Index", "Profile");
+        }
+
+        [HttpPost]
+        public ActionResult AddEmployment(ProfileViewModel profile)
+        {
+            _context.Employers.Add(profile.NewEmployment);
+
+            _context.SaveChanges();
+
             return RedirectToAction("Index", "Profile");
         }
     }

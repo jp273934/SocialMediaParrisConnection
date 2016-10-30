@@ -9,7 +9,10 @@ namespace ParrisConnection
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootstrap-datepicker.min.js",
+                        "~/Scripts/locales/bootstrap-datepicker.en-GB.min.js",
+                        "~/Scripts/CustomScripts/ProfileScripts.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
