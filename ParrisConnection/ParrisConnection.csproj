@@ -198,6 +198,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SingleStatusController.cs" />
     <Compile Include="Controllers\WallController.cs" />
     <Compile Include="Global.asax.cs">
@@ -223,11 +224,17 @@
     <Compile Include="Migrations\201610291726543_AddCommentDataSet.Designer.cs">
       <DependentUpon>201610291726543_AddCommentDataSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610292243376_AddedProfilePhotos.cs" />
+    <Compile Include="Migrations\201610292243376_AddedProfilePhotos.Designer.cs">
+      <DependentUpon>201610292243376_AddedProfilePhotos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\WallViewModel.cs" />
+    <Compile Include="Models\Profile\ProfilePhoto.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\WallViewModel.cs" />
     <Compile Include="Models\Wall\Comment.cs" />
     <Compile Include="Models\Wall\Status.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -296,10 +303,11 @@
     <Content Include="Views\Wall\Index.cshtml" />
     <Content Include="Views\Wall\Create.cshtml" />
     <Content Include="Views\SingleStatus\Index.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\" />
+    <Folder Include="ProfilePhotos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -324,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610291726543_AddCommentDataSet.resx">
       <DependentUpon>201610291726543_AddCommentDataSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610292243376_AddedProfilePhotos.resx">
+      <DependentUpon>201610292243376_AddedProfilePhotos.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

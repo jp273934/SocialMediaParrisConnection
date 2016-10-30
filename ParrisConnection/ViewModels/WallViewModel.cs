@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using ParrisConnection.Models.Wall;
 
-namespace ParrisConnection.Models
+namespace ParrisConnection.ViewModels
 {
     public class WallViewModel
     {

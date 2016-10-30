@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ParrisConnection.Models.Profile;
 using ParrisConnection.Models.Wall;
 
 namespace ParrisConnection.Models
@@ -23,6 +24,8 @@ namespace ParrisConnection.Models
     {
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<ProfilePhoto> ProfilePhotos { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

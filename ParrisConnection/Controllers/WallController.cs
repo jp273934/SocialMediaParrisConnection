@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using ParrisConnection.Models;
 using ParrisConnection.Models.Wall;
+using ParrisConnection.ViewModels;
 
 namespace ParrisConnection.Controllers
 {

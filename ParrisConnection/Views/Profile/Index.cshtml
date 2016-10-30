@@ -1,0 +1,118 @@
+﻿@model ParrisConnection.ViewModels.ProfileViewModel
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div class="row">
+    <div class="col-lg-2">
+        @if (Model.ProfilePhoto.FilePath != null)
+        {
+            <img src="~/ProfilePhotos/@Model.ProfilePhoto.FilePath" style="height: 20vh; width: 20vh;"/>
+        }
+        else
+        {
+            <img src="#"/>
+        }
+        
+
+        @using (Html.BeginForm("EditProfilePicture", "Profile", FormMethod.Post, new {enctype = "multipart/form-data"}))
+        {
+            <label for="file">Update Profice Image :</label>
+            <input type="file" name="file" id="file"/><br><br>
+            <input type="submit" value="Upload Image" class="btn btn-primary"/>
+            <br><br>
+        }
+        <p>Some kind of description</p>
+    </div>
+    <div class="col-lg-10">
+        <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
+                <li role="presentation"><a href="#photo" aria-controls="photo" role="tab" data-toggle="tab">Photos</a></li>
+                <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact Info</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="about">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            Work History
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label>Texas Commission on Fire Protection</label>
+                                        <p>Programmer Analyst</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            Education
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label>Texas A & M University</label>
+                                        <p>B.S. Computer Information Systems</p>
+                                        <p>Dates</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            Favorite Quotes
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <p>Some Quotes -Author</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="photo">
+                    This is the photos area
+                </div>
+                <div role="tabpanel" class="tab-pane" id="contact">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            Phones
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label>Mobile :</label> 936-648-3192
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            Email
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label>Personal :</label> jparris195@gmail.com
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            Links
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
