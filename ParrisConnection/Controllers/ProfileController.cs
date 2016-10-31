@@ -31,7 +31,9 @@ namespace ParrisConnection.Controllers
                 Educations = _context.Educations.ToList(),
                 Quotes = _context.Quotes.ToList(),
                 Phones = _context.Phones.ToList(),
-                Emails = _context.Emails.ToList()
+                Emails = _context.Emails.ToList(),
+                PhoneTypes = _context.PhoneTypes.ToList(),
+                
             };
 
             return View(viewModel);
@@ -70,6 +72,39 @@ namespace ParrisConnection.Controllers
         public ActionResult AddEmployment(ProfileViewModel profile)
         {
             _context.Employers.Add(profile.NewEmployment);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Profile");
+        }
+
+        [HttpPost]
+        public ActionResult AddEducation(ProfileViewModel profile)
+        {
+            _context.Educations.Add(profile.NewEducation);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Profile");
+        }
+
+        [HttpPost]
+        public ActionResult AddQuote(ProfileViewModel profile)
+        {
+            _context.Quotes.Add(profile.NewQuote);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Profile");
+        }
+
+        [HttpPost]
+        public ActionResult AddPhoneNumber(ProfileViewModel profile)
+        {
+            var phoneType = _context.PhoneTypes.ToList().Single(t => t.Id == profile.SelectedPhone);
+            var phone = profile.NewPhone;
+            phone.PhoneType = phoneType.Type;
+             _context.Phones.Add(phone);
 
             _context.SaveChanges();
 

@@ -101,6 +101,43 @@
                             Education
                             <div class="panel panel-default">
                                 <div class="panel-body">
+                                    <div id="AddEducationtForm" style="display: none">
+                                        @using (@Html.BeginForm("AddEducation", "Profile", FormMethod.Post))
+                                        {
+                                            <div class="row">
+                                                <div class="col-lg-1">
+                                                    <input type="checkbox" id="EductionCheckBox">
+                                                </div>
+                                                <div class="col-lg-11">
+                                                    <label>Is Present Education?</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Education Institution</label>
+                                                @Html.TextBoxFor(e => e.NewEducation.Name, new { @class = "form-control" })
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Degree/Diploma</label>
+                                                @Html.TextBoxFor(e => e.NewEducation.Degree, new { @class = "form-control" })
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Start Date</label>
+                                                @Html.TextBoxFor(e => e.NewEducation.StartDate, new { @class = "form-control datepicker" })
+                                            </div>
+
+                                            <div class="form-group" id="EductionEndDateGroup">
+                                                <label>End Date</label>
+                                                @Html.TextBoxFor(e => e.NewEducation.EndDate, new { @class = "form-control datepicker" })
+                                            </div>
+
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Add Education</button>
+                                            </div>
+                                        }
+                                    </div>
                                     @foreach (var education in Model.Educations)
                                     {
                                         <div class="form-group">
@@ -110,18 +147,43 @@
                                         </div>
                                     }
                                 </div>
+                                <div class="panel-footer">
+                                    <a id="AddEducationLink">Add Education</a>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             Favorite Quotes
                             <div class="panel panel-default">
                                 <div class="panel-body">
+                                    <div id="AddQuoteForm" style="display: none">
+                                        @using (@Html.BeginForm("AddQuote", "Profile", FormMethod.Post))
+                                        {                                          
+                                            <div class="form-group">
+                                                <label>Quote</label>
+                                                @Html.TextBoxFor(e => e.NewQuote.Name, new { @class = "form-control" })
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Author</label>
+                                                @Html.TextBoxFor(e => e.NewQuote.Author, new { @class = "form-control" })
+                                            </div>
+
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Add Quote</button>
+                                            </div>
+                                        }
+                                    </div>
                                     @foreach (var quote in @Model.Quotes)
                                     {
                                         <div class="form-group">
                                             <p>@quote.Name @quote.AuthorDisplay</p>
                                         </div>
-                                    }                                    
+                                    }
+                                </div>
+                                <div class="panel-footer">
+                                    <a id="AddQuoteLink">Add Quote</a>
                                 </div>
                             </div>
                         </div>
@@ -136,12 +198,40 @@
                             Phones
                             <div class="panel panel-default">
                                 <div class="panel-body">
+                                    <div id="AddPhoneForm" style="display: none;">
+                                        @using (@Html.BeginForm("AddPhoneNumber", "Profile", FormMethod.Post))
+                                        {
+                                            <div class="form-group">
+                                                @foreach (var type in Model.PhoneTypes)
+                                                {
+                                                    @Html.RadioButtonFor(p => p.SelectedPhone, type.Id) @type.Type
+                                                   
+                                                    <br/>
+                                                }
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Phone Number</label>
+                                                @Html.TextBoxFor(e => e.NewPhone.Number, new { @class = "form-control" })
+
+                                            </div>
+
+                                          
+
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Add Quote</button>
+                                            </div>
+                                        }
+                                    </div>
+
                                     @foreach (var phone in @Model.Phones)
                                     {
                                         <div class="form-group">
-                                            <label>@phone.PhoneType.TypeDisplay</label> @phone.Number
+                                            @phone.Number
                                         </div>
-                                    }                                   
+                                    }
+                                </div>
+                                <div class="panel-footer">
+                                    <a id="AddPhoneLink">Add Phone Number</a>
                                 </div>
                             </div>
                         </div>
@@ -152,7 +242,7 @@
                                     @foreach (var email in @Model.Emails)
                                     {
                                         <div class="form-group">
-                                            <label>@email.EmailType.TypeDisplay</label> @email.EmailAddress
+                                             @email.EmailAddress
                                         </div>
                                     }
                                 </div>

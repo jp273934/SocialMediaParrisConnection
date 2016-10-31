@@ -1,3 +1,5 @@
+using ParrisConnection.Models.Profile;
+
 namespace ParrisConnection.Migrations
 {
     using System;
@@ -14,18 +16,12 @@ namespace ParrisConnection.Migrations
 
         protected override void Seed(ParrisConnection.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
+            //context.PhoneTypes.AddOrUpdate(e => e.Type,
+            //    new PhoneType { Type = "Home" },
+            //    new PhoneType { Type = "Work" },
+            //    new PhoneType { Type = "Home" },
             //    );
-            //
+
         }
     }
 }

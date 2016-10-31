@@ -7,7 +7,24 @@ $(document).ready(function () {
         $("#EndDateGroup").toggle();
     });
 
-    $("#AddEmployerLink").click(function() {
-        $("#AddEmploymentForm").toggle();
-    })
+    $("#EductionCheckBox").change(function () {
+        $("#EductionEndDateGroup").toggle();
+    });
+
+    $("#AddEmployerLink")
+        .click(function() {
+            $("#AddEmploymentForm").toggle();
+        });
+
+    $("#AddEducationLink").click(function () {
+           $("#AddEducationtForm").toggle();
+       });
+
+    $("#AddQuoteLink").click(function () {
+           $("#AddQuoteForm").toggle();
+    });
+
+    $("#AddPhoneLink").click(function () {
+        $("#AddPhoneForm").toggle();
+    });
 });

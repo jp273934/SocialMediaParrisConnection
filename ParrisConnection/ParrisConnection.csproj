@@ -212,6 +212,26 @@
     <Compile Include="Migrations\201610301950316_AddedJobTitleToEmployment.Designer.cs">
       <DependentUpon>201610301950316_AddedJobTitleToEmployment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610302313496_InsertPhoneTypes.cs" />
+    <Compile Include="Migrations\201610302313496_InsertPhoneTypes.Designer.cs">
+      <DependentUpon>201610302313496_InsertPhoneTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610302330228_ClearPhoneEmailForeignKeys.cs" />
+    <Compile Include="Migrations\201610302330228_ClearPhoneEmailForeignKeys.Designer.cs">
+      <DependentUpon>201610302330228_ClearPhoneEmailForeignKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610302333500_InsertPhoneTyesAgain.cs" />
+    <Compile Include="Migrations\201610302333500_InsertPhoneTyesAgain.Designer.cs">
+      <DependentUpon>201610302333500_InsertPhoneTyesAgain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610302338107_SetPhoneForeignKeys.cs" />
+    <Compile Include="Migrations\201610302338107_SetPhoneForeignKeys.Designer.cs">
+      <DependentUpon>201610302338107_SetPhoneForeignKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610302345595_RemovedForeignKeysPhones.cs" />
+    <Compile Include="Migrations\201610302345595_RemovedForeignKeysPhones.Designer.cs">
+      <DependentUpon>201610302345595_RemovedForeignKeysPhones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -403,6 +423,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610301950316_AddedJobTitleToEmployment.resx">
       <DependentUpon>201610301950316_AddedJobTitleToEmployment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610302313496_InsertPhoneTypes.resx">
+      <DependentUpon>201610302313496_InsertPhoneTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610302330228_ClearPhoneEmailForeignKeys.resx">
+      <DependentUpon>201610302330228_ClearPhoneEmailForeignKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610302333500_InsertPhoneTyesAgain.resx">
+      <DependentUpon>201610302333500_InsertPhoneTyesAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610302338107_SetPhoneForeignKeys.resx">
+      <DependentUpon>201610302338107_SetPhoneForeignKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610302345595_RemovedForeignKeysPhones.resx">
+      <DependentUpon>201610302345595_RemovedForeignKeysPhones.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

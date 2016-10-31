@@ -9,11 +9,11 @@ namespace ParrisConnection.Models.Profile
 {
     public class EmailType : IContactType
     {
-        [ForeignKey("Email")]
+        //[ForeignKey("Email")]
         public int Id { get; set; }
         [StringLength(50)]
         public string Type { get; set; }
-        public virtual Email Email { get; set; }     
+        //public virtual Email Email { get; set; }     
         public string TypeDisplay => Type + " :";
         
     }
