@@ -33,7 +33,7 @@ namespace ParrisConnection.Controllers
                 Phones = _context.Phones.ToList(),
                 Emails = _context.Emails.ToList(),
                 PhoneTypes = _context.PhoneTypes.ToList(),
-                
+                EmailTypes = _context.EmailTypes.ToList()
             };
 
             return View(viewModel);
@@ -105,6 +105,19 @@ namespace ParrisConnection.Controllers
             var phone = profile.NewPhone;
             phone.PhoneType = phoneType.Type;
              _context.Phones.Add(phone);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Profile");
+        }
+
+        [HttpPost]
+        public ActionResult AddEmail(ProfileViewModel profile)
+        {
+            var emailType = _context.EmailTypes.ToList().Single(t => t.Id == profile.SelectedEmail);
+            var email = profile.NewEmail;
+            email.EmailType = emailType.Type;
+            _context.Emails.Add(email);
 
             _context.SaveChanges();
 

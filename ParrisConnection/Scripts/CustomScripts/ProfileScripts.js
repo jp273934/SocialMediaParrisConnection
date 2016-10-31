@@ -27,4 +27,8 @@ $(document).ready(function () {
     $("#AddPhoneLink").click(function () {
         $("#AddPhoneForm").toggle();
     });
+
+    $("#AddEmalLink").click(function () {
+        $("#AddEmailForm").toggle();
+    });
 });
