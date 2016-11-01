@@ -10,6 +10,7 @@ namespace ParrisConnection
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.unobtrusive-ajax.min.js",
                         "~/Scripts/bootstrap-datepicker.min.js",
                         "~/Scripts/locales/bootstrap-datepicker.en-GB.min.js",
                         "~/Scripts/CustomScripts/ProfileScripts.js"));
