@@ -77,7 +77,7 @@ namespace ParrisConnection.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                return Json(new {success = true}, JsonRequestBehavior.AllowGet);
+                return Json(_context.Employers, JsonRequestBehavior.AllowGet);
             }
 
             return RedirectToAction("Index", "Profile");
