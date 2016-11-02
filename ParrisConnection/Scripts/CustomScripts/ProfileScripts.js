@@ -11,11 +11,6 @@ $(document).ready(function () {
         $("#EductionEndDateGroup").toggle();
     });
 
-    //$("#AddEmployerLink")
-    //    .click(function() {
-    //        $("#AddEmploymentForm").toggle();
-    //    });
-
     $("#AddEducationLink").click(function () {
            $("#AddEducationtForm").toggle();
        });
@@ -32,33 +27,31 @@ $(document).ready(function () {
         $("#AddEmailForm").toggle();
     });
 
-    
-});
+    $("#EmploymentForm").on("submit", function (event) {
+       var dataObject = {
+            Name: $("#EmploymentNameTextbox").val(),
+            JobTitle: $("#JobTitleTextbox").val(),
+            StartDate: $("#EmploymentStartDateTextbox").val(),
+            EndDate: $("#EmploymentEndDateTextbox").val()
+        };
 
-function submitEmploymentForm() {
-    var dataObject = {
-        Name: $("#EmploymentNameTextbox").val(),
-        JobTitle: $("#JobTitleTextbox").val(),
-        StartDate: $("#EmploymentStartDateTextbox").val(),
-        EndDate: $("#EmploymentEndDateTextbox").val()
-    };
-
-    $.ajax({
+        $.ajax({
             type: "Post",
-            url: "/Profile/AddEmployment",
+            url: "AddEmployment",
             contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({employment : dataObject}),
-        
-        dataType: "json",
-        success: function (data) {
+            data: JSON.stringify({ employment: dataObject }),
 
-            ToggleFormPanel('AddEmploymentForm');
-        },
-        error: function (data, errorThrown) {
-            console.log(errorThrown);
-        }
+            dataType: "json",
+            success: function(data) {
+                ToggleFormPanel("AddEmploymentForm");
+            },
+            error: function(data, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+        event.preventDefault();
     });
-}
+});
 
 function ToggleFormPanel(form) {
     $("#" + form).toggle();

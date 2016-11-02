@@ -50,9 +50,8 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div id="AddEmploymentForm" style="display: none">
-                                        @*@using (@Html.BeginForm("AddEmployment", "Profile"))
-                                        {*@
-                                           
+                                        @using (@Html.BeginForm("AddEmployment", "Profile", FormMethod.Post, new {id = "EmploymentForm"}))
+                                        {
                                                 <div class="row">
                                                     <div class="col-lg-1">
                                                         <input type="checkbox" id="EmployerCheckBox">
@@ -63,30 +62,29 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Employer</label>                      
-                                                    <input type="text" id="EmploymentNameTextbox" class="form-control"/>
-
+                                                    @Html.TextBoxFor(e => Model.NewEmployment.Name, new {@id = "EmploymentNameTextbox", @class= "form-control" })
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label>Job Title</label>
-                                                    <input type="text" id="JobTitleTextbox" class="form-control" />
+                                                    @Html.TextBoxFor(e => Model.NewEmployment.JobTitle, new { @id = "JobTitleTextbox", @class = "form-control" })
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label>Start Date</label>
-                                                    <input type="text" id="EmploymentStartDateTextbox" class="form-control datepicker" />
+                                                    @Html.TextBoxFor(e => Model.NewEmployment.StartDate, new { @id = "EmploymentStartDateTextbox", @class = "form-control datepicker" })
                                                 </div>
 
                                                 <div class="form-group" id="EndDateGroup">
                                                     <label>End Date</label>
-                                                    <input type="text" id="EmploymentEndDateTextbox" class="form-control datepicker" />
+                                                    @Html.TextBoxFor(e => Model.NewEmployment.EndDate, new { @id = "EmploymentEndDateTextbox", @class = "form-control datepicker" })
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <button  class="btn btn-primary" onclick="submitEmploymentForm()">Add Employment</button>
+                                                    <button type="submit"  class="btn btn-primary">Add Employment</button>
                                                 </div>
                                            
-                                        @*}*@
+                                        }
                                     </div>
                                     <div id="EmploymentArea">
                                     @foreach (var employment in @Model.Employers)

@@ -75,6 +75,11 @@ namespace ParrisConnection.Controllers
 
             _context.SaveChanges();
 
+            if (Request.IsAjaxRequest())
+            {
+                return Json(new {success = true}, JsonRequestBehavior.AllowGet);
+            }
+
             return RedirectToAction("Index", "Profile");
         }
 
