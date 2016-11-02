@@ -43,12 +43,16 @@
                     <div class="row">
                         <div class="col-lg-4">
                             Work History
+                            <script type="text/javascript">
+                                
+
+                            </script>
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div id="AddEmploymentForm" style="display: none">
-                                        @using (@Ajax.BeginForm("AddEmployment", "Profile", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "PageArea" }))
-                                        {
-                                            <fieldset>
+                                        @*@using (@Html.BeginForm("AddEmployment", "Profile"))
+                                        {*@
+                                           
                                                 <div class="row">
                                                     <div class="col-lg-1">
                                                         <input type="checkbox" id="EmployerCheckBox">
@@ -58,31 +62,31 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Employer</label>
-                                                    @Html.TextBoxFor(e => e.NewEmployment.Name, new { @class = "form-control" })
+                                                    <label>Employer</label>                      
+                                                    <input type="text" id="EmploymentNameTextbox" class="form-control"/>
 
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label>Job Title</label>
-                                                    @Html.TextBoxFor(e => e.NewEmployment.JobTitle, new { @class = "form-control" })
+                                                    <input type="text" id="JobTitleTextbox" class="form-control" />
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label>Start Date</label>
-                                                    @Html.TextBoxFor(e => e.NewEmployment.StartDate, new { @class = "form-control datepicker" })
+                                                    <input type="text" id="EmploymentStartDateTextbox" class="form-control datepicker" />
                                                 </div>
 
                                                 <div class="form-group" id="EndDateGroup">
                                                     <label>End Date</label>
-                                                    @Html.TextBoxFor(e => e.NewEmployment.EndDate, new { @class = "form-control datepicker" })
+                                                    <input type="text" id="EmploymentEndDateTextbox" class="form-control datepicker" />
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary">Add Employment</button>
+                                                    <button  class="btn btn-primary" onclick="submitEmploymentForm()">Add Employment</button>
                                                 </div>
-                                            </fieldset>
-                                        }
+                                           
+                                        @*}*@
                                     </div>
                                     <div id="EmploymentArea">
                                     @foreach (var employment in @Model.Employers)
@@ -95,7 +99,7 @@
                                     </div>
                                 </div>
                                 <div class="panel-footer">
-                                    <a id="AddEmployerLink">Add Employment</a>
+                                    <a id="AddEmployerLink" onclick="ToggleFormPanel('AddEmploymentForm');">Add Employment</a>
                                 </div>
                             </div>
                         </div>

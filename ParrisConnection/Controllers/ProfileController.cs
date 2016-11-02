@@ -69,9 +69,9 @@ namespace ParrisConnection.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEmployment(ProfileViewModel profile)
+        public ActionResult AddEmployment(Employer employment)
         {
-            _context.Employers.Add(profile.NewEmployment);
+            _context.Employers.Add(employment);
 
             _context.SaveChanges();
 
