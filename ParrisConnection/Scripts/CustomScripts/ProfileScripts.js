@@ -62,6 +62,42 @@ $(document).ready(function () {
         });
         event.preventDefault();
     });
+
+    $("#EducationForm").on("submit", function (event) {
+        var dataObject = {
+            Name: $("#EducationNameTextBox").val(),
+            Degree: $("#DegreeTextbox").val(),
+            StartDate: $("#EducationStartDateTextbox").val(),
+            EndDate: $("#EducationEndDateTextbox").val()
+        };
+
+        $.ajax({
+            type: "Post",
+            url: "AddEducation",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ education: dataObject }),
+
+            dataType: "json",
+            success: function (data) {
+                ToggleFormPanel("AddEducationtForm");
+
+                $("#EducationArea").empty();
+
+                $.each(data, function (i, item) {
+                    var rows = "<div class='form-group'>" +
+                        "<label>" + item.Name +
+                     "</label>" +
+                        "<p>" + item.Degree + " " + item.DatesDisplay + "</p></div>";
+
+                    $("#EducationArea").append(rows);
+                });
+            },
+            error: function (data, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+        event.preventDefault();
+    });
 });
 
 function ToggleFormPanel(form) {

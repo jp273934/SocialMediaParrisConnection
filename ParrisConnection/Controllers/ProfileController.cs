@@ -84,11 +84,16 @@ namespace ParrisConnection.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEducation(ProfileViewModel profile)
+        public ActionResult AddEducation(Education education)
         {
-            _context.Educations.Add(profile.NewEducation);
+            _context.Educations.Add(education);
 
             _context.SaveChanges();
+
+            if (Request.IsAjaxRequest())
+            {
+                return Json(_context.Educations, JsonRequestBehavior.AllowGet);
+            }
 
             return RedirectToAction("Index", "Profile");
         }
