@@ -99,24 +99,35 @@ namespace ParrisConnection.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddQuote(ProfileViewModel profile)
+        public ActionResult AddQuote(Quote quote)
         {
-            _context.Quotes.Add(profile.NewQuote);
+            _context.Quotes.Add(quote);
 
             _context.SaveChanges();
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("AddQuote", _context.Quotes);
+            }
 
             return RedirectToAction("Index", "Profile");
         }
 
         [HttpPost]
-        public ActionResult AddPhoneNumber(ProfileViewModel profile)
+        public ActionResult AddPhoneNumber(Phone phoneNumber)
         {
-            var phoneType = _context.PhoneTypes.ToList().Single(t => t.Id == profile.SelectedPhone);
-            var phone = profile.NewPhone;
-            phone.PhoneType = phoneType.Type;
-             _context.Phones.Add(phone);
+            var phoneTypes = _context.PhoneTypes.ToList();
+
+            phoneNumber.PhoneType = phoneTypes.Single(p => p.Id == Convert.ToInt32(phoneNumber.PhoneType)).Type;
+
+             _context.Phones.Add(phoneNumber);
 
             _context.SaveChanges();
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("AddPhoneNumber", _context.Phones);
+            }
 
             return RedirectToAction("Index", "Profile");
         }
@@ -132,19 +143,6 @@ namespace ParrisConnection.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Profile");
-        }
-
-        private string GetSubmittedEmploymentDisplay()
-        {
-            var data = "";
-
-            foreach (var item in _context.Employers)
-            {
-                data += "<div class='form-group'><label>" + item.Name + "</label>" +
-                        "<p>" + item.JobTitle + " " + item.DatesDisplay + "</p></div>";
-            }
-
-            return data;
         }
     }
 }

@@ -163,17 +163,17 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div id="AddQuoteForm" style="display: none">
-                                        @using (@Html.BeginForm("AddQuote", "Profile", FormMethod.Post))
-                                        {                                          
+                                        @using (@Html.BeginForm("AddQuote", "Profile", FormMethod.Post, new {@id = "QuoteForm"}))
+                                        {
                                             <div class="form-group">
                                                 <label>Quote</label>
-                                                @Html.TextBoxFor(e => e.NewQuote.Name, new { @class = "form-control" })
+                                                @Html.TextBoxFor(e => e.NewQuote.Name, new {@id = "QuoteTextbox", @class = "form-control"})
 
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Author</label>
-                                                @Html.TextBoxFor(e => e.NewQuote.Author, new { @class = "form-control" })
+                                                @Html.TextBoxFor(e => e.NewQuote.Author, new {@id = "AuthorTextbox", @class = "form-control"})
                                             </div>
 
                                             <div class="form-group">
@@ -181,15 +181,17 @@
                                             </div>
                                         }
                                     </div>
-                                    @foreach (var quote in @Model.Quotes)
-                                    {
-                                        <div class="form-group">
-                                            <p>@quote.Name @quote.AuthorDisplay</p>
-                                        </div>
-                                    }
+                                    <div id="QuoteArea">
+                                        @foreach (var quote in @Model.Quotes)
+                                        {
+                                            <div class="form-group">
+                                                <p>@quote.Name @quote.AuthorDisplay</p>
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
                                 <div class="panel-footer">
-                                    <a id="AddQuoteLink">Add Quote</a>
+                                    <a id="AddQuoteLink" onclick="ToggleFormPanel('AddQuoteForm')">Add Quote</a>
                                 </div>
                             </div>
                         </div>
@@ -205,7 +207,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div id="AddPhoneForm" style="display: none;">
-                                        @using (@Html.BeginForm("AddPhoneNumber", "Profile", FormMethod.Post))
+                                        @using (@Html.BeginForm("AddPhoneNumber", "Profile", FormMethod.Post, new {@id = "PhoneForm"}))
                                         {
                                             <div class="form-group">
                                                 @foreach (var type in Model.PhoneTypes)
@@ -217,7 +219,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Phone Number</label>
-                                                @Html.TextBoxFor(e => e.NewPhone.Number, new { @class = "form-control" })
+                                                @Html.TextBoxFor(e => e.NewPhone.Number, new {@id = "PhonenumberTextbox",  @class = "form-control" })
 
                                             </div>
 
@@ -228,16 +230,17 @@
                                             </div>
                                         }
                                     </div>
-
-                                    @foreach (var phone in @Model.Phones)
-                                    {
-                                        <div class="form-group">
-                                            @phone.Number
-                                        </div>
-                                    }
+                                    <div id="PhoneArea">
+                                        @foreach (var phone in @Model.Phones)
+                                        {
+                                            <div class="form-group">
+                                                @phone.Number
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
                                 <div class="panel-footer">
-                                    <a id="AddPhoneLink">Add Phone Number</a>
+                                    <a id="AddPhoneLink" onclick="ToggleFormPanel('AddPhoneForm')">Add Phone Number</a>
                                 </div>
                             </div>
                         </div>

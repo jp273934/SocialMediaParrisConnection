@@ -1,0 +1,9 @@
+﻿@model IEnumerable<ParrisConnection.Models.Profile.Quote>
+
+
+@foreach (var item in Model) {
+    <div class="form-group">
+        <p>@item.Name @item.AuthorDisplay</p>
+    </div>
+}
+

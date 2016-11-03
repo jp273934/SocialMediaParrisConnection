@@ -1,0 +1,8 @@
+﻿@model IEnumerable<ParrisConnection.Models.Profile.Phone>
+
+@foreach (var item in Model) {
+    <div class="form-group">
+        @item.Number
+    </div>
+}
+

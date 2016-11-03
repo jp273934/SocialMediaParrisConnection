@@ -413,6 +413,8 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\AddEmployment.cshtml" />
     <Content Include="Views\Profile\AddEducation.cshtml" />
+    <Content Include="Views\Profile\AddQuote.cshtml" />
+    <Content Include="Views\Profile\AddPhoneNumber.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

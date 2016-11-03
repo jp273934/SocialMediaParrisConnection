@@ -11,14 +11,6 @@ $(document).ready(function () {
         $("#EductionEndDateGroup").toggle();
     });
 
-    $("#AddQuoteLink").click(function () {
-           $("#AddQuoteForm").toggle();
-    });
-
-    $("#AddPhoneLink").click(function () {
-        $("#AddPhoneForm").toggle();
-    });
-
     $("#AddEmalLink").click(function () {
         $("#AddEmailForm").toggle();
     });
@@ -31,7 +23,17 @@ $(document).ready(function () {
     $("#EducationForm").on("submit", function (event) {
         SubmitForm("AddEducation", GetEducationData(), "AddEducationtForm", "EducationArea");
         event.preventDefault();
-    });        
+    });
+
+    $("#QuoteForm").on("submit", function(event) {
+        SubmitForm("AddQuote", GetQuoteData(), "AddQuoteForm", "QuoteArea");
+        event.preventDefault();
+    });
+
+    $("#PhoneForm").on("submit", function(event) {
+        SubmitForm("AddPhoneNumber", GetPhoneData(), "AddPhoneForm", "PhoneArea");
+        event.preventDefault();
+    });
 });
 
 
@@ -72,6 +74,24 @@ function GetEducationData() {
     };
 
     return JSON.stringify({ education: dataObject });
+}
+
+function GetQuoteData() {
+    var dataObject = {
+        Name: $("#QuoteTextbox").val(),
+        NewQuote: $("#AuthorTextbox").val()
+    };
+
+    return JSON.stringify({ quote: dataObject });
+}
+
+function GetPhoneData() {
+    var dataObject = {
+        PhoneType: $('[name="SelectedPhone"]:checked').val(),
+        Number: $("#PhonenumberTextbox").val()
+    };
+    
+    return JSON.stringify({ phoneNumber: dataObject });
 }
 
 function ToggleFormPanel(form) {
