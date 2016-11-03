@@ -77,7 +77,7 @@ namespace ParrisConnection.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                return Json(_context.Employers, JsonRequestBehavior.AllowGet);
+                return PartialView("AddEmployment", _context.Employers);
             }
 
             return RedirectToAction("Index", "Profile");
@@ -92,7 +92,7 @@ namespace ParrisConnection.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                return Json(_context.Educations, JsonRequestBehavior.AllowGet);
+                return PartialView("AddEducation", _context.Educations);
             }
 
             return RedirectToAction("Index", "Profile");
@@ -132,6 +132,19 @@ namespace ParrisConnection.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Profile");
+        }
+
+        private string GetSubmittedEmploymentDisplay()
+        {
+            var data = "";
+
+            foreach (var item in _context.Employers)
+            {
+                data += "<div class='form-group'><label>" + item.Name + "</label>" +
+                        "<p>" + item.JobTitle + " " + item.DatesDisplay + "</p></div>";
+            }
+
+            return data;
         }
     }
 }

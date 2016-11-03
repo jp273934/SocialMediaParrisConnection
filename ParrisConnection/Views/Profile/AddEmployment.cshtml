@@ -1,0 +1,12 @@
+﻿@model IEnumerable<ParrisConnection.Models.Profile.Employer>
+
+
+
+@foreach (var item in Model) {
+    <div class="form-group">
+        <label>@item.Name</label>
+        <p>@item.JobTitle @item.DatesDisplay</p>
+    </div>
+    
+}
+

@@ -11,10 +11,6 @@ $(document).ready(function () {
         $("#EductionEndDateGroup").toggle();
     });
 
-    $("#AddEducationLink").click(function () {
-           $("#AddEducationtForm").toggle();
-       });
-
     $("#AddQuoteLink").click(function () {
            $("#AddQuoteForm").toggle();
     });
@@ -27,78 +23,56 @@ $(document).ready(function () {
         $("#AddEmailForm").toggle();
     });
 
-    $("#EmploymentForm").on("submit", function (event) {
-       var dataObject = {
-            Name: $("#EmploymentNameTextbox").val(),
-            JobTitle: $("#JobTitleTextbox").val(),
-            StartDate: $("#EmploymentStartDateTextbox").val(),
-            EndDate: $("#EmploymentEndDateTextbox").val()
-        };
-
-        $.ajax({
-            type: "Post",
-            url: "AddEmployment",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ employment: dataObject }),
-
-            dataType: "json",
-            success: function(data) {
-                ToggleFormPanel("AddEmploymentForm");
-
-                $("#EmploymentArea").empty();
-
-                $.each(data, function(i, item) {
-                    var rows = "<div class='form-group'>" + 
-                        "<label>" + item.Name +
-                     "</label>" +
-                        "<p>" + item.JobTitle + " " + item.DatesDisplay + "</p></div>";
-                        
-                    $("#EmploymentArea").append(rows);
-                });
-            },
-            error: function(data, errorThrown) {
-                console.log(errorThrown);
-            }
-        });
+    $("#EmploymentForm").on("submit", function (event) {       
+        SubmitForm("AddEmployment", GetEmploymentData(), "AddEmploymentForm", "EmploymentArea");
         event.preventDefault();
     });
 
     $("#EducationForm").on("submit", function (event) {
-        var dataObject = {
-            Name: $("#EducationNameTextBox").val(),
-            Degree: $("#DegreeTextbox").val(),
-            StartDate: $("#EducationStartDateTextbox").val(),
-            EndDate: $("#EducationEndDateTextbox").val()
-        };
-
-        $.ajax({
-            type: "Post",
-            url: "AddEducation",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({ education: dataObject }),
-
-            dataType: "json",
-            success: function (data) {
-                ToggleFormPanel("AddEducationtForm");
-
-                $("#EducationArea").empty();
-
-                $.each(data, function (i, item) {
-                    var rows = "<div class='form-group'>" +
-                        "<label>" + item.Name +
-                     "</label>" +
-                        "<p>" + item.Degree + " " + item.DatesDisplay + "</p></div>";
-
-                    $("#EducationArea").append(rows);
-                });
-            },
-            error: function (data, errorThrown) {
-                console.log(errorThrown);
-            }
-        });
+        SubmitForm("AddEducation", GetEducationData(), "AddEducationtForm", "EducationArea");
         event.preventDefault();
-    });
+    });        
 });
+
+
+function SubmitForm(action, dataResult, form, resultArea) {
+    $.ajax({
+        type: "Post",
+        url: action,
+        contentType: "application/json; charset=utf-8",
+        data: dataResult,
+        dataType: "html",
+        success: function(data) {
+            ToggleFormPanel(form);
+            $("#" + resultArea).html(data);
+        },
+        error: function(data, errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+}
+
+function GetEmploymentData() {
+    var dataObject = {
+        Name: $("#EmploymentNameTextbox").val(),
+        JobTitle: $("#JobTitleTextbox").val(),
+        StartDate: $("#EmploymentStartDateTextbox").val(),
+        EndDate: $("#EmploymentEndDateTextbox").val()
+    };
+
+    return JSON.stringify({ employment: dataObject });
+}
+
+function GetEducationData() {
+    var dataObject = {
+        Name: $("#EducationNameTextBox").val(),
+        Degree: $("#DegreeTextbox").val(),
+        StartDate: $("#EducationStartDateTextbox").val(),
+        EndDate: $("#EducationEndDateTextbox").val()
+    };
+
+    return JSON.stringify({ education: dataObject });
+}
 
 function ToggleFormPanel(form) {
     $("#" + form).toggle();

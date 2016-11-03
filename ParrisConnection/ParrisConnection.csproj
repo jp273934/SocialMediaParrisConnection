@@ -411,6 +411,8 @@
     <Content Include="Views\Wall\Create.cshtml" />
     <Content Include="Views\SingleStatus\Index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\AddEmployment.cshtml" />
+    <Content Include="Views\Profile\AddEducation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
