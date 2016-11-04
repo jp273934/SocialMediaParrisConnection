@@ -204,42 +204,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610301852423_InitialMigration.cs" />
-    <Compile Include="Migrations\201610301852423_InitialMigration.Designer.cs">
-      <DependentUpon>201610301852423_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610301950316_AddedJobTitleToEmployment.cs" />
-    <Compile Include="Migrations\201610301950316_AddedJobTitleToEmployment.Designer.cs">
-      <DependentUpon>201610301950316_AddedJobTitleToEmployment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610302313496_InsertPhoneTypes.cs" />
-    <Compile Include="Migrations\201610302313496_InsertPhoneTypes.Designer.cs">
-      <DependentUpon>201610302313496_InsertPhoneTypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610302330228_ClearPhoneEmailForeignKeys.cs" />
-    <Compile Include="Migrations\201610302330228_ClearPhoneEmailForeignKeys.Designer.cs">
-      <DependentUpon>201610302330228_ClearPhoneEmailForeignKeys.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610302333500_InsertPhoneTyesAgain.cs" />
-    <Compile Include="Migrations\201610302333500_InsertPhoneTyesAgain.Designer.cs">
-      <DependentUpon>201610302333500_InsertPhoneTyesAgain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610302338107_SetPhoneForeignKeys.cs" />
-    <Compile Include="Migrations\201610302338107_SetPhoneForeignKeys.Designer.cs">
-      <DependentUpon>201610302338107_SetPhoneForeignKeys.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610302345595_RemovedForeignKeysPhones.cs" />
-    <Compile Include="Migrations\201610302345595_RemovedForeignKeysPhones.Designer.cs">
-      <DependentUpon>201610302345595_RemovedForeignKeysPhones.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610310124198_UpdateEmailStructure.cs" />
-    <Compile Include="Migrations\201610310124198_UpdateEmailStructure.Designer.cs">
-      <DependentUpon>201610310124198_UpdateEmailStructure.cs</DependentUpon>
+    <Compile Include="Migrations\201611040155276_InitialMigration.cs" />
+    <Compile Include="Migrations\201611040155276_InitialMigration.Designer.cs">
+      <DependentUpon>201611040155276_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Profile\AlbumPhoto.cs" />
     <Compile Include="Models\Profile\Education.cs" />
     <Compile Include="Models\Profile\Email.cs" />
     <Compile Include="Models\Profile\EmailType.cs" />
@@ -415,6 +388,7 @@
     <Content Include="Views\Profile\AddEducation.cshtml" />
     <Content Include="Views\Profile\AddQuote.cshtml" />
     <Content Include="Views\Profile\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Profile\AddEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -428,33 +402,12 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610301852423_InitialMigration.resx">
-      <DependentUpon>201610301852423_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610301950316_AddedJobTitleToEmployment.resx">
-      <DependentUpon>201610301950316_AddedJobTitleToEmployment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610302313496_InsertPhoneTypes.resx">
-      <DependentUpon>201610302313496_InsertPhoneTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610302330228_ClearPhoneEmailForeignKeys.resx">
-      <DependentUpon>201610302330228_ClearPhoneEmailForeignKeys.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610302333500_InsertPhoneTyesAgain.resx">
-      <DependentUpon>201610302333500_InsertPhoneTyesAgain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610302338107_SetPhoneForeignKeys.resx">
-      <DependentUpon>201610302338107_SetPhoneForeignKeys.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610302345595_RemovedForeignKeysPhones.resx">
-      <DependentUpon>201610302345595_RemovedForeignKeysPhones.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610310124198_UpdateEmailStructure.resx">
-      <DependentUpon>201610310124198_UpdateEmailStructure.cs</DependentUpon>
-    </EmbeddedResource>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <EmbeddedResource Include="Migrations\201611040155276_InitialMigration.resx">
+      <DependentUpon>201611040155276_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

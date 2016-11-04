@@ -249,7 +249,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div id="AddEmailForm" style="display: none;">
-                                        @using (@Html.BeginForm("AddEmail", "Profile", FormMethod.Post))
+                                        @using (@Html.BeginForm("AddEmail", "Profile", FormMethod.Post, new {@id = "EmailForm"}))
                                         {
                                             <div class="form-group">
                                                 @foreach (var type in Model.EmailTypes)
@@ -261,7 +261,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                @Html.TextBoxFor(e => e.NewEmail.EmailAddress, new { @class = "form-control" })
+                                                @Html.TextBoxFor(e => e.NewEmail.EmailAddress, new {@id="EmailAddressTextbox", @class = "form-control" })
 
                                             </div>
 
@@ -272,16 +272,17 @@
                                             </div>
                                         }
                                     </div>
-
+                                    <div id="EmailArea">
                                     @foreach (var email in @Model.Emails)
                                     {
                                         <div class="form-group">
                                             @email.EmailAddress
                                         </div>
                                     }
+                                    </div>
                                 </div>
                                 <div class="panel-footer">
-                                    <a id="AddEmalLink">Add Email</a>
+                                    <a id="AddEmalLink" onclick="ToggleFormPanel('AddEmailForm')">Add Email</a>
                                 </div>
                             </div>
                         </div>

@@ -7,13 +7,13 @@ namespace ParrisConnection.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class UpdateEmailStructure : IMigrationMetadata
+    public sealed partial class InitialMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateEmailStructure));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201610310124198_UpdateEmailStructure"; }
+            get { return "201611040155276_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

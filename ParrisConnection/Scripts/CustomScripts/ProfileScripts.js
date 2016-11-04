@@ -11,10 +11,6 @@ $(document).ready(function () {
         $("#EductionEndDateGroup").toggle();
     });
 
-    $("#AddEmalLink").click(function () {
-        $("#AddEmailForm").toggle();
-    });
-
     $("#EmploymentForm").on("submit", function (event) {       
         SubmitForm("AddEmployment", GetEmploymentData(), "AddEmploymentForm", "EmploymentArea");
         event.preventDefault();
@@ -32,6 +28,11 @@ $(document).ready(function () {
 
     $("#PhoneForm").on("submit", function(event) {
         SubmitForm("AddPhoneNumber", GetPhoneData(), "AddPhoneForm", "PhoneArea");
+        event.preventDefault();
+    });
+
+    $("#EmailForm").on("submit", function(event) {
+        SubmitForm("AddEmail", GetEmailData(), "AddEmailForm", "EmailArea");
         event.preventDefault();
     });
 });
@@ -92,6 +93,15 @@ function GetPhoneData() {
     };
     
     return JSON.stringify({ phoneNumber: dataObject });
+}
+
+function GetEmailData() {
+    var dataObject = {
+        EmailType: $('[name="SelectedEmail"]:checked').val(),
+        EmailAddress: $("#EmailAddressTextbox").val()
+    };
+    
+    return JSON.stringify({ email: dataObject });
 }
 
 function ToggleFormPanel(form) {

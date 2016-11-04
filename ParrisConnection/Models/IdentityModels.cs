@@ -32,6 +32,8 @@ namespace ParrisConnection.Models
         public DbSet<PhoneType> PhoneTypes  { get; set; }
         public DbSet<EmailType> EmailTypes { get; set; }
         public DbSet<Email> Emails { get; set; }
+        public DbSet<AlbumPhoto> AlbumPhotos { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

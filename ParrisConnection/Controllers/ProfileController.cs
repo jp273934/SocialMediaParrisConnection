@@ -133,14 +133,19 @@ namespace ParrisConnection.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEmail(ProfileViewModel profile)
+        public ActionResult AddEmail(Email email)
         {
-            var emailType = _context.EmailTypes.ToList().Single(t => t.Id == profile.SelectedEmail);
-            var email = profile.NewEmail;
-            email.EmailType = emailType.Type;
+            var emailTypes = _context.EmailTypes.ToList();
+            email.EmailType = emailTypes.Single(e => e.Id == Convert.ToInt32(email.EmailType)).Type;
+            
             _context.Emails.Add(email);
 
             _context.SaveChanges();
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("AddEmail", _context.Emails);
+            }
 
             return RedirectToAction("Index", "Profile");
         }

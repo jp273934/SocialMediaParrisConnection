@@ -8,6 +8,15 @@ namespace ParrisConnection.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.AlbumPhotoes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        FilePath = c.String(maxLength: 255),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Comments",
                 c => new
                     {
@@ -46,6 +55,7 @@ namespace ParrisConnection.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         EmailAddress = c.String(),
+                        EmailType = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -53,12 +63,10 @@ namespace ParrisConnection.Migrations
                 "dbo.EmailTypes",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Type = c.String(maxLength: 50),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Emails", t => t.Id)
-                .Index(t => t.Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Employers",
@@ -66,6 +74,7 @@ namespace ParrisConnection.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 255),
+                        JobTitle = c.String(maxLength: 255),
                         StartDate = c.DateTime(nullable: false),
                         EndDate = c.DateTime(nullable: false),
                     })
@@ -77,6 +86,7 @@ namespace ParrisConnection.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Number = c.String(maxLength: 255),
+                        PhoneType = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -84,12 +94,10 @@ namespace ParrisConnection.Migrations
                 "dbo.PhoneTypes",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Type = c.String(maxLength: 50),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Phones", t => t.Id)
-                .Index(t => t.Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.ProfilePhotoes",
@@ -186,8 +194,6 @@ namespace ParrisConnection.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.PhoneTypes", "Id", "dbo.Phones");
-            DropForeignKey("dbo.EmailTypes", "Id", "dbo.Emails");
             DropForeignKey("dbo.Comments", "Status_Id", "dbo.Status");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
@@ -195,8 +201,6 @@ namespace ParrisConnection.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.PhoneTypes", new[] { "Id" });
-            DropIndex("dbo.EmailTypes", new[] { "Id" });
             DropIndex("dbo.Comments", new[] { "Status_Id" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
@@ -213,6 +217,7 @@ namespace ParrisConnection.Migrations
             DropTable("dbo.Educations");
             DropTable("dbo.Status");
             DropTable("dbo.Comments");
+            DropTable("dbo.AlbumPhotoes");
         }
     }
 }
