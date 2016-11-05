@@ -5,7 +5,6 @@
  */
 
 (function ($) {
-
     var eCalendar = function (options, object) {
         // Initializing global variables
         var adDay = new Date().getDate();
@@ -26,6 +25,7 @@
             for (var i = 0; i < length; i++) {
                 p += pad;
             }
+            
             return (p + value).slice(-length);
         }
 

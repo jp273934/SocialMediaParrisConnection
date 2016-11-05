@@ -208,6 +208,10 @@
     <Compile Include="Migrations\201611040155276_InitialMigration.Designer.cs">
       <DependentUpon>201611040155276_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611051625240_AddedUpcomingEvents.cs" />
+    <Compile Include="Migrations\201611051625240_AddedUpcomingEvents.Designer.cs">
+      <DependentUpon>201611051625240_AddedUpcomingEvents.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -222,6 +226,7 @@
     <Compile Include="Models\Profile\PhoneType.cs" />
     <Compile Include="Models\Profile\ProfilePhoto.cs" />
     <Compile Include="Models\Profile\Quote.cs" />
+    <Compile Include="Models\Wall\Event.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\WallViewModel.cs" />
     <Compile Include="Models\Wall\Comment.cs" />
@@ -417,6 +422,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611040155276_InitialMigration.resx">
       <DependentUpon>201611040155276_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611051625240_AddedUpcomingEvents.resx">
+      <DependentUpon>201611051625240_AddedUpcomingEvents.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

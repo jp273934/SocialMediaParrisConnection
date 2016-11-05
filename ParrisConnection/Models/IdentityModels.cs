@@ -33,7 +33,7 @@ namespace ParrisConnection.Models
         public DbSet<EmailType> EmailTypes { get; set; }
         public DbSet<Email> Emails { get; set; }
         public DbSet<AlbumPhoto> AlbumPhotos { get; set; }
-
+        public DbSet<Event> Events { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
