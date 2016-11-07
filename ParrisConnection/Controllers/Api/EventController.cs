@@ -39,6 +39,7 @@ namespace ParrisConnection.Controllers.Api
                         date = item.DateTime.Year + "-" + item.DateTime.Month + "-" + item.DateTime.Day,
                         badge = true,
                         title = item.Title,
+                        body = item.Description,
                         footer = "",
                         classname = ""
                     });

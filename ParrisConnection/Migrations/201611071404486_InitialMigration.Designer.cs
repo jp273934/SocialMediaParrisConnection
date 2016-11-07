@@ -7,13 +7,13 @@ namespace ParrisConnection.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class EventDateConvert : IMigrationMetadata
+    public sealed partial class InitialMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(EventDateConvert));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201611051951116_EventDateConvert"; }
+            get { return "201611071404486_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

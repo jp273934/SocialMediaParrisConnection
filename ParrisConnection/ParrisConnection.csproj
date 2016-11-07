@@ -218,17 +218,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611040155276_InitialMigration.cs" />
-    <Compile Include="Migrations\201611040155276_InitialMigration.Designer.cs">
-      <DependentUpon>201611040155276_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611051625240_AddedUpcomingEvents.cs" />
-    <Compile Include="Migrations\201611051625240_AddedUpcomingEvents.Designer.cs">
-      <DependentUpon>201611051625240_AddedUpcomingEvents.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611051951116_EventDateConvert.cs" />
-    <Compile Include="Migrations\201611051951116_EventDateConvert.Designer.cs">
-      <DependentUpon>201611051951116_EventDateConvert.cs</DependentUpon>
+    <Compile Include="Migrations\201611071404486_InitialMigration.cs" />
+    <Compile Include="Migrations\201611071404486_InitialMigration.Designer.cs">
+      <DependentUpon>201611071404486_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -438,14 +430,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611040155276_InitialMigration.resx">
-      <DependentUpon>201611040155276_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611051625240_AddedUpcomingEvents.resx">
-      <DependentUpon>201611051625240_AddedUpcomingEvents.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611051951116_EventDateConvert.resx">
-      <DependentUpon>201611051951116_EventDateConvert.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611071404486_InitialMigration.resx">
+      <DependentUpon>201611071404486_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

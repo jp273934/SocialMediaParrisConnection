@@ -316,6 +316,7 @@ $.fn.zabuto_calendar = function (options) {
         /* ----- Modal functions ----- */
 
         function createModal(id, title, body, footer) {
+            
             var $modalHeaderButton = $('<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>');
             var $modalHeaderTitle = $('<h4 class="modal-title" id="' + id + '_modal_title">' + title + '</h4>');
 
@@ -404,8 +405,9 @@ $.fn.zabuto_calendar = function (options) {
         function drawEvents($calendarElement, type) {
             var jsonData = $calendarElement.data('jsonData');
             var ajaxSettings = $calendarElement.data('ajaxSettings');
-
+            
             var events = $calendarElement.data('events');
+            
             if (events !== false) {
                 $(events).each(function (index, value) {
                     
@@ -432,8 +434,8 @@ $.fn.zabuto_calendar = function (options) {
                         var dayLabel = $dayElement.data('day');
                         $dayElement.html('<span class="badge badge-event' + badgeClass + '">' + dayLabel + '</span>');
                     }
-
-                    if (typeof(value.Description) !== 'undefined') {
+                    
+                    if (typeof(value.body) !== 'undefined') {
                         var modalUse = false;
                         if (type === 'json' && typeof(value.modal) !== 'undefined' && value.modal === true) {
                             modalUse = true;
@@ -444,7 +446,7 @@ $.fn.zabuto_calendar = function (options) {
                         if (modalUse === true) {
                             $dowElement.addClass('event-clickable');
 
-                            var $modalElement = createModal(id, value.Title, value.Description, value.footer);
+                            var $modalElement = createModal(id, value.title, value.body, value.footer);
                             $('body').append($modalElement);
 
                             $('#' + id).click(function () {

@@ -81,6 +81,17 @@ namespace ParrisConnection.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.Events",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Title = c.String(maxLength: 255),
+                        Description = c.String(maxLength: 255),
+                        DateTime = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Phones",
                 c => new
                     {
@@ -211,6 +222,7 @@ namespace ParrisConnection.Migrations
             DropTable("dbo.ProfilePhotoes");
             DropTable("dbo.PhoneTypes");
             DropTable("dbo.Phones");
+            DropTable("dbo.Events");
             DropTable("dbo.Employers");
             DropTable("dbo.EmailTypes");
             DropTable("dbo.Emails");
