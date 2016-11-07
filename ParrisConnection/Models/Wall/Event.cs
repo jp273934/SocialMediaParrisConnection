@@ -14,13 +14,15 @@ namespace ParrisConnection.Models.Wall
         {
             
         }
-
+        [JsonProperty]
         public int Id { get; set; }
         [StringLength(255)]
         public string Title { get; set; }
+        [JsonProperty]
         [StringLength(255)]
         public string Description { get; set; }
-        [JsonProperty(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
+        [JsonProperty]
+        [JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime DateTime { get; set; }
     }
 }

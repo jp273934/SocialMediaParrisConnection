@@ -13,9 +13,7 @@ namespace ParrisConnection
                         "~/Scripts/jquery.unobtrusive-ajax.min.js",
                         "~/Scripts/bootstrap-datepicker.min.js",
                         "~/Scripts/locales/bootstrap-datepicker.en-GB.min.js",
-                        "~/Scripts/CustomScripts/ProfileScripts.js",
-                        "~/Scripts/Plugins/EventCalendar/js/jquery.e-calendar.js",
-                        "~/Scripts/CustomScripts/WallScripts.js"
+                        "~/Scripts/CustomScripts/ProfileScripts.js"                   
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -30,10 +28,15 @@ namespace ParrisConnection
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/wall").Include(
+                "~/Scripts/Plugins/EventCalendar/zabuto_calendar.js",
+                "~/Scripts/CustomScripts/WallScripts.js"
+                ));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Scripts/Plugins/EventCalendar/css/jquery.e-calendar.css"
+                      "~/Scripts/Plugins/EventCalendar/zabuto_calendar.min.css"
                       ));
         }
     }

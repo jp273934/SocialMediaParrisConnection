@@ -244,6 +244,7 @@
     <Compile Include="Models\Profile\PhoneType.cs" />
     <Compile Include="Models\Profile\ProfilePhoto.cs" />
     <Compile Include="Models\Profile\Quote.cs" />
+    <Compile Include="Models\Wall\ClientEvent.cs" />
     <Compile Include="Models\Wall\Event.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\WallViewModel.cs" />
@@ -367,12 +368,11 @@
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\Plugins\EventCalendar\css\jquery.e-calendar.css" />
-    <Content Include="Scripts\Plugins\EventCalendar\example\example.png" />
-    <Content Include="Scripts\Plugins\EventCalendar\example\index.html" />
-    <Content Include="Scripts\Plugins\EventCalendar\example\index.js" />
-    <Content Include="Scripts\Plugins\EventCalendar\js\jquery-1.11.0.min.js" />
-    <Content Include="Scripts\Plugins\EventCalendar\js\jquery.e-calendar.js" />
+    <Content Include="Scripts\Plugins\EventCalendar\MIT-LICENSE.txt" />
+    <Content Include="Scripts\Plugins\EventCalendar\zabuto_calendar.css" />
+    <Content Include="Scripts\Plugins\EventCalendar\zabuto_calendar.js" />
+    <Content Include="Scripts\Plugins\EventCalendar\zabuto_calendar.min.css" />
+    <Content Include="Scripts\Plugins\EventCalendar\zabuto_calendar.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -419,9 +419,9 @@
     <Content Include="Views\Profile\AddQuote.cshtml" />
     <Content Include="Views\Profile\AddPhoneNumber.cshtml" />
     <Content Include="Views\Profile\AddEmail.cshtml" />
-    <Content Include="Scripts\Plugins\EventCalendar\e-calendar.jquery.json" />
-    <Content Include="Scripts\Plugins\EventCalendar\LICENSE" />
+    <Content Include="Scripts\Plugins\EventCalendar\bower.json" />
     <Content Include="Scripts\Plugins\EventCalendar\README.md" />
+    <Content Include="Scripts\Plugins\EventCalendar\zabuto_calendar.jquery.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

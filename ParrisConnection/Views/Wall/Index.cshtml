@@ -5,10 +5,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript">
+    //LoadCalendar();
+    
+</script>
 <div class="row">
     <div class="col-lg-4">
         <br/>
-        <div id="calendar"></div>
+        <div id="date-popover" class="popover top" style="...">
+            ...
+            <div id="date-popover-content" class="popover-content"></div>
+        </div>
+       <div id="my-calendar"></div>
+       
         <form id="EventForm">
             <div class="form-group">
                 <label>Event Name</label>
@@ -28,40 +37,43 @@
             <button type="button" class="btn btn-primary" onclick="CreateEvent()">Add Event</button>
         </form>
     </div>
-        <div class="col-lg-4">
-            <br/>
-            @Html.ActionLink("Update Status", "Index", "SingleStatus", null, new {@class = "btn btn-primary"})
-            <br/><br/>
+    <div class="col-lg-4">
+        <br/>
+        @Html.ActionLink("Update Status", "Index", "SingleStatus", null, new {@class = "btn btn-primary"})
+        <br/><br/>
 
-            @foreach (var post in Model.Statuses)
-            {
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <p>@post.Post</p>
+        @foreach (var post in Model.Statuses)
+        {
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>@post.Post</p>
 
-                        @using (Html.BeginForm("CreateComment", "Wall", new {statusId = @post.Id}, FormMethod.Post))
+                    @using (Html.BeginForm("CreateComment", "Wall", new {statusId = @post.Id}, FormMethod.Post))
+                    {
+                        @Html.TextBox("Comment", null, new {@class = "form-control"})
+                        <br/>
+                        <button type="submit" class="btn btn-primary">Comment</button>
+                        <br/><br/>
+                    }
+
+                    <ul>
+                        @foreach (var comment in post.Comments)
                         {
-                            @Html.TextBox("Comment", null, new {@class = "form-control"})
-                            <br/>
-                            <button type="submit" class="btn btn-primary">Comment</button>
-                            <br/><br/>
+                            <li>
+                                <p> @comment.PostComment </p>
+                            </li>
                         }
+                    </ul>
 
-                        <ul>
-                            @foreach (var comment in post.Comments)
-                            {
-                                <li>
-                                    <p> @comment.PostComment </p>
-                                </li>
-                            }
-                        </ul>
-
-                    </div>
                 </div>
+            </div>
 
-            }
-        </div>
-        <div class="col-lg-4">
-            
-        </div>
+        }
     </div>
+    <div class="col-lg-4">
+            
+    </div>
+</div>
+
+
+
