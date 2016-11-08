@@ -34,6 +34,9 @@ namespace ParrisConnection.Models
         public DbSet<Email> Emails { get; set; }
         public DbSet<AlbumPhoto> AlbumPhotos { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<LinkType> LinkTypes { get; set; }
+        public DbSet<Link> Links { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

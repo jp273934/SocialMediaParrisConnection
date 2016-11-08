@@ -222,6 +222,26 @@
     <Compile Include="Migrations\201611071404486_InitialMigration.Designer.cs">
       <DependentUpon>201611071404486_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611081356516_AddedLinkTypes.cs" />
+    <Compile Include="Migrations\201611081356516_AddedLinkTypes.Designer.cs">
+      <DependentUpon>201611081356516_AddedLinkTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611081359357_AddedConstraintsToLinkTypes.cs" />
+    <Compile Include="Migrations\201611081359357_AddedConstraintsToLinkTypes.Designer.cs">
+      <DependentUpon>201611081359357_AddedConstraintsToLinkTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611081401294_AddLinktypeData.cs" />
+    <Compile Include="Migrations\201611081401294_AddLinktypeData.Designer.cs">
+      <DependentUpon>201611081401294_AddLinktypeData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611081421425_AddedSocialMediaLinks.cs" />
+    <Compile Include="Migrations\201611081421425_AddedSocialMediaLinks.Designer.cs">
+      <DependentUpon>201611081421425_AddedSocialMediaLinks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611081424123_AddedLinksStringLengthContstraints.cs" />
+    <Compile Include="Migrations\201611081424123_AddedLinksStringLengthContstraints.Designer.cs">
+      <DependentUpon>201611081424123_AddedLinksStringLengthContstraints.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -232,6 +252,8 @@
     <Compile Include="Models\Profile\EmailType.cs" />
     <Compile Include="Models\Profile\Employer.cs" />
     <Compile Include="Models\Profile\IContactType.cs" />
+    <Compile Include="Models\Profile\Link.cs" />
+    <Compile Include="Models\Profile\LinkType.cs" />
     <Compile Include="Models\Profile\Phone.cs" />
     <Compile Include="Models\Profile\PhoneType.cs" />
     <Compile Include="Models\Profile\ProfilePhoto.cs" />
@@ -432,6 +454,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201611071404486_InitialMigration.resx">
       <DependentUpon>201611071404486_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611081356516_AddedLinkTypes.resx">
+      <DependentUpon>201611081356516_AddedLinkTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611081359357_AddedConstraintsToLinkTypes.resx">
+      <DependentUpon>201611081359357_AddedConstraintsToLinkTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611081401294_AddLinktypeData.resx">
+      <DependentUpon>201611081401294_AddLinktypeData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611081421425_AddedSocialMediaLinks.resx">
+      <DependentUpon>201611081421425_AddedSocialMediaLinks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611081424123_AddedLinksStringLengthContstraints.resx">
+      <DependentUpon>201611081424123_AddedLinksStringLengthContstraints.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
