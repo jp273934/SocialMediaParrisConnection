@@ -12,27 +12,27 @@ $(document).ready(function () {
     });
 
     $("#EmploymentForm").on("submit", function (event) {       
-        SubmitForm("AddEmployment", GetEmploymentData(), "AddEmploymentForm", "EmploymentArea");
+        SubmitForm("/Profile/AddEmployment", GetEmploymentData(), "AddEmploymentForm", "EmploymentArea");
         event.preventDefault();
     });
 
     $("#EducationForm").on("submit", function (event) {
-        SubmitForm("AddEducation", GetEducationData(), "AddEducationtForm", "EducationArea");
+        SubmitForm("/Profile/AddEducation", GetEducationData(), "AddEducationtForm", "EducationArea");
         event.preventDefault();
     });
 
     $("#QuoteForm").on("submit", function(event) {
-        SubmitForm("AddQuote", GetQuoteData(), "AddQuoteForm", "QuoteArea");
+        SubmitForm("/Profile/AddQuote", GetQuoteData(), "AddQuoteForm", "QuoteArea");
         event.preventDefault();
     });
 
     $("#PhoneForm").on("submit", function(event) {
-        SubmitForm("AddPhoneNumber", GetPhoneData(), "AddPhoneForm", "PhoneArea");
+        SubmitForm("/Profile/AddPhoneNumber", GetPhoneData(), "AddPhoneForm", "PhoneArea");
         event.preventDefault();
     });
 
     $("#EmailForm").on("submit", function(event) {
-        SubmitForm("AddEmail", GetEmailData(), "AddEmailForm", "EmailArea");
+        SubmitForm("Profile/AddEmail", GetEmailData(), "AddEmailForm", "EmailArea");
         event.preventDefault();
     });
 });

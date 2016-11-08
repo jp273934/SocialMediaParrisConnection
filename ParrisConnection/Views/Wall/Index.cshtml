@@ -1,12 +1,11 @@
-﻿@using System.Activities.Statements
-@model ParrisConnection.ViewModels.WallViewModel
+﻿@model ParrisConnection.ViewModels.WallViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script type="text/javascript">
-    //LoadCalendar();
+    LoadCalendar();
     
 </script>
 <div class="row">
@@ -18,7 +17,7 @@
         </div>
        <div id="my-calendar"></div>
        
-        <form id="EventForm">
+        <form id="EventForm" style="display: none;">
             <div class="form-group">
                 <label>Event Name</label>
                 <input type="text" name="title" class="form-control" id="TitleTextbox"/>
@@ -36,6 +35,7 @@
             
             <button type="button" class="btn btn-primary" onclick="CreateEvent()">Add Event</button>
         </form>
+        <a id="AddEventLink" onclick="ToggleEventForm()">Add Event</a>
     </div>
     <div class="col-lg-4">
         <br/>

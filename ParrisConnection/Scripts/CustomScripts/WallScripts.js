@@ -1,10 +1,10 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function() {
     LoadCalendar();
 });
 
+
 function LoadCalendar() {
-    $("#my-calendar").empty();
+    $("#zabuto_calendar_1ogo").empty();
     $("#my-calendar").zabuto_calendar({
         
         action_nav: function() {
@@ -49,7 +49,8 @@ function CreateEvent() {
         type: 'POST',
         url: '/api/Event/',
         data: Event(),
-        success: function(data) {
+        success: function (data) {
+            ToggleEventForm();
             LoadCalendar();
         },
         error : function(data, errorThrown) {
@@ -68,4 +69,8 @@ function Event() {
 }
 
     return dataObject;
+}
+
+function ToggleEventForm() {
+    $("#EventForm").toggle();
 }
