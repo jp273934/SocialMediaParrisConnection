@@ -10,11 +10,6 @@ namespace ParrisConnection
     {
         public static void Register(HttpConfiguration config)
         {
-
-            //var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
-            //json.SerializerSettings.DateFormatHandling
-            //= Newtonsoft.Json.DateFormatHandling.MicrosoftDateFormat;
-
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
