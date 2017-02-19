@@ -1,20 +1,18 @@
-namespace ParrisConnection.Migrations
+namespace ParrisConnection.DataLayer.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddedSocialMediaLinks : DbMigration
+    public partial class AddedCommentsTable : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Links",
+                "dbo.Comments",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Url = c.String(),
-                        Type = c.String(),
-                        CssClass = c.String(),
+                        PostComment = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -22,7 +20,7 @@ namespace ParrisConnection.Migrations
         
         public override void Down()
         {
-            DropTable("dbo.Links");
+            DropTable("dbo.Comments");
         }
     }
 }

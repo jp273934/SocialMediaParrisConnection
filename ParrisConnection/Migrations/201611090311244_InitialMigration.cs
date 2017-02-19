@@ -92,6 +92,27 @@ namespace ParrisConnection.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.Links",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Url = c.String(maxLength: 255),
+                        Type = c.String(maxLength: 50),
+                        CssClass = c.String(maxLength: 50),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.LinkTypes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(maxLength: 255),
+                        CssClass = c.String(maxLength: 100),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Phones",
                 c => new
                     {
@@ -222,6 +243,8 @@ namespace ParrisConnection.Migrations
             DropTable("dbo.ProfilePhotoes");
             DropTable("dbo.PhoneTypes");
             DropTable("dbo.Phones");
+            DropTable("dbo.LinkTypes");
+            DropTable("dbo.Links");
             DropTable("dbo.Events");
             DropTable("dbo.Employers");
             DropTable("dbo.EmailTypes");
