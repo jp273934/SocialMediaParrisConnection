@@ -1,8 +1,8 @@
-﻿@model IEnumerable<ParrisConnection.Models.Profile.Email>
+﻿@model IEnumerable<ParrisConnection.DataLayer.Entities.Profile.Email>
 
 @foreach (var item in Model) {
     <div class="form-group">
-        @item.EmailAddress
+        @item.Address
     </div>
 }
 

@@ -1,9 +1,7 @@
-﻿using System;
+﻿using ParrisConnection.DataLayer.Entities.Profile;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using ParrisConnection.Models.Profile;
+using ProfilePhoto = ParrisConnection.DataLayer.Entities.Profile.ProfilePhoto;
 
 namespace ParrisConnection.ViewModels
 {

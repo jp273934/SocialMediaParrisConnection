@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using ParrisConnection.DataLayer.DataAccess;
+using ParrisConnection.DataLayer.Entities;
 using System.Web.Mvc;
-using ParrisConnection.Models;
-using ParrisConnection.Models.Wall;
+using Status = ParrisConnection.DataLayer.Entities.Wall.Status;
 
 namespace ParrisConnection.Controllers
 {
     public class SingleStatusController : Controller
     {
-        private ApplicationDbContext _context;
+        private DataAccess _context;
 
         public SingleStatusController()
         {
-            _context = new ApplicationDbContext();
+            _context = new DataAccess(new ParrisDbContext());
         }
         public ActionResult Index()
         {
@@ -24,8 +21,7 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddStatus(Status status)
         {
-            _context.Statuses.Add(status);
-            _context.SaveChanges();
+            _context.Statuses.Insert(status);
 
             return RedirectToAction("Index", "Wall");
         }

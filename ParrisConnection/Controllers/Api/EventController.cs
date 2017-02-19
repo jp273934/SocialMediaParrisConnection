@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using ParrisConnection.Models;
+using ParrisConnection.Models.Wall;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using ParrisConnection.Models;
-using ParrisConnection.Models.Wall;
 
 namespace ParrisConnection.Controllers.Api
 {
@@ -22,11 +22,13 @@ namespace ParrisConnection.Controllers.Api
 
         public IEnumerable<ClientEvent> GetEvents(int year, int month)
         {
-            return _context.Events.ToList().Where(e => e.DateTime.Month == month && e.DateTime.Year == year).Select(item => new ClientEvent
-            {
-                date = item.DateTime.Year + "-" + item.DateTime.Month + "-" + item.DateTime.Day,
-                badge = true, title = item.Title, body = item.Description, footer = "", classname = ""
-            }).ToList();
+            //return _context.Events.ToList().Where(e => e.DateTime.Month == month && e.DateTime.Year == year).Select(item => new ClientEvent
+            //{
+            //    date = item.DateTime.Year + "-" + item.DateTime.Month + "-" + item.DateTime.Day,
+            //    badge = true, title = item.Title, body = item.Description, footer = "", classname = ""
+            //}).ToList();
+
+            return new List<ClientEvent>();
         }
 
         [HttpPost]

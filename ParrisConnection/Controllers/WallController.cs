@@ -1,29 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using ParrisConnection.Models;
-using ParrisConnection.Models.Wall;
+﻿using ParrisConnection.DataLayer.DataAccess;
+using ParrisConnection.DataLayer.Entities;
 using ParrisConnection.ViewModels;
+using System.Linq;
+using System.Web.Mvc;
+using Comment = ParrisConnection.DataLayer.Entities.Wall.Comment;
 
 namespace ParrisConnection.Controllers
 {
     public class WallController : Controller
     {
-        private ApplicationDbContext _context;
+        private DataAccess _context;
 
         public WallController()
         {
-            _context = new ApplicationDbContext();
+           _context = new DataAccess(new ParrisDbContext());
         }
 
         public ActionResult Index()
         {
             var wall = new WallViewModel
             {
-                Statuses = _context.Statuses.ToList()
+                Statuses = _context.Statuses.GetAll().ToList()
             };
 
             return View(wall);
@@ -34,15 +31,12 @@ namespace ParrisConnection.Controllers
         {
             var post = new Comment
             {
-                PostComment = comment
+                PostComment = comment,
+                Status = _context.Statuses.GetById(statusId)
             };
 
-            _context.Statuses.Single(s => s.Id == statusId).Comments.Add(post);
-
-             _context.SaveChanges();
-         
-
-            
+            _context.Comments.Insert(post);
+                    
             return RedirectToAction("Index", "Wall");
         }
     }

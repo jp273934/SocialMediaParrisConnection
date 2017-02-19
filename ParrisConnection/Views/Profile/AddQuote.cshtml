@@ -1,9 +1,9 @@
-﻿@model IEnumerable<ParrisConnection.Models.Profile.Quote>
+﻿@model IEnumerable<ParrisConnection.DataLayer.Entities.Profile.Quote>
 
 
 @foreach (var item in Model) {
     <div class="form-group">
-        <p>@item.Name @item.AuthorDisplay</p>
+        @*<p>@item.Name @item.AuthorDisplay</p>*@
     </div>
 }
 

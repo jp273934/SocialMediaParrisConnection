@@ -77,6 +77,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="ParrisConnection.DataLayer">
+      <HintPath>..\ParrisConnection.DataLayer\bin\Debug\ParrisConnection.DataLayer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -226,24 +229,10 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Profile\AlbumPhoto.cs" />
-    <Compile Include="Models\Profile\Education.cs" />
-    <Compile Include="Models\Profile\Email.cs" />
-    <Compile Include="Models\Profile\EmailType.cs" />
-    <Compile Include="Models\Profile\Employer.cs" />
-    <Compile Include="Models\Profile\IContactType.cs" />
-    <Compile Include="Models\Profile\Link.cs" />
-    <Compile Include="Models\Profile\LinkType.cs" />
-    <Compile Include="Models\Profile\Phone.cs" />
-    <Compile Include="Models\Profile\PhoneType.cs" />
-    <Compile Include="Models\Profile\ProfilePhoto.cs" />
-    <Compile Include="Models\Profile\Quote.cs" />
     <Compile Include="Models\Wall\ClientEvent.cs" />
     <Compile Include="Models\Wall\Event.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\WallViewModel.cs" />
-    <Compile Include="Models\Wall\Comment.cs" />
-    <Compile Include="Models\Wall\Status.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

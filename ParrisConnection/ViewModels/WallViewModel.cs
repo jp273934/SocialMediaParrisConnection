@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using ParrisConnection.Models.Wall;
+using Status = ParrisConnection.DataLayer.Entities.Wall.Status;
 
 namespace ParrisConnection.ViewModels
 {

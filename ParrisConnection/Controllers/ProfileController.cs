@@ -1,38 +1,39 @@
-﻿using System;
+﻿using ParrisConnection.DataLayer.DataAccess;
+using ParrisConnection.DataLayer.Entities;
+using ParrisConnection.DataLayer.Entities.Profile;
+using ParrisConnection.ViewModels;
+using System;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ParrisConnection.Models;
-using ParrisConnection.Models.Profile;
-using ParrisConnection.ViewModels;
 
 namespace ParrisConnection.Controllers
 {
     public class ProfileController : Controller
     {
-        private ApplicationDbContext _context;
+        private DataAccess _context;
 
         public ProfileController()
         {
-            _context = new ApplicationDbContext();
+            _context = new DataAccess(new ParrisDbContext());
         }
 
         // GET: Profile
         public ActionResult Index()
         {
-            var profilePhotos = _context.ProfilePhotos.ToList();
+            var profilePhotos = _context.ProfilePhotoes.GetAll().ToList();
 
             var viewModel = new ProfileViewModel
             {
-                ProfilePhoto = profilePhotos.Count > 0 ? profilePhotos[0] : new ProfilePhoto(),
-                Employers = _context.Employers.ToList(),
-                Educations = _context.Educations.ToList(),
-                Quotes = _context.Quotes.ToList(),
-                Phones = _context.Phones.ToList(),
-                Emails = _context.Emails.ToList(),
-                PhoneTypes = _context.PhoneTypes.ToList(),
-                EmailTypes = _context.EmailTypes.ToList()
+                ProfilePhoto = profilePhotos.Count > 0 ? profilePhotos[0] : new DataLayer.Entities.Profile.ProfilePhoto(),
+                Employers = _context.Employers.GetAll().ToList(),
+                Educations = _context.Educations.GetAll().ToList(),
+                Quotes = _context.Quotes.GetAll().ToList(),
+                Phones = _context.Phones.GetAll().ToList(),
+                Emails = _context.Emails.GetAll().ToList(),
+                PhoneTypes = _context.PhoneTypes.GetAll().ToList(),
+                EmailTypes = _context.EmailTypes.GetAll().ToList()
             };
 
             return View(viewModel);
@@ -48,15 +49,14 @@ namespace ParrisConnection.Controllers
                     string path = Path.Combine(Server.MapPath("~/ProfilePhotos"), Path.GetFileName(file.FileName));
                     file.SaveAs(path);
 
-                    _context.ProfilePhotos.ToList().Clear();
+                    _context.ProfilePhotoes.GetAll().ToList().Clear();
 
                     var photo = new ProfilePhoto
                     {
                         FilePath = file.FileName
                     };
 
-                    _context.ProfilePhotos.Add(photo);
-                    _context.SaveChanges();
+                    _context.ProfilePhotoes.Insert(photo);
 
                 }
                 catch (Exception e)
@@ -70,13 +70,11 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddEmployment(Employer employment)
         {
-            _context.Employers.Add(employment);
-
-            _context.SaveChanges();
+            _context.Employers.Insert(employment);
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddEmployment", _context.Employers);
+                return PartialView("AddEmployment", _context.Employers.GetAll());
             }
 
             return RedirectToAction("Index", "Profile");
@@ -85,13 +83,11 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddEducation(Education education)
         {
-            _context.Educations.Add(education);
-
-            _context.SaveChanges();
+            _context.Educations.Insert(education);
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddEducation", _context.Educations);
+                return PartialView("AddEducation", _context.Educations.GetAll());
             }
 
             return RedirectToAction("Index", "Profile");
@@ -100,9 +96,7 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddQuote(Quote quote)
         {
-            _context.Quotes.Add(quote);
-
-            _context.SaveChanges();
+            _context.Quotes.Insert(quote);
 
             if (Request.IsAjaxRequest())
             {
@@ -115,17 +109,17 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddPhoneNumber(Phone phoneNumber)
         {
-            var phoneTypes = _context.PhoneTypes.ToList();
+            var phoneTypes = _context.PhoneTypes;
 
-            phoneNumber.PhoneType = phoneTypes.Single(p => p.Id == Convert.ToInt32(phoneNumber.PhoneType)).Type;
+            //phoneNumber.PhoneType = phoneTypes.Single(p => p.Id == Convert.ToInt32(phoneNumber.PhoneType)).Type;
 
-             _context.Phones.Add(phoneNumber);
+            // _context.Phones.Add(phoneNumber);
 
-            _context.SaveChanges();
+            //_context.SaveChanges();
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddPhoneNumber", _context.Phones);
+                return PartialView("AddPhoneNumber", _context.Phones.GetAll());
             }
 
             return RedirectToAction("Index", "Profile");
@@ -134,16 +128,16 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddEmail(Email email)
         {
-            var emailTypes = _context.EmailTypes.ToList();
-            email.EmailType = emailTypes.Single(e => e.Id == Convert.ToInt32(email.EmailType)).Type;
+            var emailTypes = _context.EmailTypes.GetAll();
+            //email.EmailType = emailTypes.Single(e => e.Id == Convert.ToInt32(email.EmailType)).Type;
             
-            _context.Emails.Add(email);
+            //_context.Emails.Add(email);
 
-            _context.SaveChanges();
+            //_context.SaveChanges();
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddEmail", _context.Emails);
+                return PartialView("AddEmail", _context.Emails.GetAll());
             }
 
             return RedirectToAction("Index", "Profile");
