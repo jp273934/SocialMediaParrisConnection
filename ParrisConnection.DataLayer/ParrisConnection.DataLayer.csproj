@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\DataAccess.cs" />
     <Compile Include="Entities\Profile\AlbumPhoto.cs" />
     <Compile Include="Entities\Profile\Education.cs" />
     <Compile Include="Entities\Profile\Email.cs" />
