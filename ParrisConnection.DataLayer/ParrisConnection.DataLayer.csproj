@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\IDataAccess.cs" />
     <Compile Include="Entities\Profile\AlbumPhoto.cs" />
     <Compile Include="Entities\Profile\Education.cs" />
     <Compile Include="Entities\Profile\Email.cs" />

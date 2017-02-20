@@ -1,5 +1,4 @@
 ﻿using ParrisConnection.DataLayer.DataAccess;
-using ParrisConnection.DataLayer.Entities;
 using System.Web.Mvc;
 using Status = ParrisConnection.DataLayer.Entities.Wall.Status;
 
@@ -7,11 +6,11 @@ namespace ParrisConnection.Controllers
 {
     public class SingleStatusController : Controller
     {
-        private DataAccess _context;
+        private readonly IDataAccess _context;
 
-        public SingleStatusController()
+        public SingleStatusController(IDataAccess context)
         {
-            _context = new DataAccess(new ParrisDbContext());
+            _context = context;
         }
         public ActionResult Index()
         {

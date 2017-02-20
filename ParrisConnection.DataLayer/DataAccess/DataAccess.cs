@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ParrisConnection.DataLayer.Entities;
+﻿using ParrisConnection.DataLayer.Entities;
 using ParrisConnection.DataLayer.Entities.Profile;
 using ParrisConnection.DataLayer.Entities.Wall;
 using ParrisConnection.DataLayer.Repositories;
 
 namespace ParrisConnection.DataLayer.DataAccess
 {
-    public class DataAccess
+    public class DataAccess : IDataAccess
     {
         public IRepository<AlbumPhoto> AlbumPhotoes { get; set; }
         public IRepository<Education> Educations { get; set; }

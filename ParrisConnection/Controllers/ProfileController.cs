@@ -1,5 +1,4 @@
 ﻿using ParrisConnection.DataLayer.DataAccess;
-using ParrisConnection.DataLayer.Entities;
 using ParrisConnection.DataLayer.Entities.Profile;
 using ParrisConnection.ViewModels;
 using System;
@@ -12,11 +11,11 @@ namespace ParrisConnection.Controllers
 {
     public class ProfileController : Controller
     {
-        private DataAccess _context;
+        private IDataAccess _context;
 
-        public ProfileController()
+        public ProfileController(IDataAccess context)
         {
-            _context = new DataAccess(new ParrisDbContext());
+            _context = context;
         }
 
         // GET: Profile
@@ -100,7 +99,7 @@ namespace ParrisConnection.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddQuote", _context.Quotes);
+                return PartialView("AddQuote", _context.Quotes.GetAll());
             }
 
             return RedirectToAction("Index", "Profile");

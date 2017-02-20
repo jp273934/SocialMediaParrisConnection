@@ -1,7 +1,6 @@
 ﻿using ParrisConnection.Models;
 using ParrisConnection.Models.Wall;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 
 namespace ParrisConnection.Controllers.Api
@@ -17,7 +16,7 @@ namespace ParrisConnection.Controllers.Api
 
         public IEnumerable<Event> GetEvents()
         {
-            return _context.Events.AsEnumerable();
+            return new List<Event>();
         }
 
         public IEnumerable<ClientEvent> GetEvents(int year, int month)
@@ -36,8 +35,8 @@ namespace ParrisConnection.Controllers.Api
         {
             if (ModelState.IsValid)
             {
-                _context.Events.Add(upcomingEvent);
-                _context.SaveChanges();
+                //_context.Events.Add(upcomingEvent);
+                //_context.SaveChanges();
             }
         }
     }

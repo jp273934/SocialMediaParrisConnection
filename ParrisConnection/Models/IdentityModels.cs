@@ -1,10 +1,7 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using ParrisConnection.Models.Profile;
-using ParrisConnection.Models.Wall;
 
 namespace ParrisConnection.Models
 {
@@ -22,20 +19,7 @@ namespace ParrisConnection.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Status> Statuses { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<ProfilePhoto> ProfilePhotos { get; set; }
-        public DbSet<Employer> Employers { get; set; }
-        public DbSet<Education> Educations { get; set; }
-        public DbSet<Quote> Quotes { get; set; }
-        public DbSet<Phone> Phones { get; set; }
-        public DbSet<PhoneType> PhoneTypes  { get; set; }
-        public DbSet<EmailType> EmailTypes { get; set; }
-        public DbSet<Email> Emails { get; set; }
-        public DbSet<AlbumPhoto> AlbumPhotos { get; set; }
-        public DbSet<Event> Events { get; set; }
-        public DbSet<LinkType> LinkTypes { get; set; }
-        public DbSet<Link> Links { get; set; }
+      
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
