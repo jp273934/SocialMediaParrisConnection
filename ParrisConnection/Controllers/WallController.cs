@@ -1,25 +1,24 @@
-﻿using ParrisConnection.DataLayer.DataAccess;
-using ParrisConnection.DataLayer.Entities.Wall;
+﻿using ParrisConnection.ServiceLayer.Data;
+using ParrisConnection.ServiceLayer.Services.Interfaces;
 using ParrisConnection.ViewModels;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace ParrisConnection.Controllers
 {
     public class WallController : Controller
     {
-        private readonly IDataAccess _context;
+        private readonly IStatusService _statusService;
 
-        public WallController(IDataAccess context)
+        public WallController(IStatusService statusService)
         {
-           _context = context;
+           _statusService = statusService;
         }
 
         public ActionResult Index()
         {
             var wall = new WallViewModel
             {
-                Statuses = _context.Statuses.GetAll().ToList()
+                Statuses = _statusService.GetStatuses()
             };
 
             return View(wall);
@@ -28,14 +27,14 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult CreateComment(int statusId, string comment)
         {
-            var post = new Comment
+            var post = new CommentData
             {
                 PostComment = comment,
-                Status = _context.Statuses.GetById(statusId)
+                Status = _statusService.GetStatusById(statusId)
             };
 
-            _context.Comments.Insert(post);
-                    
+            //_context.Comments.Insert(post);
+
             return RedirectToAction("Index", "Wall");
         }
     }

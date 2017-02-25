@@ -442,6 +442,12 @@
       <DependentUpon>201611090311244_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ParrisConnection.ServiceLayer\ParrisConnection.ServiceLayer.csproj">
+      <Project>{861D9085-7346-46E2-8D7A-0F12B15AAC8F}</Project>
+      <Name>ParrisConnection.ServiceLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using ParrisConnection.ServiceLayer.Data;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Status = ParrisConnection.DataLayer.Entities.Wall.Status;
 
 namespace ParrisConnection.ViewModels
 {
@@ -8,6 +8,6 @@ namespace ParrisConnection.ViewModels
     {
         [Key]
         public int Id { get; set; }
-        public List<Status> Statuses { get; set; }
+        public List<StatusData> Statuses { get; set; }
     }
 }

@@ -1,4 +1,6 @@
 using ParrisConnection.DataLayer.DataAccess;
+using ParrisConnection.ServiceLayer.Services;
+using ParrisConnection.ServiceLayer.Services.Interfaces;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ParrisConnection.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(ParrisConnection.App_Start.NinjectWebCommon), "Stop")]
@@ -62,6 +64,7 @@ namespace ParrisConnection.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IDataAccess>().To<DataAccess>();
+            kernel.Bind<IStatusService>().To<StatusService>();
         }        
     }
 }

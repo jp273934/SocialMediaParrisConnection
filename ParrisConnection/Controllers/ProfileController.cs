@@ -25,7 +25,7 @@ namespace ParrisConnection.Controllers
 
             var viewModel = new ProfileViewModel
             {
-                ProfilePhoto = profilePhotos.Count > 0 ? profilePhotos[0] : new DataLayer.Entities.Profile.ProfilePhoto(),
+                ProfilePhoto = profilePhotos.Count > 0 ? profilePhotos[0] : new ProfilePhoto(),
                 Employers = _context.Employers.GetAll().ToList(),
                 Educations = _context.Educations.GetAll().ToList(),
                 Quotes = _context.Quotes.GetAll().ToList(),

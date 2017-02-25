@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParrisConnection.Tests", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParrisConnection.DataLayer", "ParrisConnection.DataLayer\ParrisConnection.DataLayer.csproj", "{9E26FB07-5E5F-4439-9E1D-50FFA226A211}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParrisConnection.ServiceLayer", "ParrisConnection.ServiceLayer\ParrisConnection.ServiceLayer.csproj", "{861D9085-7346-46E2-8D7A-0F12B15AAC8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9E26FB07-5E5F-4439-9E1D-50FFA226A211}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E26FB07-5E5F-4439-9E1D-50FFA226A211}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E26FB07-5E5F-4439-9E1D-50FFA226A211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{861D9085-7346-46E2-8D7A-0F12B15AAC8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{861D9085-7346-46E2-8D7A-0F12B15AAC8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{861D9085-7346-46E2-8D7A-0F12B15AAC8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{861D9085-7346-46E2-8D7A-0F12B15AAC8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
