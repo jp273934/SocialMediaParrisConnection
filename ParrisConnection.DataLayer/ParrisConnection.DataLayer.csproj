@@ -54,6 +54,7 @@
     <Compile Include="Dtos\IEducation.cs" />
     <Compile Include="Dtos\IEmployer.cs" />
     <Compile Include="Dtos\IProfilePhoto.cs" />
+    <Compile Include="Dtos\IQuote.cs" />
     <Compile Include="Entities\Profile\AlbumPhoto.cs" />
     <Compile Include="Entities\Profile\Education.cs" />
     <Compile Include="Entities\Profile\Email.cs" />

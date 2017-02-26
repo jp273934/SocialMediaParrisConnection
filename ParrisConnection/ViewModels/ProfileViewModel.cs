@@ -10,7 +10,7 @@ namespace ParrisConnection.ViewModels
         public ProfilePhotoData ProfilePhoto { get; set; }
         public IEnumerable<EmployerData> Employers { get; set; }
         public IEnumerable<EducationData> Educations { get; set; }
-        public List<Quote> Quotes { get; set; }
+        public IEnumerable<QuoteData> Quotes { get; set; }
         public List<Phone> Phones { get; set; }
         public List<Email> Emails { get; set; }
         public List<PhoneType> PhoneTypes { get; set; }

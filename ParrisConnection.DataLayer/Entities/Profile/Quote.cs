@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ParrisConnection.DataLayer.Dtos;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ParrisConnection.DataLayer.Entities.Profile
 {
-    public class Quote
+    public class Quote : IQuote
     {
         public int Id { get; set; }
         [StringLength(255)]

@@ -17,13 +17,15 @@ namespace ParrisConnection.Controllers
         private readonly IProfilePhotosService _profilePhotosService;
         private readonly IEmployerService _employerService;
         private readonly IEducationService _educationService;
+        private readonly IQuoteService _quoteService;
 
-        public ProfileController(IDataAccess context, IProfilePhotosService profilePhotosService, IEmployerService employerService, IEducationService educationService)
+        public ProfileController(IDataAccess context, IProfilePhotosService profilePhotosService, IEmployerService employerService, IEducationService educationService, IQuoteService quoteService)
         {
             _context = context;
             _profilePhotosService = profilePhotosService;
             _employerService = employerService;
             _educationService = educationService;
+            _quoteService = quoteService;
         }
 
         // GET: Profile
@@ -36,7 +38,7 @@ namespace ParrisConnection.Controllers
                 ProfilePhoto = _profilePhotosService.GetProfilePhoto(),
                 Employers = _employerService.GetEmployers(),
                 Educations = _educationService.GetAllEducation(),
-                Quotes = _context.Quotes.GetAll().ToList(),
+                Quotes = _quoteService.GetQuotes(),
                 Phones = _context.Phones.GetAll().ToList(),
                 Emails = _context.Emails.GetAll().ToList(),
                 PhoneTypes = _context.PhoneTypes.GetAll().ToList(),
@@ -91,13 +93,13 @@ namespace ParrisConnection.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddQuote(Quote quote)
+        public ActionResult AddQuote(QuoteData quote)
         {
-            _context.Quotes.Insert(quote);
+            _quoteService.SaveQuote(quote);
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddQuote", _context.Quotes.GetAll());
+                return PartialView("AddQuote", _quoteService.GetQuotes());
             }
 
             return RedirectToAction("Index", "Profile");
