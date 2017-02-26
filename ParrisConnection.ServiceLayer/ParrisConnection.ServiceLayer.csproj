@@ -50,6 +50,8 @@
     <Compile Include="Data\CommentData.cs" />
     <Compile Include="Data\EducationData.cs" />
     <Compile Include="Data\EmployerData.cs" />
+    <Compile Include="Data\PhoneData.cs" />
+    <Compile Include="Data\PhoneTypeData.cs" />
     <Compile Include="Data\ProfilePhotoData.cs" />
     <Compile Include="Data\QuoteData.cs" />
     <Compile Include="Data\StatusData.cs" />
@@ -58,9 +60,11 @@
     <Compile Include="Services\EmployerService.cs" />
     <Compile Include="Services\Interfaces\IEducationService.cs" />
     <Compile Include="Services\Interfaces\IEmployerService.cs" />
+    <Compile Include="Services\Interfaces\IPhoneService.cs" />
     <Compile Include="Services\Interfaces\IProfilePhotosService.cs" />
     <Compile Include="Services\Interfaces\IQuoteService.cs" />
     <Compile Include="Services\Interfaces\IWallService.cs" />
+    <Compile Include="Services\PhoneService.cs" />
     <Compile Include="Services\ProfilePhotosService.cs" />
     <Compile Include="Services\QuoteService.cs" />
     <Compile Include="Services\WallService.cs" />

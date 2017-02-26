@@ -53,6 +53,8 @@
     <Compile Include="DataAccess\IDataAccess.cs" />
     <Compile Include="Dtos\IEducation.cs" />
     <Compile Include="Dtos\IEmployer.cs" />
+    <Compile Include="Dtos\IPhone.cs" />
+    <Compile Include="Dtos\IPhoneType.cs" />
     <Compile Include="Dtos\IProfilePhoto.cs" />
     <Compile Include="Dtos\IQuote.cs" />
     <Compile Include="Entities\Profile\AlbumPhoto.cs" />

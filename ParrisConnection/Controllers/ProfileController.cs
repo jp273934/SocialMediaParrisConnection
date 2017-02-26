@@ -18,14 +18,16 @@ namespace ParrisConnection.Controllers
         private readonly IEmployerService _employerService;
         private readonly IEducationService _educationService;
         private readonly IQuoteService _quoteService;
+        private readonly IPhoneService _phoneService;
 
-        public ProfileController(IDataAccess context, IProfilePhotosService profilePhotosService, IEmployerService employerService, IEducationService educationService, IQuoteService quoteService)
+        public ProfileController(IDataAccess context, IProfilePhotosService profilePhotosService, IEmployerService employerService, IEducationService educationService, IQuoteService quoteService, IPhoneService phoneService)
         {
             _context = context;
             _profilePhotosService = profilePhotosService;
             _employerService = employerService;
             _educationService = educationService;
             _quoteService = quoteService;
+            _phoneService = phoneService;
         }
 
         // GET: Profile
@@ -39,9 +41,9 @@ namespace ParrisConnection.Controllers
                 Employers = _employerService.GetEmployers(),
                 Educations = _educationService.GetAllEducation(),
                 Quotes = _quoteService.GetQuotes(),
-                Phones = _context.Phones.GetAll().ToList(),
+                Phones = _phoneService.GetPhones(),
                 Emails = _context.Emails.GetAll().ToList(),
-                PhoneTypes = _context.PhoneTypes.GetAll().ToList(),
+                PhoneTypes = _phoneService.GetPhoneTypes(),
                 EmailTypes = _context.EmailTypes.GetAll().ToList()
             };
 
@@ -106,19 +108,13 @@ namespace ParrisConnection.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPhoneNumber(Phone phoneNumber)
+        public ActionResult AddPhoneNumber(PhoneData phoneNumber)
         {
-            var phoneTypes = _context.PhoneTypes;
-
-            //phoneNumber.PhoneType = phoneTypes.Single(p => p.Id == Convert.ToInt32(phoneNumber.PhoneType)).Type;
-
-            // _context.Phones.Add(phoneNumber);
-
-            //_context.SaveChanges();
+            _phoneService.SavePhone(phoneNumber);
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddPhoneNumber", _context.Phones.GetAll());
+                return PartialView("AddPhoneNumber", _phoneService.GetPhones());
             }
 
             return RedirectToAction("Index", "Profile");

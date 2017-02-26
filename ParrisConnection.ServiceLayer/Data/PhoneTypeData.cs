@@ -1,8 +1,8 @@
 ﻿using ParrisConnection.DataLayer.Dtos;
 
-namespace ParrisConnection.DataLayer.Entities.Profile
+namespace ParrisConnection.ServiceLayer.Data
 {
-    public class PhoneType : IPhoneType
+    public class PhoneTypeData : IPhoneType
     {
         public int Id { get; set; }
         public string Type { get; set; }

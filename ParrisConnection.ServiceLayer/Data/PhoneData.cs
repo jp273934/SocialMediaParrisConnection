@@ -1,12 +1,10 @@
 ﻿using ParrisConnection.DataLayer.Dtos;
-using System.ComponentModel.DataAnnotations;
 
-namespace ParrisConnection.DataLayer.Entities.Profile
+namespace ParrisConnection.ServiceLayer.Data
 {
-    public class Phone : IPhone
+    public class PhoneData : IPhone
     {
         public int Id { get; set; }
-        [StringLength(255)]
         public string Number { get; set; }
         public string PhoneType { get; set; }
     }
