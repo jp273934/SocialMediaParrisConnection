@@ -1,9 +1,9 @@
 ﻿using ParrisConnection.DataLayer.Dtos;
 using System;
 
-namespace ParrisConnection.DataLayer.Entities.Profile
+namespace ParrisConnection.ServiceLayer.Data
 {
-    public class Education : IEducation
+    public class EducationData : IEducation
     {
         public int Id { get; set; }
         public string Name { get; set; }

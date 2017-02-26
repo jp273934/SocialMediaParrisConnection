@@ -16,12 +16,14 @@ namespace ParrisConnection.Controllers
         private readonly IDataAccess _context;
         private readonly IProfilePhotosService _profilePhotosService;
         private readonly IEmployerService _employerService;
+        private readonly IEducationService _educationService;
 
-        public ProfileController(IDataAccess context, IProfilePhotosService profilePhotosService, IEmployerService employerService)
+        public ProfileController(IDataAccess context, IProfilePhotosService profilePhotosService, IEmployerService employerService, IEducationService educationService)
         {
             _context = context;
             _profilePhotosService = profilePhotosService;
             _employerService = employerService;
+            _educationService = educationService;
         }
 
         // GET: Profile
@@ -33,7 +35,7 @@ namespace ParrisConnection.Controllers
             {
                 ProfilePhoto = _profilePhotosService.GetProfilePhoto(),
                 Employers = _employerService.GetEmployers(),
-                Educations = _context.Educations.GetAll().ToList(),
+                Educations = _educationService.GetAllEducation(),
                 Quotes = _context.Quotes.GetAll().ToList(),
                 Phones = _context.Phones.GetAll().ToList(),
                 Emails = _context.Emails.GetAll().ToList(),
@@ -77,13 +79,12 @@ namespace ParrisConnection.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEducation(Education education)
+        public ActionResult AddEducation(EducationData education)
         {
-            _context.Educations.Insert(education);
-
+            _educationService.SaveEducation(education);
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddEducation", _context.Educations.GetAll());
+                return PartialView("AddEducation", _educationService.GetAllEducation());
             }
 
             return RedirectToAction("Index", "Profile");

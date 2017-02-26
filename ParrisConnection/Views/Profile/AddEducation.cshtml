@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ParrisConnection.DataLayer.Entities.Profile.Education>
+﻿@model IEnumerable<ParrisConnection.ServiceLayer.Data.EducationData>
 
 <
 @foreach (var item in Model)
@@ -6,7 +6,7 @@
     <div class="form-group">
         <label>@item.Name</label>
         <p>@item.Degree</p>
-        @*<p>@item.DatesDisplay</p>*@
+        <p>@item.StartDate</p>
     </div>
 
 }

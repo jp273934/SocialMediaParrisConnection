@@ -67,6 +67,7 @@ namespace ParrisConnection.App_Start
             kernel.Bind<IWallService>().To<WallService>();
             kernel.Bind<IProfilePhotosService>().To<ProfilePhotosService>();
             kernel.Bind<IEmployerService>().To<EmployerService>();
+            kernel.Bind<IEducationService>().To<EducationService>();
         }        
     }
 }
