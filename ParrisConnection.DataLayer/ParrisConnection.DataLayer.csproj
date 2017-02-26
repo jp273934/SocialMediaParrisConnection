@@ -52,6 +52,8 @@
     <Compile Include="DataAccess\DataAccess.cs" />
     <Compile Include="DataAccess\IDataAccess.cs" />
     <Compile Include="Dtos\IEducation.cs" />
+    <Compile Include="Dtos\IEmail.cs" />
+    <Compile Include="Dtos\IEmailType.cs" />
     <Compile Include="Dtos\IEmployer.cs" />
     <Compile Include="Dtos\IPhone.cs" />
     <Compile Include="Dtos\IPhoneType.cs" />

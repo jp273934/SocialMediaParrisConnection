@@ -12,7 +12,7 @@ namespace ParrisConnection.ViewModels
         public IEnumerable<EducationData> Educations { get; set; }
         public IEnumerable<QuoteData> Quotes { get; set; }
         public IEnumerable<PhoneData> Phones { get; set; }
-        public List<Email> Emails { get; set; }
+        public IEnumerable<EmailData> Emails { get; set; }
         public IEnumerable<PhoneTypeData> PhoneTypes { get; set; }
         public List<EmailType> EmailTypes { get; set; }
         public EmployerData NewEmployment { get; set; }
@@ -20,7 +20,7 @@ namespace ParrisConnection.ViewModels
         public QuoteData NewQuote { get; set; }
         public PhoneTypeData PhoneType { get; set; }
         public PhoneData NewPhone { get; set; }
-        public Email NewEmail { get; set; }
+        public EmailData NewEmail { get; set; }
         [Required]
         public int? SelectedPhone { get; set; }
         [Required]

@@ -70,6 +70,7 @@ namespace ParrisConnection.App_Start
             kernel.Bind<IEducationService>().To<EducationService>();
             kernel.Bind<IQuoteService>().To<QuoteService>();
             kernel.Bind<IPhoneService>().To<PhoneService>();
+            kernel.Bind<IEmailService>().To<ServiceLayer.Services.EmailService>();
         }        
     }
 }

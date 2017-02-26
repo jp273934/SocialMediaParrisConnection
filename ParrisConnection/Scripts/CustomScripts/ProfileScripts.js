@@ -32,7 +32,7 @@ $(document).ready(function () {
     });
 
     $("#EmailForm").on("submit", function(event) {
-        SubmitForm("Profile/AddEmail", GetEmailData(), "AddEmailForm", "EmailArea");
+        SubmitForm("/Profile/AddEmail", GetEmailData(), "AddEmailForm", "EmailArea");
         event.preventDefault();
     });
 });
@@ -97,8 +97,8 @@ function GetPhoneData() {
 
 function GetEmailData() {
     var dataObject = {
-        EmailType: $('[name="SelectedEmail"]:checked').val(),
-        EmailAddress: $("#EmailAddressTextbox").val()
+        Type: $('[name="SelectedEmail"]:checked').val(),
+        Address: $("#EmailAddressTextbox").val()
     };
     
     return JSON.stringify({ email: dataObject });

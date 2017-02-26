@@ -1,5 +1,4 @@
 ﻿using ParrisConnection.DataLayer.DataAccess;
-using ParrisConnection.DataLayer.Entities.Profile;
 using ParrisConnection.ServiceLayer.Data;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
 using ParrisConnection.ViewModels;
@@ -19,8 +18,10 @@ namespace ParrisConnection.Controllers
         private readonly IEducationService _educationService;
         private readonly IQuoteService _quoteService;
         private readonly IPhoneService _phoneService;
+        private readonly IEmailService _emailService;
 
-        public ProfileController(IDataAccess context, IProfilePhotosService profilePhotosService, IEmployerService employerService, IEducationService educationService, IQuoteService quoteService, IPhoneService phoneService)
+        public ProfileController(IDataAccess context, IProfilePhotosService profilePhotosService, IEmployerService employerService, IEducationService educationService, 
+            IQuoteService quoteService, IPhoneService phoneService, IEmailService emailService)
         {
             _context = context;
             _profilePhotosService = profilePhotosService;
@@ -28,13 +29,12 @@ namespace ParrisConnection.Controllers
             _educationService = educationService;
             _quoteService = quoteService;
             _phoneService = phoneService;
+            _emailService = emailService;
         }
 
         // GET: Profile
         public ActionResult Index()
         {
-            var profilePhotos = _context.ProfilePhotoes.GetAll().ToList();
-
             var viewModel = new ProfileViewModel
             {
                 ProfilePhoto = _profilePhotosService.GetProfilePhoto(),
@@ -42,7 +42,7 @@ namespace ParrisConnection.Controllers
                 Educations = _educationService.GetAllEducation(),
                 Quotes = _quoteService.GetQuotes(),
                 Phones = _phoneService.GetPhones(),
-                Emails = _context.Emails.GetAll().ToList(),
+                Emails = _emailService.GetEmails(),
                 PhoneTypes = _phoneService.GetPhoneTypes(),
                 EmailTypes = _context.EmailTypes.GetAll().ToList()
             };
@@ -121,18 +121,13 @@ namespace ParrisConnection.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEmail(Email email)
+        public ActionResult AddEmail(EmailData email)
         {
-            var emailTypes = _context.EmailTypes.GetAll();
-            //email.EmailType = emailTypes.Single(e => e.Id == Convert.ToInt32(email.EmailType)).Type;
-            
-            //_context.Emails.Add(email);
-
-            //_context.SaveChanges();
+            _emailService.SaveEmail(email);
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddEmail", _context.Emails.GetAll());
+                return PartialView("AddEmail", _emailService.GetEmails());
             }
 
             return RedirectToAction("Index", "Profile");

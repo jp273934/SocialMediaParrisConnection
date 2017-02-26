@@ -1,8 +1,8 @@
 ﻿using ParrisConnection.DataLayer.Dtos;
 
-namespace ParrisConnection.DataLayer.Entities.Profile
+namespace ParrisConnection.ServiceLayer.Data
 {
-    public class Email : IEmail
+    public class EmailData : IEmail
     {
         public int Id { get; set; }
         public string Address { get; set; }

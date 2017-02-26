@@ -1,11 +1,10 @@
 ﻿using ParrisConnection.DataLayer.Dtos;
 
-namespace ParrisConnection.DataLayer.Entities.Profile
+namespace ParrisConnection.ServiceLayer.Data
 {
-    public class Email : IEmail
+    public class EmailTypeData : IEmailType
     {
         public int Id { get; set; }
-        public string Address { get; set; }
         public string Type { get; set; }
     }
 }
