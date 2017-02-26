@@ -38,6 +38,12 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -59,6 +65,7 @@
     <Compile Include="Dtos\IPhoneType.cs" />
     <Compile Include="Dtos\IProfilePhoto.cs" />
     <Compile Include="Dtos\IQuote.cs" />
+    <Compile Include="Entities\ConnectionUser.cs" />
     <Compile Include="Entities\Profile\AlbumPhoto.cs" />
     <Compile Include="Entities\Profile\Education.cs" />
     <Compile Include="Entities\Profile\Email.cs" />
@@ -85,6 +92,10 @@
     <Compile Include="Migrations\201702192223549_ImplementedRelationshipStatusComments.Designer.cs">
       <DependentUpon>201702192223549_ImplementedRelationshipStatusComments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702262243534_AddIndentityToContext.cs" />
+    <Compile Include="Migrations\201702262243534_AddIndentityToContext.Designer.cs">
+      <DependentUpon>201702262243534_AddIndentityToContext.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
@@ -103,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702192223549_ImplementedRelationshipStatusComments.resx">
       <DependentUpon>201702192223549_ImplementedRelationshipStatusComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702262243534_AddIndentityToContext.resx">
+      <DependentUpon>201702262243534_AddIndentityToContext.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

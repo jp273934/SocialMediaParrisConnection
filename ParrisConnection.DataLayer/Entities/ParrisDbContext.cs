@@ -1,10 +1,11 @@
 ﻿using ParrisConnection.DataLayer.Entities.Profile;
 using ParrisConnection.DataLayer.Entities.Wall;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ParrisConnection.DataLayer.Entities
 {
-    public class ParrisDbContext : DbContext
+    public class ParrisDbContext : IdentityDbContext<ConnectionUser>
     {
         public DbSet<ProfilePhoto> ProfilePhotos { get; set; }
         public DbSet<Employer> Employers { get; set; }
