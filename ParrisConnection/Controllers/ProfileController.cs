@@ -1,5 +1,6 @@
 ﻿using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.DataLayer.Entities.Profile;
+using ParrisConnection.ServiceLayer.Services.Interfaces;
 using ParrisConnection.ViewModels;
 using System;
 using System.IO;
@@ -11,11 +12,13 @@ namespace ParrisConnection.Controllers
 {
     public class ProfileController : Controller
     {
-        private IDataAccess _context;
+        private readonly IDataAccess _context;
+        private readonly IProfilePhotosService _profilePhotosService;
 
-        public ProfileController(IDataAccess context)
+        public ProfileController(IDataAccess context, IProfilePhotosService profilePhotosService)
         {
             _context = context;
+            _profilePhotosService = profilePhotosService;
         }
 
         // GET: Profile
@@ -25,7 +28,7 @@ namespace ParrisConnection.Controllers
 
             var viewModel = new ProfileViewModel
             {
-                ProfilePhoto = profilePhotos.Count > 0 ? profilePhotos[0] : new ProfilePhoto(),
+                ProfilePhoto = _profilePhotosService.GetProfilePhoto(),
                 Employers = _context.Employers.GetAll().ToList(),
                 Educations = _context.Educations.GetAll().ToList(),
                 Quotes = _context.Quotes.GetAll().ToList(),
@@ -41,28 +44,19 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult EditProfilePicture(HttpPostedFileBase file)
         {
-            if (file != null && file.ContentLength > 0)
+            if (file == null || file.ContentLength <= 0)
+                return RedirectToAction("Index", "Profile");
+
+            try
             {
-                try
-                {
-                    string path = Path.Combine(Server.MapPath("~/ProfilePhotos"), Path.GetFileName(file.FileName));
-                    file.SaveAs(path);
+                _profilePhotosService.UpdateProfilePhoto(file, Path.Combine(Server.MapPath("~/ProfilePhotos"), Path.GetFileName(file.FileName)));
 
-                    _context.ProfilePhotoes.GetAll().ToList().Clear();
-
-                    var photo = new ProfilePhoto
-                    {
-                        FilePath = file.FileName
-                    };
-
-                    _context.ProfilePhotoes.Insert(photo);
-
-                }
-                catch (Exception e)
-                {
-                    ViewBag.Message = "Error : " + e.Message;
-                }
             }
+            catch (Exception e)
+            {
+                ViewBag.Message = "Error : " + e.Message;
+            }
+
             return RedirectToAction("Index", "Profile");
         }
 

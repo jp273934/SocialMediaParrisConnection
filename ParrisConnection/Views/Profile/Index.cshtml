@@ -91,7 +91,7 @@
                                     {
                                         <div class="form-group">
                                             <label>@employment.Name</label>
-                                            <p>@employment.JobTitle @employment.DatesDisplay</p>
+                                            <p>@employment.JobTitle @employment.JobTitle</p>
                                         </div>
                                     }
                                     </div>
@@ -148,7 +148,7 @@
                                         <div class="form-group">
                                             <label>@education.Name</label>
                                             <p>@education.Degree</p>
-                                            <p>@education.DatesDisplay</p>
+                                            <p>@education.StartDate</p>
                                         </div>
                                     }
                                     </div>
@@ -185,7 +185,7 @@
                                         @foreach (var quote in @Model.Quotes)
                                         {
                                             <div class="form-group">
-                                                <p>@quote.Name @quote.AuthorDisplay</p>
+                                                <p>@quote.Name @quote.Author</p>
                                             </div>
                                         }
                                     </div>
@@ -259,7 +259,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                @Html.TextBoxFor(e => e.NewEmail.EmailAddress, new {@id="EmailAddressTextbox", @class = "form-control" })
+                                                @Html.TextBoxFor(e => e.NewEmail.Address, new {@id="EmailAddressTextbox", @class = "form-control" })
 
                                             </div>
 
@@ -274,7 +274,7 @@
                                     @foreach (var email in @Model.Emails)
                                     {
                                         <div class="form-group">
-                                            @email.EmailAddress
+                                            @email.Address
                                         </div>
                                     }
                                     </div>

@@ -1,13 +1,13 @@
 ﻿using ParrisConnection.DataLayer.Entities.Profile;
+using ParrisConnection.ServiceLayer.Data;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using ProfilePhoto = ParrisConnection.DataLayer.Entities.Profile.ProfilePhoto;
 
 namespace ParrisConnection.ViewModels
 {
     public class ProfileViewModel
     {
-        public ProfilePhoto ProfilePhoto { get; set; }
+        public ProfilePhotoData ProfilePhoto { get; set; }
         public List<Employer> Employers { get; set; }
         public List<Education> Educations { get; set; }
         public List<Quote> Quotes { get; set; }
