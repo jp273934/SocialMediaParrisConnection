@@ -8,7 +8,7 @@ namespace ParrisConnection.ViewModels
     public class ProfileViewModel
     {
         public ProfilePhotoData ProfilePhoto { get; set; }
-        public List<Employer> Employers { get; set; }
+        public IEnumerable<EmployerData> Employers { get; set; }
         public List<Education> Educations { get; set; }
         public List<Quote> Quotes { get; set; }
         public List<Phone> Phones { get; set; }

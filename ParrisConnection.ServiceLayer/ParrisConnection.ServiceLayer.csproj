@@ -48,9 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\CommentData.cs" />
+    <Compile Include="Data\EmployerData.cs" />
     <Compile Include="Data\ProfilePhotoData.cs" />
     <Compile Include="Data\StatusData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EmployerService.cs" />
+    <Compile Include="Services\Interfaces\IEmployerService.cs" />
     <Compile Include="Services\Interfaces\IProfilePhotosService.cs" />
     <Compile Include="Services\Interfaces\IWallService.cs" />
     <Compile Include="Services\ProfilePhotosService.cs" />

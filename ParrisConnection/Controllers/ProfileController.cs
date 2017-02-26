@@ -1,5 +1,6 @@
 ﻿using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.DataLayer.Entities.Profile;
+using ParrisConnection.ServiceLayer.Data;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
 using ParrisConnection.ViewModels;
 using System;
@@ -14,11 +15,13 @@ namespace ParrisConnection.Controllers
     {
         private readonly IDataAccess _context;
         private readonly IProfilePhotosService _profilePhotosService;
+        private readonly IEmployerService _employerService;
 
-        public ProfileController(IDataAccess context, IProfilePhotosService profilePhotosService)
+        public ProfileController(IDataAccess context, IProfilePhotosService profilePhotosService, IEmployerService employerService)
         {
             _context = context;
             _profilePhotosService = profilePhotosService;
+            _employerService = employerService;
         }
 
         // GET: Profile
@@ -29,7 +32,7 @@ namespace ParrisConnection.Controllers
             var viewModel = new ProfileViewModel
             {
                 ProfilePhoto = _profilePhotosService.GetProfilePhoto(),
-                Employers = _context.Employers.GetAll().ToList(),
+                Employers = _employerService.GetEmployers(),
                 Educations = _context.Educations.GetAll().ToList(),
                 Quotes = _context.Quotes.GetAll().ToList(),
                 Phones = _context.Phones.GetAll().ToList(),
@@ -61,13 +64,13 @@ namespace ParrisConnection.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEmployment(Employer employment)
+        public ActionResult AddEmployment(EmployerData employment)
         {
-            _context.Employers.Insert(employment);
+            _employerService.SaveEmployer(employment);
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddEmployment", _context.Employers.GetAll());
+                return PartialView("AddEmployment", _employerService.GetEmployers());
             }
 
             return RedirectToAction("Index", "Profile");

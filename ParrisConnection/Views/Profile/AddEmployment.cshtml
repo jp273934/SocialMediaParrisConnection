@@ -1,11 +1,11 @@
-﻿@model IEnumerable<ParrisConnection.DataLayer.Entities.Profile.Employer>
+﻿@model IEnumerable<ParrisConnection.ServiceLayer.Data.EmployerData>
 
 
 
 @foreach (var item in Model) {
     <div class="form-group">
         <label>@item.Name</label>
-        @*<p>@item.JobTitle @item.DatesDisplay</p>*@
+        <p>@item.JobTitle @item.StartDate</p>
     </div>
     
 }
