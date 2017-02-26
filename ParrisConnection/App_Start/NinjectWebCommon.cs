@@ -64,7 +64,7 @@ namespace ParrisConnection.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IDataAccess>().To<DataAccess>();
-            kernel.Bind<IStatusService>().To<StatusService>();
+            kernel.Bind<IWallService>().To<WallService>();
         }        
     }
 }

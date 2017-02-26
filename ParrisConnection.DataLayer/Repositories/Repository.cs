@@ -37,5 +37,10 @@ namespace ParrisConnection.DataLayer.Repositories
             DbSet.Add(entity);
             Context.SaveChanges();
         }
+
+        public void Save()
+        {
+            Context.SaveChanges();
+        }
     }
 }

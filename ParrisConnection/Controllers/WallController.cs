@@ -7,18 +7,19 @@ namespace ParrisConnection.Controllers
 {
     public class WallController : Controller
     {
-        private readonly IStatusService _statusService;
 
-        public WallController(IStatusService statusService)
+        private readonly IWallService _service;
+
+        public WallController(IWallService service)
         {
-           _statusService = statusService;
+           _service  = service;
         }
 
         public ActionResult Index()
         {
             var wall = new WallViewModel
             {
-                Statuses = _statusService.GetStatuses()
+                Statuses = _service.GetStatuses()
             };
 
             return View(wall);
@@ -30,10 +31,10 @@ namespace ParrisConnection.Controllers
             var post = new CommentData
             {
                 PostComment = comment,
-                Status = _statusService.GetStatusById(statusId)
+                Status = _service.GetStatusById(statusId)
             };
 
-            //_context.Comments.Insert(post);
+            _service.SaveComment(post);
 
             return RedirectToAction("Index", "Wall");
         }

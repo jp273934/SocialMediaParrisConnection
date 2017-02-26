@@ -6,6 +6,6 @@ namespace ParrisConnection.ServiceLayer.Data
     {
         public int Id { get; set; }
         public string Post { get; set; }
-        public List<CommentData> Comments { get; set; }
+        public IEnumerable<CommentData> Comments { get; set; }
     }
 }

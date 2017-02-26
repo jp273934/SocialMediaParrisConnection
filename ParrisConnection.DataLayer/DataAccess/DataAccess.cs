@@ -35,6 +35,7 @@ namespace ParrisConnection.DataLayer.DataAccess
             ProfilePhotoes = new Repository<ProfilePhoto>(context);
             Quotes         = new Repository<Quote>(context);
             Statuses       = new Repository<Status>(context);
+            Comments       = new Repository<Comment>(context);
         }
     }
 }

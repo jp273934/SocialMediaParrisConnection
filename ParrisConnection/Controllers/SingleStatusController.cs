@@ -1,16 +1,16 @@
-﻿using ParrisConnection.DataLayer.DataAccess;
+﻿using ParrisConnection.ServiceLayer.Data;
+using ParrisConnection.ServiceLayer.Services.Interfaces;
 using System.Web.Mvc;
-using Status = ParrisConnection.DataLayer.Entities.Wall.Status;
 
 namespace ParrisConnection.Controllers
 {
     public class SingleStatusController : Controller
     {
-        private readonly IDataAccess _context;
+        private readonly IWallService _service;
 
-        public SingleStatusController(IDataAccess context)
+        public SingleStatusController(IWallService service)
         {
-            _context = context;
+            _service = service;
         }
         public ActionResult Index()
         {
@@ -18,9 +18,9 @@ namespace ParrisConnection.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddStatus(Status status)
+        public ActionResult AddStatus(StatusData status)
         {
-            _context.Statuses.Insert(status);
+            _service.SaveStatus(status);
 
             return RedirectToAction("Index", "Wall");
         }
