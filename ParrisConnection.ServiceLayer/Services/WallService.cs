@@ -60,9 +60,11 @@ namespace ParrisConnection.ServiceLayer.Services
 
             return statuses.Select(item => new StatusData
             {
-                Id = item.Id,
-                Post = item.Post,
-                Comments = ConvertCommentsToCommentData(item.Comments)
+                Id       = item.Id,
+                UserId   = item.UserId ?? "",
+                Post     = item.Post,
+                Comments = ConvertCommentsToCommentData(item.Comments),
+                UserName = _dataAccess.GetUserNameById(item.UserId)
             }).ToList();
         }
 
@@ -89,6 +91,7 @@ namespace ParrisConnection.ServiceLayer.Services
             {
                 Id = status.Id,
                 Post = status.Post,
+                UserId = status.UserId,
                 Comments = ConvertCommentsToEntity(status.Comments).ToList()
             };
         }

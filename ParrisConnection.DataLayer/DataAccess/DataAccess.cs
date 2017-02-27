@@ -7,6 +7,8 @@ namespace ParrisConnection.DataLayer.DataAccess
 {
     public class DataAccess : IDataAccess
     {
+        private ParrisDbContext _context;
+
         public IRepository<AlbumPhoto> AlbumPhotoes { get; set; }
         public IRepository<Education> Educations { get; set; }
         public IRepository<Email> Emails { get; set; }
@@ -20,9 +22,11 @@ namespace ParrisConnection.DataLayer.DataAccess
         public IRepository<Quote> Quotes { get; set; }
         public IRepository<Comment> Comments { get; set; }
         public IRepository<Status> Statuses { get; set; }
-
+        
         public DataAccess(ParrisDbContext context)
         {
+            _context = context;
+
             AlbumPhotoes   = new Repository<AlbumPhoto>(context);
             Educations     = new Repository<Education>(context);
             Emails         = new Repository<Email>(context);
@@ -36,6 +40,12 @@ namespace ParrisConnection.DataLayer.DataAccess
             Quotes         = new Repository<Quote>(context);
             Statuses       = new Repository<Status>(context);
             Comments       = new Repository<Comment>(context);
+
+        }
+
+        public string GetUserNameById(string id)
+        {
+            return id == null ? "" : _context.Users.Find(id).UserName;
         }
     }
 }

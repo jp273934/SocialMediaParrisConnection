@@ -46,6 +46,7 @@
         {
             <div class="panel panel-default">
                 <div class="panel-body">
+                       @post.UserName
                     <p>@post.Post</p>
 
                     @using (Html.BeginForm("CreateComment", "Wall", new {statusId = @post.Id}, FormMethod.Post))

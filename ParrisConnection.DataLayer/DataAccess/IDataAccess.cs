@@ -19,5 +19,7 @@ namespace ParrisConnection.DataLayer.DataAccess
         IRepository<Quote> Quotes { get; set; }
         IRepository<Comment> Comments { get; set; }
         IRepository<Status> Statuses { get; set; }
+
+        string GetUserNameById(string id);
     }
 }

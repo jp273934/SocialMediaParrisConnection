@@ -1,4 +1,5 @@
-﻿using ParrisConnection.ServiceLayer.Data;
+﻿using Microsoft.AspNet.Identity;
+using ParrisConnection.ServiceLayer.Data;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
 using System.Web.Mvc;
 
@@ -20,6 +21,7 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddStatus(StatusData status)
         {
+            status.UserId = User.Identity.GetUserId();
             _service.SaveStatus(status);
 
             return RedirectToAction("Index", "Wall");

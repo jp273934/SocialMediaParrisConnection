@@ -96,6 +96,10 @@
     <Compile Include="Migrations\201702262243534_AddIndentityToContext.Designer.cs">
       <DependentUpon>201702262243534_AddIndentityToContext.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702262327032_AddedUserIdToStatus.cs" />
+    <Compile Include="Migrations\201702262327032_AddedUserIdToStatus.Designer.cs">
+      <DependentUpon>201702262327032_AddedUserIdToStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
@@ -117,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702262243534_AddIndentityToContext.resx">
       <DependentUpon>201702262243534_AddIndentityToContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702262327032_AddedUserIdToStatus.resx">
+      <DependentUpon>201702262327032_AddedUserIdToStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

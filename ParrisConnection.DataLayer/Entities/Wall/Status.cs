@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ParrisConnection.DataLayer.Entities.Wall
 {
@@ -14,6 +10,7 @@ namespace ParrisConnection.DataLayer.Entities.Wall
         }
 
         public int Id { get; set; }
+        public string UserId { get; set; }
         public string Post { get; set; }
 
         public virtual List<Comment> Comments { get; set; }
