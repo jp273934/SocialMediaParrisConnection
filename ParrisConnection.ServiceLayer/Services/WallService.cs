@@ -35,6 +35,8 @@ namespace ParrisConnection.ServiceLayer.Services
             return comments.Select(item => new CommentData
             {
                 Id = item.Id,
+                UserId = item.UserId,
+                UserName = _dataAccess.GetUserNameById(item.UserId),
                 PostComment = item.PostComment
             }).ToList();
         }
@@ -49,6 +51,7 @@ namespace ParrisConnection.ServiceLayer.Services
             return new Comment
             {
                 PostComment = comment.PostComment,
+                UserId = comment.UserId
             };
         }
         #endregion

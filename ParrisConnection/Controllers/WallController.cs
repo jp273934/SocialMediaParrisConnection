@@ -1,4 +1,5 @@
-﻿using ParrisConnection.ServiceLayer.Data;
+﻿using Microsoft.AspNet.Identity;
+using ParrisConnection.ServiceLayer.Data;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
 using ParrisConnection.ViewModels;
 using System.Web.Mvc;
@@ -30,6 +31,7 @@ namespace ParrisConnection.Controllers
         {
             var post = new CommentData
             {
+                UserId = User.Identity.GetUserId(),
                 PostComment = comment,
                 Status = _service.GetStatusById(statusId)
             };

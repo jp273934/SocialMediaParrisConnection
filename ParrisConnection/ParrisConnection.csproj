@@ -240,11 +240,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611090311244_InitialMigration.cs" />
-    <Compile Include="Migrations\201611090311244_InitialMigration.Designer.cs">
-      <DependentUpon>201611090311244_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -438,11 +433,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611090311244_InitialMigration.resx">
-      <DependentUpon>201611090311244_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ParrisConnection.ServiceLayer\ParrisConnection.ServiceLayer.csproj">
