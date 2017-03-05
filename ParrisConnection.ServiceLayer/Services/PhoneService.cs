@@ -68,8 +68,9 @@ namespace ParrisConnection.ServiceLayer.Services
         {
             return new PhoneData
             {
-                Id = phone.Id,
-                Number = phone.Number,
+                Id        = phone.Id,
+                UserId    = phone.UserId,
+                Number    = phone.Number,
                 PhoneType = phone.PhoneType
             };
         }
@@ -78,8 +79,9 @@ namespace ParrisConnection.ServiceLayer.Services
         {
             return new Phone
             {
-                Id = phone.Id,
-                Number = phone.Number,
+                Id        = phone.Id,
+                UserId    = phone.UserId,
+                Number    = phone.Number,
                 PhoneType = phone.PhoneType
             };
         }

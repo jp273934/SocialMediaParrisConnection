@@ -42,7 +42,7 @@ namespace ParrisConnection.Controllers
                 Employers = _employerService.GetEmployers().Where(e => e.UserId == User.Identity.GetUserId()),
                 Educations = _educationService.GetAllEducation().Where(e => e.UserId == User.Identity.GetUserId()),
                 Quotes = _quoteService.GetQuotes(),
-                Phones = _phoneService.GetPhones(),
+                Phones = _phoneService.GetPhones().Where(p => p.UserId == User.Identity.GetUserId()),
                 Emails = _emailService.GetEmails().Where(e => e.UserId == User.Identity.GetUserId()),
                 PhoneTypes = _phoneService.GetPhoneTypes(),
                 EmailTypes = _context.EmailTypes.GetAll().ToList()
@@ -113,6 +113,7 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddPhoneNumber(PhoneData phoneNumber)
         {
+            phoneNumber.UserId = User.Identity.GetUserId();
             _phoneService.SavePhone(phoneNumber);
 
             if (Request.IsAjaxRequest())
