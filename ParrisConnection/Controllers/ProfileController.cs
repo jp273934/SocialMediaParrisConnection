@@ -41,7 +41,7 @@ namespace ParrisConnection.Controllers
                 ProfilePhoto = _profilePhotosService.GetProfilePhoto(User.Identity.GetUserId()),
                 Employers = _employerService.GetEmployers().Where(e => e.UserId == User.Identity.GetUserId()),
                 Educations = _educationService.GetAllEducation().Where(e => e.UserId == User.Identity.GetUserId()),
-                Quotes = _quoteService.GetQuotes(),
+                Quotes = _quoteService.GetQuotes().Where(q => q.UserId == User.Identity.GetUserId()),
                 Phones = _phoneService.GetPhones().Where(p => p.UserId == User.Identity.GetUserId()),
                 Emails = _emailService.GetEmails().Where(e => e.UserId == User.Identity.GetUserId()),
                 PhoneTypes = _phoneService.GetPhoneTypes(),
@@ -100,6 +100,7 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddQuote(QuoteData quote)
         {
+            quote.UserId = User.Identity.GetUserId();
             _quoteService.SaveQuote(quote);
 
             if (Request.IsAjaxRequest())

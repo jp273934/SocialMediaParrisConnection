@@ -35,8 +35,9 @@ namespace ParrisConnection.ServiceLayer.Services
         {
             return new QuoteData
             {
-                Id = quote.Id,
-                Name = quote.Name,
+                Id     = quote.Id,
+                UserId = quote.UserId,
+                Name   = quote.Name,
                 Author = quote.Author
             };
         }
@@ -45,8 +46,9 @@ namespace ParrisConnection.ServiceLayer.Services
         {
             return new Quote
             {
-                Id = quote.Id,
-                Name = quote.Name,
+                Id     = quote.Id,
+                UserId = quote.UserId,
+                Name   = quote.Name,
                 Author = quote.Author
             };
         }
