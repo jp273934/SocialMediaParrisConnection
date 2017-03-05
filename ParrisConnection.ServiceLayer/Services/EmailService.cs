@@ -68,9 +68,10 @@ namespace ParrisConnection.ServiceLayer.Services
         {
             return new EmailData
             {
-                Id = email.Id,
+                Id      = email.Id,
+                UserId  = email.UserId,
                 Address = email.Address,
-                Type = email.Type
+                Type    = email.Type
             };
         }
 
@@ -78,9 +79,10 @@ namespace ParrisConnection.ServiceLayer.Services
         {
             return new Email
             {
-                Id = email.Id,
+                Id      = email.Id,
+                UserId  = email.UserId,
                 Address = email.Address,
-                Type = email.Type
+                Type    = email.Type
             };
         }
         #endregion

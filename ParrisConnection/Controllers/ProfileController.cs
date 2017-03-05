@@ -43,7 +43,7 @@ namespace ParrisConnection.Controllers
                 Educations = _educationService.GetAllEducation().Where(e => e.UserId == User.Identity.GetUserId()),
                 Quotes = _quoteService.GetQuotes(),
                 Phones = _phoneService.GetPhones(),
-                Emails = _emailService.GetEmails(),
+                Emails = _emailService.GetEmails().Where(e => e.UserId == User.Identity.GetUserId()),
                 PhoneTypes = _phoneService.GetPhoneTypes(),
                 EmailTypes = _context.EmailTypes.GetAll().ToList()
             };
@@ -125,6 +125,7 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddEmail(EmailData email)
         {
+            email.UserId = User.Identity.GetUserId();
             _emailService.SaveEmail(email);
 
             if (Request.IsAjaxRequest())
