@@ -1,4 +1,5 @@
-﻿using ParrisConnection.DataLayer.DataAccess;
+﻿using Microsoft.AspNet.Identity;
+using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.ServiceLayer.Data;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
 using ParrisConnection.ViewModels;
@@ -39,7 +40,7 @@ namespace ParrisConnection.Controllers
             {
                 ProfilePhoto = _profilePhotosService.GetProfilePhoto(),
                 Employers = _employerService.GetEmployers(),
-                Educations = _educationService.GetAllEducation(),
+                Educations = _educationService.GetAllEducation().Where(e => e.UserId == User.Identity.GetUserId()),
                 Quotes = _quoteService.GetQuotes(),
                 Phones = _phoneService.GetPhones(),
                 Emails = _emailService.GetEmails(),
@@ -85,6 +86,7 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddEducation(EducationData education)
         {
+            education.UserId = User.Identity.GetUserId();
             _educationService.SaveEducation(education);
             if (Request.IsAjaxRequest())
             {

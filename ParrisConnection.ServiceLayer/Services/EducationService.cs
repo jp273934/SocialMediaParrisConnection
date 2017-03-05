@@ -36,11 +36,12 @@ namespace ParrisConnection.ServiceLayer.Services
         {
             return new EducationData
             {
-                Id = education.Id,
-                Name = education.Name,
-                Degree = education.Degree,
+                Id        = education.Id,
+                UserId    = education.UserId,
+                Name      = education.Name,
+                Degree    = education.Degree,
                 StartDate = education.StartDate,
-                EndDate = education.EndDate
+                EndDate   = education.EndDate
             };
         }
 
@@ -48,11 +49,12 @@ namespace ParrisConnection.ServiceLayer.Services
         {
             return new Education
             {
-                Id = education.Id,
-                Name = education.Name,
-                Degree = education.Degree,
+                Id        = education.Id,
+                UserId    = education.UserId,
+                Name      = education.Name,
+                Degree    = education.Degree,
                 StartDate = education.StartDate,
-                EndDate = education.EndDate
+                EndDate   = education.EndDate
             };
         }
     }
