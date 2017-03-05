@@ -3,6 +3,7 @@
     public interface IProfilePhoto
     {
         int Id { get; set; }
+        string UserId { get; set; }
         string FilePath { get; set; }
     }
 }

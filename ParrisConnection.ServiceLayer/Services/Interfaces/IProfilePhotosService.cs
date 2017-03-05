@@ -7,7 +7,7 @@ namespace ParrisConnection.ServiceLayer.Services.Interfaces
     public interface IProfilePhotosService
     {
         IEnumerable<ProfilePhotoData> GetAllProfilePhotos();
-        ProfilePhotoData GetProfilePhoto();
-        void UpdateProfilePhoto(HttpPostedFileBase file, string filePath);
+        ProfilePhotoData GetProfilePhoto(string userId);
+        void UpdateProfilePhoto(HttpPostedFileBase file, string filePath, string userId);
     }
 }

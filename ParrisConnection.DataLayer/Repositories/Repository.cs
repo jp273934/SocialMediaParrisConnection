@@ -38,6 +38,12 @@ namespace ParrisConnection.DataLayer.Repositories
             Context.SaveChanges();
         }
 
+        public void Delete(T entityToDelete)
+        {
+            Context.Entry(entityToDelete).State = EntityState.Deleted;
+            Save();
+        }
+
         public void Save()
         {
             Context.SaveChanges();

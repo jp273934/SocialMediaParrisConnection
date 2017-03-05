@@ -38,7 +38,7 @@ namespace ParrisConnection.Controllers
         {
             var viewModel = new ProfileViewModel
             {
-                ProfilePhoto = _profilePhotosService.GetProfilePhoto(),
+                ProfilePhoto = _profilePhotosService.GetProfilePhoto(User.Identity.GetUserId()),
                 Employers = _employerService.GetEmployers().Where(e => e.UserId == User.Identity.GetUserId()),
                 Educations = _educationService.GetAllEducation().Where(e => e.UserId == User.Identity.GetUserId()),
                 Quotes = _quoteService.GetQuotes(),
@@ -59,7 +59,7 @@ namespace ParrisConnection.Controllers
 
             try
             {
-                _profilePhotosService.UpdateProfilePhoto(file, Path.Combine(Server.MapPath("~/ProfilePhotos"), Path.GetFileName(file.FileName)));
+                _profilePhotosService.UpdateProfilePhoto(file, Path.Combine(Server.MapPath("~/ProfilePhotos"), Path.GetFileName(file.FileName)), User.Identity.GetUserId());
 
             }
             catch (Exception e)

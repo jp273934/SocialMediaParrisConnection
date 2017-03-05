@@ -8,6 +8,7 @@ namespace ParrisConnection.DataLayer.Repositories
         T GetById(int id);
         void Update(T entityToUpdate);
         void Insert(T entity);
+        void Delete(T entityToDelete);
         void Save();
     }
 }
