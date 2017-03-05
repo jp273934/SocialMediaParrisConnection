@@ -39,7 +39,7 @@ namespace ParrisConnection.Controllers
             var viewModel = new ProfileViewModel
             {
                 ProfilePhoto = _profilePhotosService.GetProfilePhoto(),
-                Employers = _employerService.GetEmployers(),
+                Employers = _employerService.GetEmployers().Where(e => e.UserId == User.Identity.GetUserId()),
                 Educations = _educationService.GetAllEducation().Where(e => e.UserId == User.Identity.GetUserId()),
                 Quotes = _quoteService.GetQuotes(),
                 Phones = _phoneService.GetPhones(),
@@ -73,6 +73,7 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddEmployment(EmployerData employment)
         {
+            employment.UserId = User.Identity.GetUserId();
             _employerService.SaveEmployer(employment);
 
             if (Request.IsAjaxRequest())

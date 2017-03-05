@@ -112,6 +112,10 @@
     <Compile Include="Migrations\201703050208560_AddedUserIdToEmail.Designer.cs">
       <DependentUpon>201703050208560_AddedUserIdToEmail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703050222539_AddedUserIdToEmployer.cs" />
+    <Compile Include="Migrations\201703050222539_AddedUserIdToEmployer.Designer.cs">
+      <DependentUpon>201703050222539_AddedUserIdToEmployer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
@@ -145,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703050208560_AddedUserIdToEmail.resx">
       <DependentUpon>201703050208560_AddedUserIdToEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703050222539_AddedUserIdToEmployer.resx">
+      <DependentUpon>201703050222539_AddedUserIdToEmployer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

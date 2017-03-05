@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ParrisConnection.DataLayer.Dtos;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ParrisConnection.DataLayer.Dtos;
 
 namespace ParrisConnection.DataLayer.Entities.Profile
 {
     public class Employer : IEmployer
     {
         public int Id { get; set; }
+        public string UserId { get; set; }
         [StringLength(255)]
         public string Name { get; set; }
         [StringLength(255)]

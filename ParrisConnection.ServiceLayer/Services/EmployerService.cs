@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using ParrisConnection.DataLayer.DataAccess;
+﻿using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.DataLayer.Entities.Profile;
 using ParrisConnection.ServiceLayer.Data;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ParrisConnection.ServiceLayer.Services
 {
@@ -35,11 +35,12 @@ namespace ParrisConnection.ServiceLayer.Services
         {
             return new EmployerData
             {
-                Id = employer.Id,
-                Name = employer.Name,
-                JobTitle = employer.JobTitle,
+                Id        = employer.Id,
+                UserId    = employer.UserId,
+                Name      = employer.Name,
+                JobTitle  = employer.JobTitle,
                 StartDate = employer.StartDate,
-                EndDate = employer.EndDate
+                EndDate   = employer.EndDate
             };
         }
 
@@ -47,11 +48,11 @@ namespace ParrisConnection.ServiceLayer.Services
         {
             return new Employer
             {
-                Id = employer.Id,
-                Name = employer.Name,
-                JobTitle = employer.JobTitle,
+                Id        = employer.Id,
+                Name      = employer.Name,
+                JobTitle  = employer.JobTitle,
                 StartDate = employer.StartDate,
-                EndDate = employer.EndDate
+                EndDate   = employer.EndDate
             };
         }
     }
