@@ -5,6 +5,7 @@ using Microsoft.Owin.Security.Cookies;
 using Owin;
 using ParrisConnection.DataLayer.Entities;
 using System;
+using ParrisConnection.DataLayer;
 
 namespace ParrisConnection
 {

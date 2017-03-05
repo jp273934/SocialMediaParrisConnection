@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNet.Identity.Owin;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using ParrisConnection.DataLayer.Entities;
-using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace ParrisConnection
 {

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ParrisConnection.DataLayer;
+using ParrisConnection.Models.Login;
 
 namespace ParrisConnection.Controllers
 {
