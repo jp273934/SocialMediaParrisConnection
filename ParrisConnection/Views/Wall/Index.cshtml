@@ -8,68 +8,73 @@
     LoadCalendar();
     
 </script>
-<div class="row">
-    <div class="col-lg-4">
-        <br/>
+
+<div class="ui grid">
+    <div class="five wide column">
+        <br />
         <div id="date-popover" class="popover top" style="...">
             ...
             <div id="date-popover-content" class="popover-content"></div>
         </div>
-       <div id="my-calendar"></div>
-       
-        <form id="EventForm" style="display: none;">
-            <div class="form-group">
-                <label>Event Name</label>
-                <input type="text" name="title" class="form-control" id="TitleTextbox"/>
+        <div id="my-calendar"></div>
+
+        <form id="EventForm" style="display: none;" class="ui form">
+            <label>Event Name</label>
+            <div class="field">
+                <input type="text" name="title" id="TitleTextbox" />
             </div>
-            
-            <div class="form-group">
-                <label>Description</label>
-                <textarea class="form-control" rows="5" name="description" id="DescriptionTextbox"></textarea>
+            <label>Description</label>
+            <div class="field">                
+                <textarea rows="5" name="description" id="DescriptionTextbox"></textarea>
             </div>
-            
-            <div class="form-group">
-                <label>Event Date</label>
-                <input type="text" name="title" class="form-control datepicker" id="DateTextbox"/>
+            <label>Event Date</label>
+            <div class="field">                
+                <input type="text" name="title" class="datepicker" id="DateTextbox"/>
             </div>
-            
-            <button type="button" class="btn btn-primary" onclick="CreateEvent()">Add Event</button>
+            <button type="button" class="ui primary button" onclick="CreateEvent()">Add Event</button>
         </form>
         <a id="AddEventLink" onclick="ToggleEventForm()">Add Event</a>
     </div>
-    <div class="col-lg-4">
-        <br/>
-        @Html.ActionLink("Update Status", "Index", "SingleStatus", null, new {@class = "btn btn-primary"})
-        <br/><br/>
+    <div class="five wide column">
+        <br />
+        @Html.ActionLink("Update Status", "Index", "SingleStatus", null, new { @class = "ui primary button" })
+        <br /><br />
 
         @foreach (var post in Model.Statuses)
         {
-            <div class="panel panel-default">
-                <div class="panel-body">
-                       @post.UserName
-                    <p>@post.Post</p>
 
-                    @using (Html.BeginForm("CreateComment", "Wall", new {statusId = @post.Id}, FormMethod.Post))
+            <div class="ui segment">
+                @post.UserName
+                <p>@post.Post</p>
+
+                @using (Html.BeginForm("CreateComment", "Wall", new { statusId = @post.Id, @class = "ui form" }, FormMethod.Post))
+                {
+                    <div class="ui input">
+                        @Html.TextBox("Comment", null)
+                    </div>
+                        <br />
+                        <button type="submit" class="ui primary button">Comment</button>
+                        <br /><br />
+                }
+
+                <ul>
+                    @foreach (var comment in post.Comments)
                     {
-                        @Html.TextBox("Comment", null, new {@class = "form-control"})
-                        <br/>
-                        <button type="submit" class="btn btn-primary">Comment</button>
-                        <br/><br/>
+                        <li>
+                            <p>@comment.UserName @comment.PostComment </p>
+                        </li>
                     }
-
-                    <ul>
-                        @foreach (var comment in post.Comments)
-                        {
-                            <li>
-                                <p>@comment.UserName @comment.PostComment </p>
-                            </li>
-                        }
-                    </ul>
-
-                </div>
+                </ul>
             </div>
-
         }
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4">
+       
+    </div>
+    <div class="col-lg-4">
+       
     </div>
     <div class="col-lg-4">
             

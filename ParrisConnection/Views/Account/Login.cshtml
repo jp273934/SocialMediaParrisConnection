@@ -9,7 +9,7 @@
 
 <div class="ui grid">
     <div class="twelve wide column">       
-           
+        <section>
             @using (Html.BeginForm("Login", "Account", new {ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, new {@class = "ui large form", role = "form"}))
             {
                 @Html.AntiForgeryToken()
