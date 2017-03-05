@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace ParrisConnection.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly IDataAccess _context;

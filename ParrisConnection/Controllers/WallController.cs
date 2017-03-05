@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace ParrisConnection.Controllers
 {
+    [Authorize]
     public class WallController : Controller
     {
 
