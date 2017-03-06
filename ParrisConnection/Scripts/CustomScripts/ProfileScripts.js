@@ -2,7 +2,7 @@
 $(document).ready(function () {
   
   $(".datepicker").datepicker();
-
+    $('.menu .item').tab();
     $("#EmployerCheckBox").change(function() {
         $("#EndDateGroup").toggle();
     });

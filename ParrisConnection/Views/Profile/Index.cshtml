@@ -6,8 +6,8 @@
 }
 
 <br />
-<div class="row" id="PageArea">
-    <div class="col-lg-2">
+<div class="ui grid" id="PageArea">
+    <div class="three wide column">
         @if (Model.ProfilePhoto.FilePath != null)
         {
             <img src="~/ProfilePhotos/@Model.ProfilePhoto.FilePath" style="height: 20vh; width: 20vh;" />
@@ -27,276 +27,276 @@
         }
         <p>Some kind of description</p>
     </div>
-    <div class="col-lg-10">
+    <div class="thirteen wide column">
         <br />
-        <div>
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
-                <li role="presentation"><a href="#photo" aria-controls="photo" role="tab" data-toggle="tab">Photos</a></li>
-                <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact Info</a></li>
-            </ul>
+        <div class="ui pointing secondary menu">
+            <a class="item active" data-tab="first">About</a>
+            <a class="item" data-tab="second">Photos</a>
+            <a class="item" data-tab="third">Contact Info</a>
+        </div>
+    <div class="ui bottom attached tab active" data-tab="first">
+        <div class="ui grid">
+            <div class="five wide column">
+                <div class="ui fluid card">
+                    <div class="content">
+                        <div class="header">Work History</div>
+                    </div>
+                    <div class="content">
+                        <div id="AddEmploymentForm" style="display: none">
+                            @using (@Html.BeginForm("AddEmployment", "Profile", FormMethod.Post, new { id = "EmploymentForm" }))
+                            {
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <input type="checkbox" id="EmployerCheckBox">
+                                    </div>
+                                    <div class="col-lg-11">
+                                        <label>Is Present Employment?</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Employer</label>
+                                    @Html.TextBoxFor(e => Model.NewEmployment.Name, new { @id = "EmploymentNameTextbox", @class = "form-control" })
+                                </div>
 
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="about">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            Work History
-                            <script type="text/javascript">
-                                
+                                <div class="form-group">
+                                    <label>Job Title</label>
+                                    @Html.TextBoxFor(e => Model.NewEmployment.JobTitle, new { @id = "JobTitleTextbox", @class = "form-control" })
+                                </div>
 
-                            </script>
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div id="AddEmploymentForm" style="display: none">
-                                        @using (@Html.BeginForm("AddEmployment", "Profile", FormMethod.Post, new {id = "EmploymentForm"}))
+                                <div class="form-group">
+                                    <label>Start Date</label>
+                                    @Html.TextBoxFor(e => Model.NewEmployment.StartDate, new { @id = "EmploymentStartDateTextbox", @class = "form-control datepicker" })
+                                </div>
+
+                                <div class="form-group" id="EndDateGroup">
+                                    <label>End Date</label>
+                                    @Html.TextBoxFor(e => Model.NewEmployment.EndDate, new { @id = "EmploymentEndDateTextbox", @class = "form-control datepicker" })
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Add Employment</button>
+                                </div>
+
+                            }
+                        </div>
+                        <div id="EmploymentArea">
+                            @foreach (var employment in @Model.Employers)
+                            {
+                                <div class="form-group">
+                                    <label>@employment.Name</label>
+                                    <p>@employment.JobTitle @employment.JobTitle</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a id="AddEmployerLink" onclick="ToggleFormPanel('AddEmploymentForm');">Add Employment</a>
+                    </div>
+                </div>
+            </div>
+            <div class="five wide column">
+                <div class="ui fluid card">
+                    <div class="content">
+                        <div class="header">Education</div>
+                    </div>
+                    <div class="content">
+                        <div id="AddEducationtForm" style="display: none">
+                            @using (@Html.BeginForm("AddEducation", "Profile", FormMethod.Post, new { id = "EducationForm" }))
+                            {
+                                <div class="row">
+                                    <div class="col-lg-1">
+                                        <input type="checkbox" id="EductionCheckBox">
+                                    </div>
+                                    <div class="col-lg-11">
+                                        <label>Is Present Education?</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Education Institution</label>
+                                    @Html.TextBoxFor(e => e.NewEducation.Name, new { @id = "EducationNameTextBox", @class = "form-control" })
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Degree/Diploma</label>
+                                    @Html.TextBoxFor(e => e.NewEducation.Degree, new { @id = "DegreeTextbox", @class = "form-control" })
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Start Date</label>
+                                    @Html.TextBoxFor(e => e.NewEducation.StartDate, new { @id = "EducationStartDateTextbox", @class = "form-control datepicker" })
+                                </div>
+
+                                <div class="form-group" id="EductionEndDateGroup">
+                                    <label>End Date</label>
+                                    @Html.TextBoxFor(e => e.NewEducation.EndDate, new { @id = "EducationEndDateTextbox", @class = "form-control datepicker" })
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Add Education</button>
+                                </div>
+                            }
+                        </div>
+                        <div id="EducationArea">
+                            @foreach (var education in Model.Educations)
+                            {
+                                <div class="form-group">
+                                    <label>@education.Name</label>
+                                    <p>@education.Degree</p>
+                                    <p>@education.StartDate</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a id="AddEducationLink" onclick="ToggleFormPanel('AddEducationtForm')">Add Education</a>
+                    </div>
+                </div>
+            </div>
+            <div class="five wide column">
+                <div class="ui fluid card">
+                    <div class="content">
+                        <div class="header">Favorite Quotes</div>
+                    </div>
+                    <div class="content">
+                        <div id="AddQuoteForm" style="display: none">
+                            @using (@Html.BeginForm("AddQuote", "Profile", FormMethod.Post, new { @id = "QuoteForm" }))
+                            {
+                                <div class="form-group">
+                                    <label>Quote</label>
+                                    @Html.TextBoxFor(e => e.NewQuote.Name, new { @id = "QuoteTextbox", @class = "form-control" })
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Author</label>
+                                    @Html.TextBoxFor(e => e.NewQuote.Author, new { @id = "AuthorTextbox", @class = "form-control" })
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Add Quote</button>
+                                </div>
+                            }
+                        </div>
+                        <div id="QuoteArea">
+                            @foreach (var quote in @Model.Quotes)
+                            {
+                                <div class="form-group">
+                                    <p>@quote.Name @quote.Author</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a id="AddQuoteLink" onclick="ToggleFormPanel('AddQuoteForm')">Add Quote</a>
+                    </div>
+                </div>
+            </div>
+                
+                
+         
+            
+        </div>
+</div>
+   
+        <div class="ui bottom attached tab" data-tab="second">
+            This is the photos area
+        </div>
+        <div class="ui bottom attached tab" data-tab="third">
+            <div class="row">
+                <div class="col-lg-4">
+                    Phones
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div id="AddPhoneForm" style="display: none;">
+                                @using (@Html.BeginForm("AddPhoneNumber", "Profile", FormMethod.Post, new { @id = "PhoneForm" }))
+                                {
+                                    <div class="form-group">
+                                        @foreach (var type in Model.PhoneTypes)
                                         {
-                                                <div class="row">
-                                                    <div class="col-lg-1">
-                                                        <input type="checkbox" id="EmployerCheckBox">
-                                                    </div>
-                                                    <div class="col-lg-11">
-                                                        <label>Is Present Employment?</label>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Employer</label>                      
-                                                    @Html.TextBoxFor(e => Model.NewEmployment.Name, new {@id = "EmploymentNameTextbox", @class= "form-control" })
-                                                </div>
+                                            @Html.RadioButtonFor(p => p.SelectedPhone, type.Id) @type.Type
 
-                                                <div class="form-group">
-                                                    <label>Job Title</label>
-                                                    @Html.TextBoxFor(e => Model.NewEmployment.JobTitle, new { @id = "JobTitleTextbox", @class = "form-control" })
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>Start Date</label>
-                                                    @Html.TextBoxFor(e => Model.NewEmployment.StartDate, new { @id = "EmploymentStartDateTextbox", @class = "form-control datepicker" })
-                                                </div>
-
-                                                <div class="form-group" id="EndDateGroup">
-                                                    <label>End Date</label>
-                                                    @Html.TextBoxFor(e => Model.NewEmployment.EndDate, new { @id = "EmploymentEndDateTextbox", @class = "form-control datepicker" })
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <button type="submit"  class="btn btn-primary">Add Employment</button>
-                                                </div>
-                                           
+                                            <br />
                                         }
                                     </div>
-                                    <div id="EmploymentArea">
-                                    @foreach (var employment in @Model.Employers)
-                                    {
-                                        <div class="form-group">
-                                            <label>@employment.Name</label>
-                                            <p>@employment.JobTitle @employment.JobTitle</p>
-                                        </div>
-                                    }
+                                    <div class="form-group">
+                                        <label>Phone Number</label>
+                                        @Html.TextBoxFor(e => e.NewPhone.Number, new { @id = "PhonenumberTextbox", @class = "form-control" })
+
                                     </div>
-                                </div>
-                                <div class="panel-footer">
-                                    <a id="AddEmployerLink" onclick="ToggleFormPanel('AddEmploymentForm');">Add Employment</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            Education
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div id="AddEducationtForm" style="display: none">
-                                        @using (@Html.BeginForm("AddEducation", "Profile", FormMethod.Post, new {id = "EducationForm"}))
-                                        {
-                                            <div class="row">
-                                                <div class="col-lg-1">
-                                                    <input type="checkbox" id="EductionCheckBox">
-                                                </div>
-                                                <div class="col-lg-11">
-                                                    <label>Is Present Education?</label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Education Institution</label>
-                                                @Html.TextBoxFor(e => e.NewEducation.Name, new {@id = "EducationNameTextBox", @class = "form-control"})
-
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Degree/Diploma</label>
-                                                @Html.TextBoxFor(e => e.NewEducation.Degree, new {@id = "DegreeTextbox", @class = "form-control"})
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Start Date</label>
-                                                @Html.TextBoxFor(e => e.NewEducation.StartDate, new {@id = "EducationStartDateTextbox", @class = "form-control datepicker"})
-                                            </div>
-
-                                            <div class="form-group" id="EductionEndDateGroup">
-                                                <label>End Date</label>
-                                                @Html.TextBoxFor(e => e.NewEducation.EndDate, new {@id = "EducationEndDateTextbox", @class = "form-control datepicker"})
-                                            </div>
-
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-primary">Add Education</button>
-                                            </div>
-                                        }
-                                    </div>
-                                    <div id="EducationArea">
-                                    @foreach (var education in Model.Educations)
-                                    {
-                                        <div class="form-group">
-                                            <label>@education.Name</label>
-                                            <p>@education.Degree</p>
-                                            <p>@education.StartDate</p>
-                                        </div>
-                                    }
-                                    </div>
-                                </div>
-                                <div class="panel-footer">
-                                    <a id="AddEducationLink" onclick="ToggleFormPanel('AddEducationtForm')">Add Education</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            Favorite Quotes
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div id="AddQuoteForm" style="display: none">
-                                        @using (@Html.BeginForm("AddQuote", "Profile", FormMethod.Post, new {@id = "QuoteForm"}))
-                                        {
-                                            <div class="form-group">
-                                                <label>Quote</label>
-                                                @Html.TextBoxFor(e => e.NewQuote.Name, new {@id = "QuoteTextbox", @class = "form-control"})
-
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Author</label>
-                                                @Html.TextBoxFor(e => e.NewQuote.Author, new {@id = "AuthorTextbox", @class = "form-control"})
-                                            </div>
 
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">Add Quote</button>
                                             </div>
-                                        }
-                                    </div>
-                                    <div id="QuoteArea">
-                                        @foreach (var quote in @Model.Quotes)
-                                        {
-                                            <div class="form-group">
-                                                <p>@quote.Name @quote.Author</p>
-                                            </div>
-                                        }
-                                    </div>
-                                </div>
-                                <div class="panel-footer">
-                                    <a id="AddQuoteLink" onclick="ToggleFormPanel('AddQuoteForm')">Add Quote</a>
-                                </div>
+                                }
                             </div>
+                            <div id="PhoneArea">
+                                @foreach (var phone in @Model.Phones)
+                                {
+                                    <div class="form-group">
+                                        @phone.Number
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <a id="AddPhoneLink" onclick="ToggleFormPanel('AddPhoneForm')">Add Phone Number</a>
                         </div>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="photo">
-                    This is the photos area
-                </div>
-                <div role="tabpanel" class="tab-pane" id="contact">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            Phones
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div id="AddPhoneForm" style="display: none;">
-                                        @using (@Html.BeginForm("AddPhoneNumber", "Profile", FormMethod.Post, new {@id = "PhoneForm"}))
+                <div class="col-lg-4">
+                    Email
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div id="AddEmailForm" style="display: none;">
+                                @using (@Html.BeginForm("AddEmail", "Profile", FormMethod.Post, new { @id = "EmailForm" }))
+                                {
+                                    <div class="form-group">
+                                        @foreach (var type in Model.EmailTypes)
                                         {
-                                            <div class="form-group">
-                                                @foreach (var type in Model.PhoneTypes)
-                                                {
-                                                    @Html.RadioButtonFor(p => p.SelectedPhone, type.Id) @type.Type
-                                                   
-                                                    <br/>
-                                                }
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Phone Number</label>
-                                                @Html.TextBoxFor(e => e.NewPhone.Number, new {@id = "PhonenumberTextbox",  @class = "form-control" })
+                                            @Html.RadioButtonFor(p => p.SelectedEmail, type.Id) @type.Type
 
-                                            </div>
-                                         
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-primary">Add Quote</button>
-                                            </div>
+                                            <br />
                                         }
                                     </div>
-                                    <div id="PhoneArea">
-                                        @foreach (var phone in @Model.Phones)
-                                        {
-                                            <div class="form-group">
-                                                @phone.Number
-                                            </div>
-                                        }
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        @Html.TextBoxFor(e => e.NewEmail.Address, new { @id = "EmailAddressTextbox", @class = "form-control" })
+
                                     </div>
-                                </div>
-                                <div class="panel-footer">
-                                    <a id="AddPhoneLink" onclick="ToggleFormPanel('AddPhoneForm')">Add Phone Number</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            Email
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div id="AddEmailForm" style="display: none;">
-                                        @using (@Html.BeginForm("AddEmail", "Profile", FormMethod.Post, new {@id = "EmailForm"}))
-                                        {
-                                            <div class="form-group">
-                                                @foreach (var type in Model.EmailTypes)
-                                                {
-                                                    @Html.RadioButtonFor(p => p.SelectedEmail, type.Id) @type.Type
-
-                                                    <br />
-                                                }
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                @Html.TextBoxFor(e => e.NewEmail.Address, new {@id="EmailAddressTextbox", @class = "form-control" })
-
-                                            </div>
 
 
 
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary">Add Email</button>
                                             </div>
-                                        }
+                                }
+                            </div>
+                            <div id="EmailArea">
+                                @foreach (var email in @Model.Emails)
+                                {
+                                    <div class="form-group">
+                                        @email.Address
                                     </div>
-                                    <div id="EmailArea">
-                                    @foreach (var email in @Model.Emails)
-                                    {
-                                        <div class="form-group">
-                                            @email.Address
-                                        </div>
-                                    }
-                                    </div>
-                                </div>
-                                <div class="panel-footer">
-                                    <a id="AddEmalLink" onclick="ToggleFormPanel('AddEmailForm')">Add Email</a>
-                                </div>
+                                }
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            Links
-                            <div class="panel panel-default">
-                                <div class="panel-body">
+                        <div class="panel-footer">
+                            <a id="AddEmalLink" onclick="ToggleFormPanel('AddEmailForm')">Add Email</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    Links
+                    <div class="panel panel-default">
+                        <div class="panel-body">
 
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
-    </div>
+   
 </div>
-
-
+</div>
