@@ -1,89 +1,58 @@
-﻿using ParrisConnection.DataLayer.DataAccess;
+﻿using AutoMapper;
+using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.DataLayer.Entities.Profile;
 using ParrisConnection.ServiceLayer.Data;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ParrisConnection.ServiceLayer.Services
 {
     public class PhoneService : IPhoneService
     {
         private readonly IDataAccess _dataAccess;
+        private readonly IMapper _mapper;
+        private readonly IMapper _phoneMapper;
 
         public PhoneService(IDataAccess dataAccess)
         {
             _dataAccess = dataAccess;
+
+            var config = new MapperConfiguration(m => m.CreateMap<PhoneType, PhoneTypeData>().ReverseMap());
+            var phoneConfig = new MapperConfiguration(m => m.CreateMap<Phone, PhoneData>().ReverseMap());
+
+            _mapper = new Mapper(config);
+            _phoneMapper = new Mapper(phoneConfig);
         }
 
         #region PhoneTypes
         public IEnumerable<PhoneTypeData> GetPhoneTypes()
         {
-            return _dataAccess.PhoneTypes.GetAll().Select(LoadPhoneType);
+            return _mapper.Map<IEnumerable<PhoneTypeData>>(_dataAccess.PhoneTypes.GetAll());
         }
 
         public PhoneTypeData GetPhoneTypeById(int id)
         {
-            return LoadPhoneType(_dataAccess.PhoneTypes.GetById(id));
-        }
-        private PhoneTypeData LoadPhoneType(PhoneType type)
-        {
-            return new PhoneTypeData
-            {
-                Id = type.Id,
-                Type = type.Type
-            };
-        }
-
-        private PhoneType ConvertToEntityPhoneType(PhoneTypeData type)
-        {
-            return new PhoneType
-            {
-                Id = type.Id,
-                Type = type.Type
-            };
+            return _mapper.Map<PhoneTypeData>(_dataAccess.PhoneTypes.GetById(id));
         }
         #endregion
 
         #region Phone
         public IEnumerable<PhoneData> GetPhones()
         {
-            return _dataAccess.Phones.GetAll().Select(LoadPhoneData);
+            return _phoneMapper.Map<IEnumerable<PhoneData>>(_dataAccess.Phones.GetAll());
         }
 
         public PhoneData GetPhoneById(int id)
         {
-            return LoadPhoneData(_dataAccess.Phones.GetById(id));
+            return _phoneMapper.Map<PhoneData>(_dataAccess.Phones.GetById(id));
         }
 
         public void SavePhone(PhoneData phone)
         {
             phone.PhoneType = GetPhoneTypeById(Convert.ToInt32(phone.PhoneType)).Type;
 
-            _dataAccess.Phones.Insert(ConvertToEntityPhone(phone));
-        }
-
-        private PhoneData LoadPhoneData(Phone phone)
-        {
-            return new PhoneData
-            {
-                Id        = phone.Id,
-                UserId    = phone.UserId,
-                Number    = phone.Number,
-                PhoneType = phone.PhoneType
-            };
-        }
-
-        private Phone ConvertToEntityPhone(PhoneData phone)
-        {
-            return new Phone
-            {
-                Id        = phone.Id,
-                UserId    = phone.UserId,
-                Number    = phone.Number,
-                PhoneType = phone.PhoneType
-            };
+            _dataAccess.Phones.Insert(_phoneMapper.Map<Phone>(phone));
         }
         #endregion
     }
