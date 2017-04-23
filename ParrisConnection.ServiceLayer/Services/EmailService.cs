@@ -1,89 +1,57 @@
-﻿using ParrisConnection.DataLayer.DataAccess;
+﻿using AutoMapper;
+using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.DataLayer.Entities.Profile;
 using ParrisConnection.ServiceLayer.Data;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ParrisConnection.ServiceLayer.Services
 {
     public class EmailService : IEmailService
     {
         private readonly IDataAccess _dataAccess;
+        private readonly IMapper _mapper;
+        private readonly IMapper _emailMapper;
 
         public EmailService(IDataAccess dataAccess)
         {
             _dataAccess = dataAccess;
+
+            var config = new MapperConfiguration(m => m.CreateMap<EmailType, EmailTypeData>().ReverseMap());
+            var emailConfig = new MapperConfiguration(m => m.CreateMap<Email, EmailData>().ReverseMap());
+
+            _mapper = new Mapper(config);
+            _emailMapper = new Mapper(emailConfig);
         }
 
         #region EmailTypes
         public IEnumerable<EmailTypeData> GetEmailTypes()
         {
-            return _dataAccess.EmailTypes.GetAll().Select(LoadEmailType);
+            return _mapper.Map<IEnumerable<EmailTypeData>>(_dataAccess.EmailTypes.GetAll());
         }
 
         public EmailTypeData GetEmailTypeById(int id)
         {
-            return LoadEmailType(_dataAccess.EmailTypes.GetById(id));
-        }
-
-        private EmailTypeData LoadEmailType(EmailType type)
-        {
-            return new EmailTypeData
-            {
-                Id = type.Id,
-                Type = type.Type
-            };
-        }
-
-        private EmailType ConvertToEntityEmailType(EmailTypeData type)
-        {
-            return new EmailType
-            {
-                Id = type.Id,
-                Type = type.Type
-            };
+            return _mapper.Map<EmailTypeData>(_dataAccess.EmailTypes.GetById(id));
         }
         #endregion
 
         #region Email
         public IEnumerable<EmailData> GetEmails()
         {
-            return _dataAccess.Emails.GetAll().Select(LoadEmailData);
+            return _emailMapper.Map<IEnumerable<EmailData>>(_dataAccess.Emails.GetAll());
         }
 
         public EmailData GetEmailById(int id)
         {
-            return LoadEmailData(_dataAccess.Emails.GetById(id));
+            return _emailMapper.Map<EmailData>(_dataAccess.Emails.GetById(id));
         }
 
         public void SaveEmail(EmailData email)
         {
             email.Type = GetEmailTypeById(Convert.ToInt32(email.Type)).Type;
-            _dataAccess.Emails.Insert(ConvertToEntityEmail(email));
-        }
-
-        private EmailData LoadEmailData(Email email)
-        {
-            return new EmailData
-            {
-                Id      = email.Id,
-                UserId  = email.UserId,
-                Address = email.Address,
-                Type    = email.Type
-            };
-        }
-
-        private Email ConvertToEntityEmail(EmailData email)
-        {
-            return new Email
-            {
-                Id      = email.Id,
-                UserId  = email.UserId,
-                Address = email.Address,
-                Type    = email.Type
-            };
+            _dataAccess.Emails.Insert(_emailMapper.Map<Email>(email));
         }
         #endregion
     }
