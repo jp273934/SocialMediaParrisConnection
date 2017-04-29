@@ -2,24 +2,22 @@
 using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.DataLayer.Entities.Profile;
 using ParrisConnection.ServiceLayer.Data;
-using ParrisConnection.ServiceLayer.Services.Interfaces;
-using System;
 using System.Collections.Generic;
 
-namespace ParrisConnection.ServiceLayer.Services
+namespace ParrisConnection.ServiceLayer.Services.Email.Queries
 {
-    public class EmailService : IEmailService
+    public class EmailQueryService : IEmailQueryService
     {
         private readonly IDataAccess _dataAccess;
         private readonly IMapper _mapper;
         private readonly IMapper _emailMapper;
 
-        public EmailService(IDataAccess dataAccess)
+        public EmailQueryService(IDataAccess dataAccess)
         {
             _dataAccess = dataAccess;
 
             var config = new MapperConfiguration(m => m.CreateMap<EmailType, EmailTypeData>().ReverseMap());
-            var emailConfig = new MapperConfiguration(m => m.CreateMap<Email, EmailData>().ReverseMap());
+            var emailConfig = new MapperConfiguration(m => m.CreateMap<DataLayer.Entities.Profile.Email, EmailData>().ReverseMap());
 
             _mapper = new Mapper(config);
             _emailMapper = new Mapper(emailConfig);
@@ -35,7 +33,7 @@ namespace ParrisConnection.ServiceLayer.Services
         {
             return _mapper.Map<EmailTypeData>(_dataAccess.EmailTypes.GetById(id));
         }
-        #endregion
+#        endregion
 
         #region Email
         public IEnumerable<EmailData> GetEmails()
@@ -47,12 +45,6 @@ namespace ParrisConnection.ServiceLayer.Services
         {
             return _emailMapper.Map<EmailData>(_dataAccess.Emails.GetById(id));
         }
-
-        public void SaveEmail(EmailData email)
-        {
-            email.Type = GetEmailTypeById(Convert.ToInt32(email.Type)).Type;
-            _dataAccess.Emails.Insert(_emailMapper.Map<Email>(email));
-        }
-        #endregion
+        #endregion 
     }
 }

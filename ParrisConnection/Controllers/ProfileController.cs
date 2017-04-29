@@ -1,13 +1,15 @@
 ﻿using Microsoft.AspNet.Identity;
 using ParrisConnection.ServiceLayer.Data;
 using ParrisConnection.ServiceLayer.Services;
+using ParrisConnection.ServiceLayer.Services.Education.Queries;
+using ParrisConnection.ServiceLayer.Services.Education.Save;
+using ParrisConnection.ServiceLayer.Services.Email.Queries;
+using ParrisConnection.ServiceLayer.Services.Email.Save;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
 using System;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
-using ParrisConnection.ServiceLayer.Services.Education.Queries;
-using ParrisConnection.ServiceLayer.Services.Education.Save;
 
 namespace ParrisConnection.Controllers
 {
@@ -18,22 +20,24 @@ namespace ParrisConnection.Controllers
         private readonly IEmployerService _employerService;
         private readonly IQuoteService _quoteService;
         private readonly IPhoneService _phoneService;
-        private readonly IEmailService _emailService;
         private readonly IProfileViewService _profileViewService;
         private readonly IEducationSaveService _educationSaveService;
         private readonly IEducationQueryService _educationQueryService;
+        private readonly IEmailQueryService _emailQueryService;
+        private readonly IEmailSaveService _emailSaveService;
 
         public ProfileController( IProfilePhotosService profilePhotosService, IEmployerService employerService, 
-            IQuoteService quoteService, IPhoneService phoneService, IEmailService emailService, IProfileViewService profileViewService, IEducationSaveService educationSaveService, IEducationQueryService educationQueryService)
+            IQuoteService quoteService, IPhoneService phoneService, IProfileViewService profileViewService, IEducationSaveService educationSaveService, IEducationQueryService educationQueryService, IEmailQueryService emailQueryService, IEmailSaveService emailSaveService)
         {
             _profilePhotosService = profilePhotosService;
             _employerService = employerService;
             _quoteService = quoteService;
             _phoneService = phoneService;
-            _emailService = emailService;
             _profileViewService = profileViewService;
             _educationSaveService = educationSaveService;
             _educationQueryService = educationQueryService;
+            _emailQueryService = emailQueryService;
+            _emailSaveService = emailSaveService;
         }
 
         // GET: Profile
@@ -120,11 +124,11 @@ namespace ParrisConnection.Controllers
         public ActionResult AddEmail(EmailData email)
         {
             email.UserId = User.Identity.GetUserId();
-            _emailService.SaveEmail(email);
+            _emailSaveService.SaveEmail(email);
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddEmail", _emailService.GetEmails());
+                return PartialView("AddEmail", _emailQueryService.GetEmails());
             }
 
             return RedirectToAction("Index", "Profile");

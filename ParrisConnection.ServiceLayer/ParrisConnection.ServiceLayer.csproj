@@ -72,9 +72,11 @@
     <Compile Include="Services\Education\Queries\IEducationQueryService.cs" />
     <Compile Include="Services\Education\Save\EducationSaveService.cs" />
     <Compile Include="Services\Education\Save\IEducationSaveService.cs" />
-    <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\Email\Queries\EmailQueryService.cs" />
+    <Compile Include="Services\Email\Queries\IEmailQueryService.cs" />
+    <Compile Include="Services\Email\Save\EmailSaveService.cs" />
+    <Compile Include="Services\Email\Save\IEmailSaveService.cs" />
     <Compile Include="Services\EmployerService.cs" />
-    <Compile Include="Services\Interfaces\IEmailService.cs" />
     <Compile Include="Services\Interfaces\IEmployerService.cs" />
     <Compile Include="Services\Interfaces\IPhoneService.cs" />
     <Compile Include="Services\Interfaces\IProfilePhotosService.cs" />
