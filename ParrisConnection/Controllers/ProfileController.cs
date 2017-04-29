@@ -5,6 +5,8 @@ using ParrisConnection.ServiceLayer.Services.Education.Queries;
 using ParrisConnection.ServiceLayer.Services.Education.Save;
 using ParrisConnection.ServiceLayer.Services.Email.Queries;
 using ParrisConnection.ServiceLayer.Services.Email.Save;
+using ParrisConnection.ServiceLayer.Services.Employer.Queries;
+using ParrisConnection.ServiceLayer.Services.Employer.Save;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
 using System;
 using System.IO;
@@ -17,7 +19,6 @@ namespace ParrisConnection.Controllers
     public class ProfileController : Controller
     {
         private readonly IProfilePhotosService _profilePhotosService;
-        private readonly IEmployerService _employerService;
         private readonly IQuoteService _quoteService;
         private readonly IPhoneService _phoneService;
         private readonly IProfileViewService _profileViewService;
@@ -25,12 +26,13 @@ namespace ParrisConnection.Controllers
         private readonly IEducationQueryService _educationQueryService;
         private readonly IEmailQueryService _emailQueryService;
         private readonly IEmailSaveService _emailSaveService;
+        private readonly IEmployerSaveService _employerSaveService;
+        private readonly IEmployerQueryService _employerQueryService;
 
-        public ProfileController( IProfilePhotosService profilePhotosService, IEmployerService employerService, 
-            IQuoteService quoteService, IPhoneService phoneService, IProfileViewService profileViewService, IEducationSaveService educationSaveService, IEducationQueryService educationQueryService, IEmailQueryService emailQueryService, IEmailSaveService emailSaveService)
+        public ProfileController( IProfilePhotosService profilePhotosService, 
+            IQuoteService quoteService, IPhoneService phoneService, IProfileViewService profileViewService, IEducationSaveService educationSaveService, IEducationQueryService educationQueryService, IEmailQueryService emailQueryService, IEmailSaveService emailSaveService, IEmployerSaveService employerSaveService, IEmployerQueryService employerQueryService)
         {
             _profilePhotosService = profilePhotosService;
-            _employerService = employerService;
             _quoteService = quoteService;
             _phoneService = phoneService;
             _profileViewService = profileViewService;
@@ -38,6 +40,8 @@ namespace ParrisConnection.Controllers
             _educationQueryService = educationQueryService;
             _emailQueryService = emailQueryService;
             _emailSaveService = emailSaveService;
+            _employerSaveService = employerSaveService;
+            _employerQueryService = employerQueryService;
         }
 
         // GET: Profile
@@ -69,11 +73,11 @@ namespace ParrisConnection.Controllers
         public ActionResult AddEmployment(EmployerData employment)
         {
             employment.UserId = User.Identity.GetUserId();
-            _employerService.SaveEmployer(employment);
+            _employerSaveService.SaveEmployer(employment);
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddEmployment", _employerService.GetEmployers());
+                return PartialView("AddEmployment", _employerQueryService.GetEmployers());
             }
 
             return RedirectToAction("Index", "Profile");

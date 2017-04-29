@@ -1,22 +1,24 @@
-﻿using AutoMapper;
-using ParrisConnection.DataLayer.DataAccess;
-using ParrisConnection.DataLayer.Entities.Profile;
-using ParrisConnection.ServiceLayer.Data;
-using ParrisConnection.ServiceLayer.Services.Interfaces;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
+using ParrisConnection.DataLayer.DataAccess;
+using ParrisConnection.ServiceLayer.Data;
 
-namespace ParrisConnection.ServiceLayer.Services
+namespace ParrisConnection.ServiceLayer.Services.Employer.Queries
 {
-    public class EmployerService : IEmployerService
+    public class EmployerQueryService : IEmployerQueryService
     {
         private readonly IDataAccess _dataAccess;
         private readonly IMapper _mapper;
 
-        public EmployerService(IDataAccess dataAccess)
+        public EmployerQueryService(IDataAccess dataAccess)
         {
             _dataAccess = dataAccess;
 
-            var config = new MapperConfiguration(m => m.CreateMap<Employer, EmployerData>().ReverseMap());
+            var config = new MapperConfiguration(m => m.CreateMap<DataLayer.Entities.Profile.Employer, EmployerData>().ReverseMap());
 
             _mapper = new Mapper(config);
         }
@@ -29,11 +31,6 @@ namespace ParrisConnection.ServiceLayer.Services
         public EmployerData GetEmployerById(int id)
         {
             return _mapper.Map<EmployerData>(_dataAccess.Employers.GetById(id));
-        }
-
-        public void SaveEmployer(EmployerData employer)
-        {
-           _dataAccess.Employers.Insert(_mapper.Map<Employer>(employer));
         }
     }
 }

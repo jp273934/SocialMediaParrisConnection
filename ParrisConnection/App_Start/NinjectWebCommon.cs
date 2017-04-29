@@ -5,6 +5,8 @@ using ParrisConnection.ServiceLayer.Services.Education.Queries;
 using ParrisConnection.ServiceLayer.Services.Education.Save;
 using ParrisConnection.ServiceLayer.Services.Email.Queries;
 using ParrisConnection.ServiceLayer.Services.Email.Save;
+using ParrisConnection.ServiceLayer.Services.Employer.Queries;
+using ParrisConnection.ServiceLayer.Services.Employer.Save;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ParrisConnection.App_Start.NinjectWebCommon), "Start")]
@@ -71,7 +73,6 @@ namespace ParrisConnection.App_Start
             kernel.Bind<IDataAccess>().To<DataAccess>();
             kernel.Bind<IWallService>().To<WallService>();
             kernel.Bind<IProfilePhotosService>().To<ProfilePhotosService>();
-            kernel.Bind<IEmployerService>().To<EmployerService>();
             kernel.Bind<IQuoteService>().To<QuoteService>();
             kernel.Bind<IPhoneService>().To<PhoneService>();
             kernel.Bind<IStatusService>().To<StatusService>();
@@ -81,6 +82,8 @@ namespace ParrisConnection.App_Start
             kernel.Bind<IEducationSaveService>().To<EducationSaveService>();
             kernel.Bind<IEmailQueryService>().To<EmailQueryService>();
             kernel.Bind<IEmailSaveService>().To<EmailSaveService>();
+            kernel.Bind<IEmployerQueryService>().To<EmployerQueryService>();
+            kernel.Bind<IEmployerSaveService>().To<EmployerSaveService>();
         }        
     }
 }
