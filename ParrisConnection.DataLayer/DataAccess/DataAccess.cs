@@ -22,7 +22,6 @@ namespace ParrisConnection.DataLayer.DataAccess
         public IRepository<Quote> Quotes { get; set; }
         public IRepository<Comment> Comments { get; set; }
         public IRepository<Status> Statuses { get; set; }
-        
         public DataAccess(ParrisDbContext context)
         {
             _context = context;

@@ -1,9 +1,8 @@
 ﻿using ParrisConnection.DataLayer.Entities.Profile;
 using ParrisConnection.ServiceLayer.Data;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace ParrisConnection.ViewModels
+namespace ParrisConnection.ServiceLayer.Models
 {
     public class ProfileViewModel
     {
@@ -21,9 +20,7 @@ namespace ParrisConnection.ViewModels
         public PhoneTypeData PhoneType { get; set; }
         public PhoneData NewPhone { get; set; }
         public EmailData NewEmail { get; set; }
-        [Required]
         public int? SelectedPhone { get; set; }
-        [Required]
         public int? SelectedEmail { get; set; }
 
     }

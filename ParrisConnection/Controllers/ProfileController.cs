@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNet.Identity;
-using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.ServiceLayer.Data;
+using ParrisConnection.ServiceLayer.Services;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
-using ParrisConnection.ViewModels;
 using System;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,42 +12,30 @@ namespace ParrisConnection.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-        private readonly IDataAccess _context;
         private readonly IProfilePhotosService _profilePhotosService;
         private readonly IEmployerService _employerService;
         private readonly IEducationService _educationService;
         private readonly IQuoteService _quoteService;
         private readonly IPhoneService _phoneService;
         private readonly IEmailService _emailService;
+        private readonly IProfileViewService _profileViewService;
 
-        public ProfileController(IDataAccess context, IProfilePhotosService profilePhotosService, IEmployerService employerService, IEducationService educationService, 
-            IQuoteService quoteService, IPhoneService phoneService, IEmailService emailService)
+        public ProfileController( IProfilePhotosService profilePhotosService, IEmployerService employerService, IEducationService educationService, 
+            IQuoteService quoteService, IPhoneService phoneService, IEmailService emailService, IProfileViewService profileViewService)
         {
-            _context = context;
             _profilePhotosService = profilePhotosService;
             _employerService = employerService;
             _educationService = educationService;
             _quoteService = quoteService;
             _phoneService = phoneService;
             _emailService = emailService;
+            _profileViewService = profileViewService;
         }
 
         // GET: Profile
         public ActionResult Index()
         {
-            var viewModel = new ProfileViewModel
-            {
-                ProfilePhoto = _profilePhotosService.GetProfilePhoto(User.Identity.GetUserId()),
-                Employers = _employerService.GetEmployers().Where(e => e.UserId == User.Identity.GetUserId()),
-                Educations = _educationService.GetAllEducation().Where(e => e.UserId == User.Identity.GetUserId()),
-                Quotes = _quoteService.GetQuotes().Where(q => q.UserId == User.Identity.GetUserId()),
-                Phones = _phoneService.GetPhones().Where(p => p.UserId == User.Identity.GetUserId()),
-                Emails = _emailService.GetEmails().Where(e => e.UserId == User.Identity.GetUserId()),
-                PhoneTypes = _phoneService.GetPhoneTypes(),
-                EmailTypes = _context.EmailTypes.GetAll().ToList()
-            };
-
-            return View(viewModel);
+            return View(_profileViewService.GetViewModel(User.Identity.GetUserId()));
         }
 
         [HttpPost]

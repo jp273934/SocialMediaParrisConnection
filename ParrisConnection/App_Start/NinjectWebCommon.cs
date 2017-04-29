@@ -73,6 +73,7 @@ namespace ParrisConnection.App_Start
             kernel.Bind<IEmailService>().To<ServiceLayer.Services.EmailService>();
             kernel.Bind<ICommentService>().To<CommentService>();
             kernel.Bind<IStatusService>().To<StatusService>();
+            kernel.Bind<IProfileViewService>().To<ProfileViewService>();
         }        
     }
 }
