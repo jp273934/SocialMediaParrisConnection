@@ -10,10 +10,12 @@ namespace ParrisConnection.Controllers
     {
 
         private readonly IWallService _service;
+        private readonly ICommentService _commentService;
 
-        public WallController(IWallService service)
+        public WallController(IWallService service, ICommentService commentService)
         {
-           _service  = service;
+            _service  = service;
+            _commentService = commentService;
         }
 
         public ActionResult Index()
@@ -32,7 +34,7 @@ namespace ParrisConnection.Controllers
                 PostComment = comment,               
             };
 
-            _service.SaveComment(post, statusId);
+            _commentService.SaveComment(post, statusId);
 
             return RedirectToAction("Index", "Wall");
         }

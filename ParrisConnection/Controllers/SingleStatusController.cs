@@ -7,9 +7,9 @@ namespace ParrisConnection.Controllers
 {
     public class SingleStatusController : Controller
     {
-        private readonly IWallService _service;
+        private readonly IStatusService _service;
 
-        public SingleStatusController(IWallService service)
+        public SingleStatusController(IStatusService service)
         {
             _service = service;
         }

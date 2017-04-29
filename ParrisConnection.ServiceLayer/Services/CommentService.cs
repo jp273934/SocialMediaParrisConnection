@@ -16,7 +16,7 @@ namespace ParrisConnection.ServiceLayer.Services
         {
             _dataAccess = dataAccess;
 
-            var config = new MapperConfiguration(m => m.CreateMap<Comment, CommentData>());
+            var config = new MapperConfiguration(m => m.CreateMap<Comment, CommentData>().ReverseMap());
 
             _mapper = new Mapper(config);
         }
@@ -26,8 +26,11 @@ namespace ParrisConnection.ServiceLayer.Services
             return _mapper.Map<IEnumerable<CommentData>>(_dataAccess.Comments.GetAll());
         }
 
-        public void SaveComment(CommentData comment)
+        public void SaveComment(CommentData comment, int statusId)
         {
+            var status = _dataAccess.Statuses.GetById(statusId);
+            status.Comments.Add(_mapper.Map<Comment>(comment));
+
             _dataAccess.Comments.Insert(_mapper.Map<Comment>(comment));
         }
     }
