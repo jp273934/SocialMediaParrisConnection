@@ -1,17 +1,14 @@
-﻿using ParrisConnection.DataLayer.Entities.Wall;
-using ParrisConnection.ServiceLayer.Data;
+﻿using ParrisConnection.ServiceLayer.Data;
+using ParrisConnection.ServiceLayer.Models;
 using System.Collections.Generic;
 
 namespace ParrisConnection.ServiceLayer.Services.Interfaces
 {
     public interface IWallService
     {
-        IEnumerable<CommentData> GetComments();
-        void SaveComment(CommentData comment);
-        IEnumerable<CommentData> ConvertCommentsToCommentData(IEnumerable<Comment> comments);
-        IEnumerable<Comment> ConvertCommentsToEntity(IEnumerable<CommentData> comments);
-        List<StatusData> GetStatuses();
-        StatusData GetStatusById(int id);
+        WallViewModel GetWallData();
+        void SaveComment(CommentData comment, int statusId);
+        IEnumerable<StatusData> GetStatuses();
         void SaveStatus(StatusData status);
     }
 }

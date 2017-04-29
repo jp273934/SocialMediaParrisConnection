@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using ParrisConnection.ServiceLayer.Data;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
-using ParrisConnection.ViewModels;
 using System.Web.Mvc;
 
 namespace ParrisConnection.Controllers
@@ -19,10 +18,7 @@ namespace ParrisConnection.Controllers
 
         public ActionResult Index()
         {
-            var wall = new WallViewModel
-            {
-                Statuses = _service.GetStatuses()
-            };
+            var wall = _service.GetWallData();
 
             return View(wall);
         }
@@ -33,11 +29,10 @@ namespace ParrisConnection.Controllers
             var post = new CommentData
             {
                 UserId = User.Identity.GetUserId(),
-                PostComment = comment,
-                Status = _service.GetStatusById(statusId)
+                PostComment = comment,               
             };
 
-            _service.SaveComment(post);
+            _service.SaveComment(post, statusId);
 
             return RedirectToAction("Index", "Wall");
         }

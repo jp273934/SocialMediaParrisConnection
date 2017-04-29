@@ -71,6 +71,8 @@ namespace ParrisConnection.App_Start
             kernel.Bind<IQuoteService>().To<QuoteService>();
             kernel.Bind<IPhoneService>().To<PhoneService>();
             kernel.Bind<IEmailService>().To<ServiceLayer.Services.EmailService>();
+            kernel.Bind<ICommentService>().To<CommentService>();
+            kernel.Bind<IStatusService>().To<StatusService>();
         }        
     }
 }

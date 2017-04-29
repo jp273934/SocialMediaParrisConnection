@@ -1,102 +1,66 @@
-﻿using ParrisConnection.DataLayer.DataAccess;
+﻿using AutoMapper;
+using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.DataLayer.Entities.Wall;
 using ParrisConnection.ServiceLayer.Data;
+using ParrisConnection.ServiceLayer.Models;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ParrisConnection.ServiceLayer.Services
 {
     public class WallService : IWallService
     {
         private readonly IDataAccess _dataAccess;
+        private readonly IStatusService _statusService;
+        private readonly IMapper _mapper;
+        private readonly IMapper _statusMapper;
 
-        public WallService(IDataAccess dataAccess)
+        public WallService(IDataAccess dataAccess, IStatusService statusService)
         {
             _dataAccess = dataAccess;
+            _statusService = statusService;
+
+            var config = new MapperConfiguration(m => m.CreateMap<Comment, CommentData>().ReverseMap());
+            var statusConfig = new MapperConfiguration(m => m.CreateMap<Status, StatusData>().ReverseMap());
+
+            _mapper = new Mapper(config);
+            _statusMapper = new Mapper(statusConfig);
+        }
+
+        public WallViewModel GetWallData()
+        {
+            var wall = new WallViewModel
+            {
+                Statuses = _statusService.GetStatuses()
+            };
+
+            return wall;
         }
 
         #region Comments
         public IEnumerable<CommentData> GetComments()
         {
-            return ConvertCommentsToCommentData(_dataAccess.Comments.GetAll());
+            return _mapper.Map<IEnumerable<CommentData>>(_dataAccess.Comments.GetAll());
         }
 
-        public void SaveComment(CommentData comment)
+        public void SaveComment(CommentData comment, int statusId)
         {
-            var status = _dataAccess.Statuses.GetById(comment.Status.Id);
+            var status = _dataAccess.Statuses.GetById(statusId);
 
-            status.Comments.Add(ConvertToEntity(comment));
+            status.Comments.Add(_mapper.Map<Comment>(comment));
             _dataAccess.Statuses.Save();
-        }
-
-        public IEnumerable<CommentData> ConvertCommentsToCommentData(IEnumerable<Comment> comments)
-        {
-            return comments.Select(item => new CommentData
-            {
-                Id = item.Id,
-                UserId = item.UserId,
-                UserName = _dataAccess.GetUserNameById(item.UserId),
-                PostComment = item.PostComment
-            }).ToList();
-        }
-
-        public IEnumerable<Comment> ConvertCommentsToEntity(IEnumerable<CommentData> comments)
-        {
-            return comments?.Select(ConvertToEntity) ?? new List<Comment>();
-        }
-
-        private Comment ConvertToEntity(CommentData comment)
-        {
-            return new Comment
-            {
-                PostComment = comment.PostComment,
-                UserId = comment.UserId
-            };
         }
         #endregion
 
         #region Statuses    
-        public List<StatusData> GetStatuses()
+        public IEnumerable<StatusData> GetStatuses()
         {
-            var statuses = _dataAccess.Statuses.GetAll();
-
-            return statuses.Select(item => new StatusData
-            {
-                Id       = item.Id,
-                UserId   = item.UserId ?? "",
-                Post     = item.Post,
-                Comments = ConvertCommentsToCommentData(item.Comments),
-                UserName = _dataAccess.GetUserNameById(item.UserId)
-            }).ToList();
-        }
-
-        public StatusData GetStatusById(int id)
-        {
-            var status = _dataAccess.Statuses.GetById(id);
-
-            return new StatusData
-            {
-                Id = status.Id,
-                Post = status.Post,
-                Comments = ConvertCommentsToCommentData(status.Comments)
-            };
+            return _statusMapper.Map<IEnumerable<StatusData>>(_dataAccess.Statuses.GetAll());
         }
 
         public void SaveStatus(StatusData status)
         {
-            _dataAccess.Statuses.Insert(ConvertToEntity(status));
-        }
-
-        private Status ConvertToEntity(StatusData status)
-        {
-            return new Status
-            {
-                Id = status.Id,
-                Post = status.Post,
-                UserId = status.UserId,
-                Comments = ConvertCommentsToEntity(status.Comments).ToList()
-            };
+            _dataAccess.Statuses.Insert(_statusMapper.Map<Status>(status));
         }
         #endregion
     }
