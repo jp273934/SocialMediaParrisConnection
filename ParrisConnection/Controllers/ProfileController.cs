@@ -6,6 +6,8 @@ using System;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
+using ParrisConnection.ServiceLayer.Services.Education.Queries;
+using ParrisConnection.ServiceLayer.Services.Education.Save;
 
 namespace ParrisConnection.Controllers
 {
@@ -14,22 +16,24 @@ namespace ParrisConnection.Controllers
     {
         private readonly IProfilePhotosService _profilePhotosService;
         private readonly IEmployerService _employerService;
-        private readonly IEducationService _educationService;
         private readonly IQuoteService _quoteService;
         private readonly IPhoneService _phoneService;
         private readonly IEmailService _emailService;
         private readonly IProfileViewService _profileViewService;
+        private readonly IEducationSaveService _educationSaveService;
+        private readonly IEducationQueryService _educationQueryService;
 
-        public ProfileController( IProfilePhotosService profilePhotosService, IEmployerService employerService, IEducationService educationService, 
-            IQuoteService quoteService, IPhoneService phoneService, IEmailService emailService, IProfileViewService profileViewService)
+        public ProfileController( IProfilePhotosService profilePhotosService, IEmployerService employerService, 
+            IQuoteService quoteService, IPhoneService phoneService, IEmailService emailService, IProfileViewService profileViewService, IEducationSaveService educationSaveService, IEducationQueryService educationQueryService)
         {
             _profilePhotosService = profilePhotosService;
             _employerService = employerService;
-            _educationService = educationService;
             _quoteService = quoteService;
             _phoneService = phoneService;
             _emailService = emailService;
             _profileViewService = profileViewService;
+            _educationSaveService = educationSaveService;
+            _educationQueryService = educationQueryService;
         }
 
         // GET: Profile
@@ -75,10 +79,10 @@ namespace ParrisConnection.Controllers
         public ActionResult AddEducation(EducationData education)
         {
             education.UserId = User.Identity.GetUserId();
-            _educationService.SaveEducation(education);
+            _educationSaveService.SaveEducation(education);
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddEducation", _educationService.GetAllEducation());
+                return PartialView("AddEducation", _educationQueryService.GetAllEducation());
             }
 
             return RedirectToAction("Index", "Profile");

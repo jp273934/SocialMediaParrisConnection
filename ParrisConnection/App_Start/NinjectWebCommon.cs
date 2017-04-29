@@ -1,5 +1,8 @@
 using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.ServiceLayer.Services;
+using ParrisConnection.ServiceLayer.Services.Comments.Save;
+using ParrisConnection.ServiceLayer.Services.Education.Queries;
+using ParrisConnection.ServiceLayer.Services.Education.Save;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ParrisConnection.App_Start.NinjectWebCommon), "Start")]
@@ -67,13 +70,14 @@ namespace ParrisConnection.App_Start
             kernel.Bind<IWallService>().To<WallService>();
             kernel.Bind<IProfilePhotosService>().To<ProfilePhotosService>();
             kernel.Bind<IEmployerService>().To<EmployerService>();
-            kernel.Bind<IEducationService>().To<EducationService>();
             kernel.Bind<IQuoteService>().To<QuoteService>();
             kernel.Bind<IPhoneService>().To<PhoneService>();
             kernel.Bind<IEmailService>().To<ServiceLayer.Services.EmailService>();
-            kernel.Bind<ICommentService>().To<CommentService>();
             kernel.Bind<IStatusService>().To<StatusService>();
             kernel.Bind<IProfileViewService>().To<ProfileViewService>();
+            kernel.Bind<ICommentSaveService>().To<CommentSaveService>();
+            kernel.Bind<IEducationQueryService>().To<EducationQueryService>();
+            kernel.Bind<IEducationSaveService>().To<EducationSaveService>();
         }        
     }
 }

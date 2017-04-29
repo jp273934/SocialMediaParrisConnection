@@ -2,6 +2,7 @@
 using ParrisConnection.ServiceLayer.Data;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
 using System.Web.Mvc;
+using ParrisConnection.ServiceLayer.Services.Comments.Save;
 
 namespace ParrisConnection.Controllers
 {
@@ -10,12 +11,12 @@ namespace ParrisConnection.Controllers
     {
 
         private readonly IWallService _service;
-        private readonly ICommentService _commentService;
+        private readonly ICommentSaveService _commentSaveService;
 
-        public WallController(IWallService service, ICommentService commentService)
+        public WallController(IWallService service, ICommentSaveService commentSaveService)
         {
             _service  = service;
-            _commentService = commentService;
+            _commentSaveService = commentSaveService;
         }
 
         public ActionResult Index()
@@ -34,7 +35,7 @@ namespace ParrisConnection.Controllers
                 PostComment = comment,               
             };
 
-            _commentService.SaveComment(post, statusId);
+            _commentSaveService.SaveComment(post, statusId);
 
             return RedirectToAction("Index", "Wall");
         }

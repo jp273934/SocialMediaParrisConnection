@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using ParrisConnection.ServiceLayer.Data;
 
-namespace ParrisConnection.ServiceLayer.Services.Interfaces
+namespace ParrisConnection.ServiceLayer.Services.Education.Queries
 {
-    public interface IEducationService
+    public interface IEducationQueryService
     {
         IEnumerable<EducationData> GetAllEducation();
         EducationData GetEducationById(int id);
-        void SaveEducation(EducationData education);
     }
 }

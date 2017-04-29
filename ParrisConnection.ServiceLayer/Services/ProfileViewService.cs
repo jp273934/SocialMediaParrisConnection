@@ -2,6 +2,7 @@
 using ParrisConnection.ServiceLayer.Models;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
 using System.Linq;
+using ParrisConnection.ServiceLayer.Services.Education.Queries;
 
 namespace ParrisConnection.ServiceLayer.Services
 {
@@ -13,9 +14,9 @@ namespace ParrisConnection.ServiceLayer.Services
         private readonly IPhoneService _phoneService;
         private readonly IEmailService _emailService;
         private readonly IDataAccess _dataAccess;
-        private readonly IEducationService _educationService;
+        private readonly IEducationQueryService _educationQueryService;
 
-        public ProfileViewService(IProfilePhotosService profilePhotosService, IEmployerService employerService, IQuoteService quoteService, IPhoneService phoneService, IEmailService emailService, IDataAccess dataAccess, IEducationService educationService)
+        public ProfileViewService(IProfilePhotosService profilePhotosService, IEmployerService employerService, IQuoteService quoteService, IPhoneService phoneService, IEmailService emailService, IDataAccess dataAccess, IEducationQueryService educationQueryService)
         {
             _profilePhotosService = profilePhotosService;
             _employerService = employerService;
@@ -23,7 +24,7 @@ namespace ParrisConnection.ServiceLayer.Services
             _phoneService = phoneService;
             _emailService = emailService;
             _dataAccess = dataAccess;
-            _educationService = educationService;
+            _educationQueryService = educationQueryService;
         }
 
         public ProfileViewModel GetViewModel(string userId)
@@ -37,7 +38,7 @@ namespace ParrisConnection.ServiceLayer.Services
                 Emails = _emailService.GetEmails().Where(e => e.UserId == userId),
                 PhoneTypes = _phoneService.GetPhoneTypes(),
                 EmailTypes = _dataAccess.EmailTypes.GetAll().ToList(),
-                Educations = _educationService.GetAllEducation().Where(e => e.UserId == userId)
+                Educations = _educationQueryService.GetAllEducation().Where(e => e.UserId == userId)
             };
 
             return viewModel;
