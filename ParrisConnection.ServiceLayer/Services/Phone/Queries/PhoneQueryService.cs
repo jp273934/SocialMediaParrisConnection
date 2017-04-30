@@ -32,7 +32,8 @@ namespace ParrisConnection.ServiceLayer.Services.Phone.Queries
 
         public PhoneTypeData GetPhoneTypeById(int id)
         {
-            return _mapper.Map<PhoneTypeData>(_dataAccess.PhoneTypes.GetById(id));
+            var type = _mapper.Map<PhoneTypeData>(_dataAccess.PhoneTypes.GetById(id));
+            return type ?? new PhoneTypeData();
         }
         #endregion
 
@@ -49,7 +50,8 @@ namespace ParrisConnection.ServiceLayer.Services.Phone.Queries
 
         public PhoneData GetPhoneById(int id)
         {
-            return _phoneMapper.Map<PhoneData>(_dataAccess.Phones.GetById(id));
+            var phone = _phoneMapper.Map<PhoneData>(_dataAccess.Phones.GetById(id));
+            return phone ?? new PhoneData();
         }
         #endregion
     }
