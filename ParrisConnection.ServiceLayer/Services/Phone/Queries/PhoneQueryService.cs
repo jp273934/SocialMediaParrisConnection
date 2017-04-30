@@ -2,24 +2,22 @@
 using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.DataLayer.Entities.Profile;
 using ParrisConnection.ServiceLayer.Data;
-using ParrisConnection.ServiceLayer.Services.Interfaces;
-using System;
 using System.Collections.Generic;
 
-namespace ParrisConnection.ServiceLayer.Services
+namespace ParrisConnection.ServiceLayer.Services.Phone.Queries
 {
-    public class PhoneService : IPhoneService
+    public class PhoneQueryService : IPhoneQueryService
     {
         private readonly IDataAccess _dataAccess;
         private readonly IMapper _mapper;
         private readonly IMapper _phoneMapper;
 
-        public PhoneService(IDataAccess dataAccess)
+        public PhoneQueryService(IDataAccess dataAccess)
         {
             _dataAccess = dataAccess;
 
             var config = new MapperConfiguration(m => m.CreateMap<PhoneType, PhoneTypeData>().ReverseMap());
-            var phoneConfig = new MapperConfiguration(m => m.CreateMap<Phone, PhoneData>().ReverseMap());
+            var phoneConfig = new MapperConfiguration(m => m.CreateMap<DataLayer.Entities.Profile.Phone, PhoneData>().ReverseMap());
 
             _mapper = new Mapper(config);
             _phoneMapper = new Mapper(phoneConfig);
@@ -46,13 +44,6 @@ namespace ParrisConnection.ServiceLayer.Services
         public PhoneData GetPhoneById(int id)
         {
             return _phoneMapper.Map<PhoneData>(_dataAccess.Phones.GetById(id));
-        }
-
-        public void SavePhone(PhoneData phone)
-        {
-            phone.PhoneType = GetPhoneTypeById(Convert.ToInt32(phone.PhoneType)).Type;
-
-            _dataAccess.Phones.Insert(_phoneMapper.Map<Phone>(phone));
         }
         #endregion
     }

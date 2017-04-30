@@ -8,6 +8,9 @@ using ParrisConnection.ServiceLayer.Services.Email.Save;
 using ParrisConnection.ServiceLayer.Services.Employer.Queries;
 using ParrisConnection.ServiceLayer.Services.Employer.Save;
 using ParrisConnection.ServiceLayer.Services.Interfaces;
+using ParrisConnection.ServiceLayer.Services.Phone.Queries;
+using ParrisConnection.ServiceLayer.Services.Phone.Save;
+using ParrisConnection.ServiceLayer.Services.ProfilePhoto.Save;
 using System;
 using System.IO;
 using System.Web;
@@ -18,9 +21,7 @@ namespace ParrisConnection.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-        private readonly IProfilePhotosService _profilePhotosService;
         private readonly IQuoteService _quoteService;
-        private readonly IPhoneService _phoneService;
         private readonly IProfileViewService _profileViewService;
         private readonly IEducationSaveService _educationSaveService;
         private readonly IEducationQueryService _educationQueryService;
@@ -28,13 +29,14 @@ namespace ParrisConnection.Controllers
         private readonly IEmailSaveService _emailSaveService;
         private readonly IEmployerSaveService _employerSaveService;
         private readonly IEmployerQueryService _employerQueryService;
+        private readonly IPhoneQueryService _phoneQueryService;
+        private readonly IPhoneSaveService _phoneSaveService;
+        private readonly IProfilePhotoSaveService _profilePhotoSaveService;
 
-        public ProfileController( IProfilePhotosService profilePhotosService, 
-            IQuoteService quoteService, IPhoneService phoneService, IProfileViewService profileViewService, IEducationSaveService educationSaveService, IEducationQueryService educationQueryService, IEmailQueryService emailQueryService, IEmailSaveService emailSaveService, IEmployerSaveService employerSaveService, IEmployerQueryService employerQueryService)
+        public ProfileController(  
+            IQuoteService quoteService, IProfileViewService profileViewService, IEducationSaveService educationSaveService, IEducationQueryService educationQueryService, IEmailQueryService emailQueryService, IEmailSaveService emailSaveService, IEmployerSaveService employerSaveService, IEmployerQueryService employerQueryService, IPhoneQueryService phoneQueryService, IPhoneSaveService phoneSaveService, IProfilePhotoSaveService profilePhotoSaveService)
         {
-            _profilePhotosService = profilePhotosService;
             _quoteService = quoteService;
-            _phoneService = phoneService;
             _profileViewService = profileViewService;
             _educationSaveService = educationSaveService;
             _educationQueryService = educationQueryService;
@@ -42,6 +44,9 @@ namespace ParrisConnection.Controllers
             _emailSaveService = emailSaveService;
             _employerSaveService = employerSaveService;
             _employerQueryService = employerQueryService;
+            _phoneQueryService = phoneQueryService;
+            _phoneSaveService = phoneSaveService;
+            _profilePhotoSaveService = profilePhotoSaveService;
         }
 
         // GET: Profile
@@ -58,7 +63,7 @@ namespace ParrisConnection.Controllers
 
             try
             {
-                _profilePhotosService.UpdateProfilePhoto(file, Path.Combine(Server.MapPath("~/ProfilePhotos"), Path.GetFileName(file.FileName)), User.Identity.GetUserId());
+                _profilePhotoSaveService.UpdateProfilePhoto(file, Path.Combine(Server.MapPath("~/ProfilePhotos"), Path.GetFileName(file.FileName)), User.Identity.GetUserId());
 
             }
             catch (Exception e)
@@ -114,11 +119,11 @@ namespace ParrisConnection.Controllers
         public ActionResult AddPhoneNumber(PhoneData phoneNumber)
         {
             phoneNumber.UserId = User.Identity.GetUserId();
-            _phoneService.SavePhone(phoneNumber);
+            _phoneSaveService.SavePhone(phoneNumber);
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddPhoneNumber", _phoneService.GetPhones());
+                return PartialView("AddPhoneNumber", _phoneQueryService.GetPhones());
             }
 
             return RedirectToAction("Index", "Profile");
