@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNet.Identity;
 using ParrisConnection.ServiceLayer.Data;
-using System.Web.Mvc;
 using ParrisConnection.ServiceLayer.Services.Comments.Save;
 using ParrisConnection.ServiceLayer.Services.Wall;
+using System.Web.Http;
+using System.Web.Mvc;
 
 namespace ParrisConnection.Controllers
 {
-    [Authorize]
+    [System.Web.Mvc.Authorize]
     public class WallController : Controller
     {
 
@@ -21,23 +22,28 @@ namespace ParrisConnection.Controllers
 
         public ActionResult Index()
         {
-            var wall = _service.GetWallData();
-
-            return View(wall);
+            return View();
         }
 
-        [HttpPost]
-        public ActionResult CreateComment(int statusId, string comment)
+        public JsonResult Status()
+        {
+            var wall = _service.GetWallData();
+
+            return Json(wall, JsonRequestBehavior.AllowGet);
+        }
+
+        [System.Web.Mvc.HttpPost]
+        public ActionResult CreateComment([FromBody] StatusData status)
         {
             if (User == null) return RedirectToAction("Index", "Wall");
 
             var post = new CommentData
             {
                 UserId = User.Identity.GetUserId(),
-                PostComment = comment,
+                PostComment = status.NewComment
             };
 
-            _commentSaveService.SaveComment(post, statusId);
+            _commentSaveService.SaveComment(post, status.Id);
 
 
             return RedirectToAction("Index", "Wall");

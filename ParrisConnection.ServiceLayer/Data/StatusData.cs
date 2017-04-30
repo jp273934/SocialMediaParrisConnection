@@ -8,6 +8,7 @@ namespace ParrisConnection.ServiceLayer.Data
         public string UserId { get; set; }
         public string Post { get; set; }
         public IEnumerable<CommentData> Comments { get; set; }
+        public string NewComment { get; set; }
         public string UserName { get; set; }
     }
 }

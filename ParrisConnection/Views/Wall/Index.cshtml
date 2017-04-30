@@ -1,15 +1,16 @@
-﻿@model ParrisConnection.ServiceLayer.Models.WallViewModel
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/Modules/app.js"></script>
+<script src="~/Scripts/Controllers/wallcontroller.js"></script>
 
 <script type="text/javascript">
     LoadCalendar();
     
 </script>
 
-<div class="ui grid">
+<div class="ui grid" ng-app="WallApp" ng-controller="wallcontroller">
     <div class="five wide column">
         <br />
         <div id="date-popover" class="popover top" style="...">
@@ -39,34 +40,24 @@
         <br />
         @Html.ActionLink("Update Status", "Index", "SingleStatus", null, new { @class = "ui primary button" })
         <br /><br />
-
-        @foreach (var post in Model.Statuses)
-        {
-
-            <div class="ui segment">
-                @post.UserName
-                <p>@post.Post</p>
-
-                @using (Html.BeginForm("CreateComment", "Wall", new { statusId = @post.Id, @class = "ui form" }, FormMethod.Post))
-                {
-                    <div class="ui input">
-                        @Html.TextBox("Comment", null)
-                    </div>
-                        <br />
-                        <button type="submit" class="ui primary button">Comment</button>
-                        <br /><br />
-                }
-
+        
+        <div class="ui segement" ng-repeat="s in Statuses">
+            {{ s.UserName }}
+            {{ s.Post }}
+            <div class="ui form">
+                <div class="ui input">
+                    <input type="text" ng-model="s.NewComment"/>
+                </div>
+                <br />
+                <button type="submit" class="ui primary button" ng-click="createComment(s)">Comment</button>
+                <br /><br />
                 <ul>
-                    @foreach (var comment in post.Comments)
-                    {
-                        <li>
-                            <p>@comment.UserName @comment.PostComment </p>
-                        </li>
-                    }
+                    <li ng-repeat="c in s.Comments">
+                        <p>{{ c.PostComment}}</p>
+                    </li>
                 </ul>
             </div>
-        }
+        </div>
     </div>
 </div>
 <div class="row">
