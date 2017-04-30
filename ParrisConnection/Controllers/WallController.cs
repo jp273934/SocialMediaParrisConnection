@@ -29,13 +29,16 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult CreateComment(int statusId, string comment)
         {
+            if (User == null) return RedirectToAction("Index", "Wall");
+
             var post = new CommentData
             {
                 UserId = User.Identity.GetUserId(),
-                PostComment = comment,               
+                PostComment = comment,
             };
 
             _commentSaveService.SaveComment(post, statusId);
+
 
             return RedirectToAction("Index", "Wall");
         }

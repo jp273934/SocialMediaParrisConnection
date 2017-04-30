@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ProfileControllerTests.cs" />
     <Compile Include="Controllers\SingleStatusControllerTests.cs" />
+    <Compile Include="Controllers\WallControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
