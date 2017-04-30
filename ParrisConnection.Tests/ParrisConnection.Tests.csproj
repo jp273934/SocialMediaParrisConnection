@@ -99,6 +99,7 @@
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Services\CommentQueryServiceTest.cs" />
     <Compile Include="Services\EducationQueryServiceTests.cs" />
+    <Compile Include="Services\EmailQueryServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

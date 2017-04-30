@@ -32,7 +32,8 @@ namespace ParrisConnection.ServiceLayer.Services.Email.Queries
 
         public EmailTypeData GetEmailTypeById(int id)
         {
-            return _mapper.Map<EmailTypeData>(_dataAccess.EmailTypes.GetById(id));
+            var type = _mapper.Map<EmailTypeData>(_dataAccess.EmailTypes.GetById(id));
+            return type ?? new EmailTypeData();
         }
 #        endregion
 
@@ -49,7 +50,8 @@ namespace ParrisConnection.ServiceLayer.Services.Email.Queries
 
         public EmailData GetEmailById(int id)
         {
-            return _emailMapper.Map<EmailData>(_dataAccess.Emails.GetById(id));
+            var email = _emailMapper.Map<EmailData>(_dataAccess.Emails.GetById(id));
+            return email ?? new EmailData();
         }
         #endregion 
     }
