@@ -80,9 +80,6 @@
     <Compile Include="Services\Employer\Queries\IEmployerQueryService.cs" />
     <Compile Include="Services\Employer\Save\EmployerSaveService.cs" />
     <Compile Include="Services\Employer\Save\IEmployerSaveService.cs" />
-    <Compile Include="Services\Interfaces\IStatusService.cs" />
-    <Compile Include="Services\Interfaces\IWallService.cs" />
-    <Compile Include="Services\IProfileViewService.cs" />
     <Compile Include="Services\Phone\Queries\IPhoneQueryService.cs" />
     <Compile Include="Services\Phone\Queries\PhoneQueryService.cs" />
     <Compile Include="Services\Phone\Save\IPhoneSaveService.cs" />
@@ -91,13 +88,18 @@
     <Compile Include="Services\ProfilePhoto\Queries\ProfilePhotoQueryService.cs" />
     <Compile Include="Services\ProfilePhoto\Save\IProfilePhotoSaveService.cs" />
     <Compile Include="Services\ProfilePhoto\Save\ProfilePhotoSaveService.cs" />
-    <Compile Include="Services\ProfileViewService.cs" />
     <Compile Include="Services\Quote\Queries\IQuoteQueryService.cs" />
     <Compile Include="Services\Quote\Queries\QuoteQueryService.cs" />
     <Compile Include="Services\Quote\Save\IQuoteSaveService.cs" />
     <Compile Include="Services\Quote\Save\QuoteSaveService.cs" />
-    <Compile Include="Services\StatusService.cs" />
-    <Compile Include="Services\WallService.cs" />
+    <Compile Include="Services\Status\Queries\IStatusQueryService.cs" />
+    <Compile Include="Services\Status\Queries\StatusQueryService.cs" />
+    <Compile Include="Services\Status\Save\IStatusSaveService.cs" />
+    <Compile Include="Services\Status\Save\StatusSaveService.cs" />
+    <Compile Include="Services\Wall\IWallService.cs" />
+    <Compile Include="Services\Wall\WallService.cs" />
+    <Compile Include="ViewModelServices\ProfileView\IProfileViewService.cs" />
+    <Compile Include="ViewModelServices\ProfileView\ProfileViewService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

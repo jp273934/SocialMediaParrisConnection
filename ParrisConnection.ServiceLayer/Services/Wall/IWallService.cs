@@ -1,6 +1,6 @@
 ﻿using ParrisConnection.ServiceLayer.Models;
 
-namespace ParrisConnection.ServiceLayer.Services.Interfaces
+namespace ParrisConnection.ServiceLayer.Services.Wall
 {
     public interface IWallService
     {

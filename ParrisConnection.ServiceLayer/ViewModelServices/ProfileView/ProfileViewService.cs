@@ -1,14 +1,15 @@
-﻿using ParrisConnection.DataLayer.DataAccess;
+﻿using System.Linq;
+using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.ServiceLayer.Models;
+using ParrisConnection.ServiceLayer.Services;
 using ParrisConnection.ServiceLayer.Services.Education.Queries;
 using ParrisConnection.ServiceLayer.Services.Email.Queries;
 using ParrisConnection.ServiceLayer.Services.Employer.Queries;
 using ParrisConnection.ServiceLayer.Services.Phone.Queries;
 using ParrisConnection.ServiceLayer.Services.ProfilePhoto.Queries;
 using ParrisConnection.ServiceLayer.Services.Quote.Queries;
-using System.Linq;
 
-namespace ParrisConnection.ServiceLayer.Services
+namespace ParrisConnection.ServiceLayer.ViewModelServices.ProfileView
 {
     public class ProfileViewService : IProfileViewService
     {

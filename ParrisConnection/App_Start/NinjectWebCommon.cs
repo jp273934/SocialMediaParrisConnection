@@ -7,13 +7,16 @@ using ParrisConnection.ServiceLayer.Services.Email.Queries;
 using ParrisConnection.ServiceLayer.Services.Email.Save;
 using ParrisConnection.ServiceLayer.Services.Employer.Queries;
 using ParrisConnection.ServiceLayer.Services.Employer.Save;
-using ParrisConnection.ServiceLayer.Services.Interfaces;
 using ParrisConnection.ServiceLayer.Services.Phone.Queries;
 using ParrisConnection.ServiceLayer.Services.Phone.Save;
 using ParrisConnection.ServiceLayer.Services.ProfilePhoto.Queries;
 using ParrisConnection.ServiceLayer.Services.ProfilePhoto.Save;
 using ParrisConnection.ServiceLayer.Services.Quote.Queries;
 using ParrisConnection.ServiceLayer.Services.Quote.Save;
+using ParrisConnection.ServiceLayer.Services.Status.Queries;
+using ParrisConnection.ServiceLayer.Services.Status.Save;
+using ParrisConnection.ServiceLayer.Services.Wall;
+using ParrisConnection.ServiceLayer.ViewModelServices.ProfileView;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ParrisConnection.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(ParrisConnection.App_Start.NinjectWebCommon), "Stop")]
@@ -78,7 +81,6 @@ namespace ParrisConnection.App_Start
         {
             kernel.Bind<IDataAccess>().To<DataAccess>();
             kernel.Bind<IWallService>().To<WallService>();
-            kernel.Bind<IStatusService>().To<StatusService>();
             kernel.Bind<IProfileViewService>().To<ProfileViewService>();
             kernel.Bind<ICommentSaveService>().To<CommentSaveService>();
             kernel.Bind<IEducationQueryService>().To<EducationQueryService>();
@@ -93,6 +95,8 @@ namespace ParrisConnection.App_Start
             kernel.Bind<IProfilePhotoSaveService>().To<ProfilePhotoSaveService>();
             kernel.Bind<IQuoteQueryService>().To<QuoteQueryService>();
             kernel.Bind<IQuoteSaveService>().To<QuoteSaveService>();
+            kernel.Bind<IStatusQueryService>().To<StatusQueryService>();
+            kernel.Bind<IStatusSaveService>().To<StatusSaveService>();
         }        
     }
 }

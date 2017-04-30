@@ -1,18 +1,20 @@
 ﻿using Microsoft.AspNet.Identity;
 using ParrisConnection.ServiceLayer.Data;
-using ParrisConnection.ServiceLayer.Services.Interfaces;
+using ParrisConnection.ServiceLayer.Services.Status.Save;
 using System.Web.Mvc;
 
 namespace ParrisConnection.Controllers
 {
     public class SingleStatusController : Controller
     {
-        private readonly IStatusService _service;
+        private readonly IStatusSaveService _statusSaveService;
 
-        public SingleStatusController(IStatusService service)
+        public SingleStatusController(IStatusSaveService statusSaveService)
         {
-            _service = service;
+            _statusSaveService = statusSaveService;
         }
+
+
         public ActionResult Index()
         {
             return View();
@@ -22,7 +24,7 @@ namespace ParrisConnection.Controllers
         public ActionResult AddStatus(StatusData status)
         {
             status.UserId = User.Identity.GetUserId();
-           _service.SaveStatus(status);
+           _statusSaveService.SaveStatus(status);
 
             return RedirectToAction("Index", "Wall");
         }

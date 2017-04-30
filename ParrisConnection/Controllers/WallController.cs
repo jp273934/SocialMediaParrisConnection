@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
 using ParrisConnection.ServiceLayer.Data;
-using ParrisConnection.ServiceLayer.Services.Interfaces;
 using System.Web.Mvc;
 using ParrisConnection.ServiceLayer.Services.Comments.Save;
+using ParrisConnection.ServiceLayer.Services.Wall;
 
 namespace ParrisConnection.Controllers
 {

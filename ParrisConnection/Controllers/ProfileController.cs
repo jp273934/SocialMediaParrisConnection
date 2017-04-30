@@ -16,6 +16,7 @@ using System;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
+using ParrisConnection.ServiceLayer.ViewModelServices.ProfileView;
 
 namespace ParrisConnection.Controllers
 {

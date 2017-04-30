@@ -2,24 +2,23 @@
 using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.DataLayer.Entities.Wall;
 using ParrisConnection.ServiceLayer.Data;
-using ParrisConnection.ServiceLayer.Services.Interfaces;
 using System.Collections.Generic;
 
-namespace ParrisConnection.ServiceLayer.Services
+namespace ParrisConnection.ServiceLayer.Services.Status.Queries
 {
-    public class StatusService : IStatusService
+    public class StatusQueryService : IStatusQueryService
     {
         private readonly IDataAccess _dataAccess;
         private readonly IMapper _mapper;
         private readonly IMapper _commentMapper;
 
-        public StatusService(IDataAccess dataAccess)
+        public StatusQueryService(IDataAccess dataAccess)
         {
             _dataAccess = dataAccess;
 
             var commentConfig = new MapperConfiguration(m => m.CreateMap<Comment, CommentData>().ReverseMap());
-            _commentMapper= new Mapper(commentConfig);
-            var config = new MapperConfiguration(m => m.CreateMap<StatusData, Status>().ReverseMap().ForMember(u => u.Comments, d => d.MapFrom( s => _commentMapper.Map<IEnumerable<CommentData>>(s.Comments))));
+            _commentMapper = new Mapper(commentConfig);
+            var config = new MapperConfiguration(m => m.CreateMap<StatusData, DataLayer.Entities.Wall.Status>().ReverseMap().ForMember(u => u.Comments, d => d.MapFrom(s => _commentMapper.Map<IEnumerable<CommentData>>(s.Comments))));
 
             _mapper = new Mapper(config);
         }
@@ -32,11 +31,6 @@ namespace ParrisConnection.ServiceLayer.Services
         public StatusData GetStatusById(int id)
         {
             return _mapper.Map<StatusData>(_dataAccess.Statuses.GetById(id));
-        }
-
-        public void SaveStatus(StatusData status)
-        {
-            _dataAccess.Statuses.Insert(_mapper.Map<Status>(status));
         }
     }
 }

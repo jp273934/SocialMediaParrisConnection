@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using ParrisConnection.ServiceLayer.Data;
 
-namespace ParrisConnection.ServiceLayer.Services.Interfaces
+namespace ParrisConnection.ServiceLayer.Services.Status.Queries
 {
-    public interface IStatusService
+    public interface IStatusQueryService
     {
         IEnumerable<StatusData> GetStatuses();
         StatusData GetStatusById(int id);
-        void SaveStatus(StatusData status);
     }
 }
