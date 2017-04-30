@@ -32,7 +32,8 @@ namespace ParrisConnection.ServiceLayer.Services.Education.Queries
 
         public EducationData GetEducationById(int id)
         {
-            return _mapper.Map<EducationData>(_dataAccess.Educations.GetById(id));
+            var education = _mapper.Map<EducationData>(_dataAccess.Educations.GetById(id));
+            return education ?? new EducationData();
         }
     }
 }
