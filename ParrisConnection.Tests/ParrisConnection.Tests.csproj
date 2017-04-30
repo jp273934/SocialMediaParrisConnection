@@ -97,6 +97,7 @@
     <Compile Include="Controllers\WallControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Services\CommentQueryServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

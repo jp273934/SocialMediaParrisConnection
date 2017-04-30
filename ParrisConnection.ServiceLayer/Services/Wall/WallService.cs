@@ -6,9 +6,12 @@ namespace ParrisConnection.ServiceLayer.Services.Wall
     public class WallService : IWallService
     {
         private readonly IStatusQueryService _statusQueryService;
-      
 
-       
+        public WallService(IStatusQueryService statusQueryService)
+        {
+            _statusQueryService = statusQueryService;
+        }
+
 
         public WallViewModel GetWallData()
         {
