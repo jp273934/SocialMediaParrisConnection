@@ -3,6 +3,7 @@ using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.DataLayer.Entities.Profile;
 using ParrisConnection.ServiceLayer.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParrisConnection.ServiceLayer.Services.Email.Queries
 {
@@ -39,6 +40,11 @@ namespace ParrisConnection.ServiceLayer.Services.Email.Queries
         public IEnumerable<EmailData> GetEmails()
         {
             return _emailMapper.Map<IEnumerable<EmailData>>(_dataAccess.Emails.GetAll());
+        }
+
+        public IEnumerable<EmailData> GetEmailsByUserId(string userId)
+        {
+            return _emailMapper.Map<IEnumerable<EmailData>>(_dataAccess.Emails.GetAll().Where(e => e.UserId == userId));
         }
 
         public EmailData GetEmailById(int id)

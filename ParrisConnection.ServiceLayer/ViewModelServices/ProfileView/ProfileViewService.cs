@@ -39,7 +39,7 @@ namespace ParrisConnection.ServiceLayer.ViewModelServices.ProfileView
                 Employers = _employerQueryService.GetEmployersByUserId(userId),
                 Quotes = _quoteQueryService.GetQuotesByUserId(userId),
                 Phones = _phoneQueryService.GetPhonesByUserId(userId),
-                Emails = _emailQueryService.GetEmails().Where(e => e.UserId == userId),
+                Emails = _emailQueryService.GetEmailsByUserId(userId),
                 PhoneTypes = _phoneQueryService.GetPhoneTypes(),
                 EmailTypes = _dataAccess.EmailTypes.GetAll().ToList(),
                 Educations = _educationQueryService.GetAllEducation().Where(e => e.UserId == userId)

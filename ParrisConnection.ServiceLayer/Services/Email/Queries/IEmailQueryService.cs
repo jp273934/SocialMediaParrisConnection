@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using ParrisConnection.ServiceLayer.Data;
+﻿using ParrisConnection.ServiceLayer.Data;
+using System.Collections.Generic;
 
 namespace ParrisConnection.ServiceLayer.Services.Email.Queries
 {
@@ -8,6 +8,7 @@ namespace ParrisConnection.ServiceLayer.Services.Email.Queries
         IEnumerable<EmailTypeData> GetEmailTypes();
         EmailTypeData GetEmailTypeById(int id);
         IEnumerable<EmailData> GetEmails();
+        IEnumerable<EmailData> GetEmailsByUserId(string userId);
         EmailData GetEmailById(int id);
     }
 }
