@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
 using ParrisConnection.ServiceLayer.Data;
-using ParrisConnection.ServiceLayer.Services;
 using ParrisConnection.ServiceLayer.Services.Education.Queries;
 using ParrisConnection.ServiceLayer.Services.Education.Save;
 using ParrisConnection.ServiceLayer.Services.Email.Queries;
@@ -56,7 +55,7 @@ namespace ParrisConnection.Controllers
         // GET: Profile
         public ActionResult Index()
         {
-            return View(_profileViewService.GetViewModel(User.Identity.GetUserId()));
+            return User != null ? View(_profileViewService.GetViewModel(User.Identity.GetUserId())) : View();
         }
 
         [HttpPost]
@@ -81,10 +80,11 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddEmployment(EmployerData employment)
         {
-            employment.UserId = User.Identity.GetUserId();
+             employment.UserId = User != null ? User.Identity.GetUserId() : "";
+
             _employerSaveService.SaveEmployer(employment);
 
-            if (Request.IsAjaxRequest())
+            if (Request != null && Request.IsAjaxRequest())
             {
                 return PartialView("AddEmployment", _employerQueryService.GetEmployers());
             }
@@ -95,9 +95,9 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddEducation(EducationData education)
         {
-            education.UserId = User.Identity.GetUserId();
+            education.UserId = User != null ? User.Identity.GetUserId() : ""; 
             _educationSaveService.SaveEducation(education);
-            if (Request.IsAjaxRequest())
+            if (Request != null && Request.IsAjaxRequest())
             {
                 return PartialView("AddEducation", _educationQueryService.GetAllEducation());
             }
@@ -108,10 +108,10 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddQuote(QuoteData quote)
         {
-            quote.UserId = User.Identity.GetUserId();
+            quote.UserId = User != null ? User.Identity.GetUserId() : "";
             _quoteSaveService.SaveQuote(quote);
 
-            if (Request.IsAjaxRequest())
+            if (Request != null && Request.IsAjaxRequest())
             {
                 return PartialView("AddQuote", _quoteQueryService.GetQuotes());
             }
@@ -122,10 +122,10 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddPhoneNumber(PhoneData phoneNumber)
         {
-            phoneNumber.UserId = User.Identity.GetUserId();
+            phoneNumber.UserId = User != null ? User.Identity.GetUserId() : "";
             _phoneSaveService.SavePhone(phoneNumber);
 
-            if (Request.IsAjaxRequest())
+            if (Request != null && Request.IsAjaxRequest())
             {
                 return PartialView("AddPhoneNumber", _phoneQueryService.GetPhones());
             }
@@ -136,10 +136,10 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddEmail(EmailData email)
         {
-            email.UserId = User.Identity.GetUserId();
+            email.UserId = User != null ? User.Identity.GetUserId() : "";
             _emailSaveService.SaveEmail(email);
 
-            if (Request.IsAjaxRequest())
+            if (Request != null && Request.IsAjaxRequest())
             {
                 return PartialView("AddEmail", _emailQueryService.GetEmails());
             }
