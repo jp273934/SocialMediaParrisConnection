@@ -30,7 +30,8 @@ namespace ParrisConnection.ServiceLayer.Services.Status.Queries
 
         public StatusData GetStatusById(int id)
         {
-            return _mapper.Map<StatusData>(_dataAccess.Statuses.GetById(id));
+            var status = _mapper.Map<StatusData>(_dataAccess.Statuses.GetById(id));
+            return status ?? new StatusData();
         }
     }
 }
