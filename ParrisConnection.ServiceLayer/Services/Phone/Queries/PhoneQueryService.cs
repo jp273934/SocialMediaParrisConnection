@@ -3,6 +3,7 @@ using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.DataLayer.Entities.Profile;
 using ParrisConnection.ServiceLayer.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParrisConnection.ServiceLayer.Services.Phone.Queries
 {
@@ -39,6 +40,11 @@ namespace ParrisConnection.ServiceLayer.Services.Phone.Queries
         public IEnumerable<PhoneData> GetPhones()
         {
             return _phoneMapper.Map<IEnumerable<PhoneData>>(_dataAccess.Phones.GetAll());
+        }
+
+        public IEnumerable<PhoneData> GetPhonesByUserId(string userId)
+        {
+            return _phoneMapper.Map<IEnumerable<PhoneData>>(_dataAccess.Phones.GetAll().Where(p => p.UserId == userId));
         }
 
         public PhoneData GetPhoneById(int id)

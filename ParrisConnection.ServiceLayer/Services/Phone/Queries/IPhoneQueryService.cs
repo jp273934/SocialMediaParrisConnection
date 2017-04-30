@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using ParrisConnection.ServiceLayer.Data;
+﻿using ParrisConnection.ServiceLayer.Data;
+using System.Collections.Generic;
 
 namespace ParrisConnection.ServiceLayer.Services.Phone.Queries
 {
@@ -8,6 +8,7 @@ namespace ParrisConnection.ServiceLayer.Services.Phone.Queries
         IEnumerable<PhoneTypeData> GetPhoneTypes();
         PhoneTypeData GetPhoneTypeById(int id);
         IEnumerable<PhoneData> GetPhones();
+        IEnumerable<PhoneData> GetPhonesByUserId(string userId);
         PhoneData GetPhoneById(int id);
     }
 }
