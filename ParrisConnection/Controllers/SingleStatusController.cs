@@ -23,7 +23,7 @@ namespace ParrisConnection.Controllers
         [HttpPost]
         public ActionResult AddStatus(StatusData status)
         {
-            status.UserId = User.Identity.GetUserId();
+            status.UserId = User != null ? User.Identity.GetUserId() : "";
            _statusSaveService.SaveStatus(status);
 
             return RedirectToAction("Index", "Wall");
