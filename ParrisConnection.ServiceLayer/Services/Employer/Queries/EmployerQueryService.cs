@@ -31,7 +31,8 @@ namespace ParrisConnection.ServiceLayer.Services.Employer.Queries
         }
         public EmployerData GetEmployerById(int id)
         {
-            return _mapper.Map<EmployerData>(_dataAccess.Employers.GetById(id));
+            var employer = _mapper.Map<EmployerData>(_dataAccess.Employers.GetById(id));
+            return employer ?? new EmployerData();
         }
     }
 }
