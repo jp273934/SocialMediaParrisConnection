@@ -80,7 +80,6 @@
     <Compile Include="Services\Employer\Queries\IEmployerQueryService.cs" />
     <Compile Include="Services\Employer\Save\EmployerSaveService.cs" />
     <Compile Include="Services\Employer\Save\IEmployerSaveService.cs" />
-    <Compile Include="Services\Interfaces\IQuoteService.cs" />
     <Compile Include="Services\Interfaces\IStatusService.cs" />
     <Compile Include="Services\Interfaces\IWallService.cs" />
     <Compile Include="Services\IProfileViewService.cs" />
@@ -93,7 +92,10 @@
     <Compile Include="Services\ProfilePhoto\Save\IProfilePhotoSaveService.cs" />
     <Compile Include="Services\ProfilePhoto\Save\ProfilePhotoSaveService.cs" />
     <Compile Include="Services\ProfileViewService.cs" />
-    <Compile Include="Services\QuoteService.cs" />
+    <Compile Include="Services\Quote\Queries\IQuoteQueryService.cs" />
+    <Compile Include="Services\Quote\Queries\QuoteQueryService.cs" />
+    <Compile Include="Services\Quote\Save\IQuoteSaveService.cs" />
+    <Compile Include="Services\Quote\Save\QuoteSaveService.cs" />
     <Compile Include="Services\StatusService.cs" />
     <Compile Include="Services\WallService.cs" />
   </ItemGroup>

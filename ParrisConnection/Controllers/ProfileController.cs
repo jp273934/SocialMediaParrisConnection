@@ -7,10 +7,11 @@ using ParrisConnection.ServiceLayer.Services.Email.Queries;
 using ParrisConnection.ServiceLayer.Services.Email.Save;
 using ParrisConnection.ServiceLayer.Services.Employer.Queries;
 using ParrisConnection.ServiceLayer.Services.Employer.Save;
-using ParrisConnection.ServiceLayer.Services.Interfaces;
 using ParrisConnection.ServiceLayer.Services.Phone.Queries;
 using ParrisConnection.ServiceLayer.Services.Phone.Save;
 using ParrisConnection.ServiceLayer.Services.ProfilePhoto.Save;
+using ParrisConnection.ServiceLayer.Services.Quote.Queries;
+using ParrisConnection.ServiceLayer.Services.Quote.Save;
 using System;
 using System.IO;
 using System.Web;
@@ -21,7 +22,6 @@ namespace ParrisConnection.Controllers
     [Authorize]
     public class ProfileController : Controller
     {
-        private readonly IQuoteService _quoteService;
         private readonly IProfileViewService _profileViewService;
         private readonly IEducationSaveService _educationSaveService;
         private readonly IEducationQueryService _educationQueryService;
@@ -32,11 +32,12 @@ namespace ParrisConnection.Controllers
         private readonly IPhoneQueryService _phoneQueryService;
         private readonly IPhoneSaveService _phoneSaveService;
         private readonly IProfilePhotoSaveService _profilePhotoSaveService;
+        private readonly IQuoteQueryService _quoteQueryService;
+        private readonly IQuoteSaveService _quoteSaveService;
 
         public ProfileController(  
-            IQuoteService quoteService, IProfileViewService profileViewService, IEducationSaveService educationSaveService, IEducationQueryService educationQueryService, IEmailQueryService emailQueryService, IEmailSaveService emailSaveService, IEmployerSaveService employerSaveService, IEmployerQueryService employerQueryService, IPhoneQueryService phoneQueryService, IPhoneSaveService phoneSaveService, IProfilePhotoSaveService profilePhotoSaveService)
+            IProfileViewService profileViewService, IEducationSaveService educationSaveService, IEducationQueryService educationQueryService, IEmailQueryService emailQueryService, IEmailSaveService emailSaveService, IEmployerSaveService employerSaveService, IEmployerQueryService employerQueryService, IPhoneQueryService phoneQueryService, IPhoneSaveService phoneSaveService, IProfilePhotoSaveService profilePhotoSaveService, IQuoteQueryService quoteQueryService, IQuoteSaveService quoteSaveService)
         {
-            _quoteService = quoteService;
             _profileViewService = profileViewService;
             _educationSaveService = educationSaveService;
             _educationQueryService = educationQueryService;
@@ -47,6 +48,8 @@ namespace ParrisConnection.Controllers
             _phoneQueryService = phoneQueryService;
             _phoneSaveService = phoneSaveService;
             _profilePhotoSaveService = profilePhotoSaveService;
+            _quoteQueryService = quoteQueryService;
+            _quoteSaveService = quoteSaveService;
         }
 
         // GET: Profile
@@ -105,11 +108,11 @@ namespace ParrisConnection.Controllers
         public ActionResult AddQuote(QuoteData quote)
         {
             quote.UserId = User.Identity.GetUserId();
-            _quoteService.SaveQuote(quote);
+            _quoteSaveService.SaveQuote(quote);
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("AddQuote", _quoteService.GetQuotes());
+                return PartialView("AddQuote", _quoteQueryService.GetQuotes());
             }
 
             return RedirectToAction("Index", "Profile");

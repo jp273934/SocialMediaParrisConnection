@@ -1,22 +1,20 @@
 ﻿using AutoMapper;
 using ParrisConnection.DataLayer.DataAccess;
-using ParrisConnection.DataLayer.Entities.Profile;
 using ParrisConnection.ServiceLayer.Data;
-using ParrisConnection.ServiceLayer.Services.Interfaces;
 using System.Collections.Generic;
 
-namespace ParrisConnection.ServiceLayer.Services
+namespace ParrisConnection.ServiceLayer.Services.Quote.Queries
 {
-    public class QuoteService : IQuoteService
+    public class QuoteQueryService : IQuoteQueryService
     {
         private readonly IDataAccess _dataAccess;
         private readonly IMapper _mapper;
 
-        public QuoteService(IDataAccess dataAccess)
+        public QuoteQueryService(IDataAccess dataAccess)
         {
             _dataAccess = dataAccess;
 
-            var config = new MapperConfiguration(m => m.CreateMap<Quote, QuoteData>().ReverseMap());
+            var config = new MapperConfiguration(m => m.CreateMap<DataLayer.Entities.Profile.Quote, QuoteData>().ReverseMap());
 
             _mapper = new Mapper(config);
         }
@@ -29,11 +27,6 @@ namespace ParrisConnection.ServiceLayer.Services
         public QuoteData GetQuoteById(int id)
         {
             return _mapper.Map<QuoteData>(_dataAccess.Quotes.GetById(id));
-        }
-
-        public void SaveQuote(QuoteData quote)
-        {
-            _dataAccess.Quotes.Insert(_mapper.Map<Quote>(quote));
         }
     }
 }

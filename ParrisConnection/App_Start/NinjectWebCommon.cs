@@ -12,6 +12,8 @@ using ParrisConnection.ServiceLayer.Services.Phone.Queries;
 using ParrisConnection.ServiceLayer.Services.Phone.Save;
 using ParrisConnection.ServiceLayer.Services.ProfilePhoto.Queries;
 using ParrisConnection.ServiceLayer.Services.ProfilePhoto.Save;
+using ParrisConnection.ServiceLayer.Services.Quote.Queries;
+using ParrisConnection.ServiceLayer.Services.Quote.Save;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(ParrisConnection.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(ParrisConnection.App_Start.NinjectWebCommon), "Stop")]
@@ -76,7 +78,6 @@ namespace ParrisConnection.App_Start
         {
             kernel.Bind<IDataAccess>().To<DataAccess>();
             kernel.Bind<IWallService>().To<WallService>();
-            kernel.Bind<IQuoteService>().To<QuoteService>();
             kernel.Bind<IStatusService>().To<StatusService>();
             kernel.Bind<IProfileViewService>().To<ProfileViewService>();
             kernel.Bind<ICommentSaveService>().To<CommentSaveService>();
@@ -90,6 +91,8 @@ namespace ParrisConnection.App_Start
             kernel.Bind<IPhoneSaveService>().To<PhoneSaveService>();
             kernel.Bind<IProfilePhotoQueryService>().To<ProfilePhotoQueryService>();
             kernel.Bind<IProfilePhotoSaveService>().To<ProfilePhotoSaveService>();
+            kernel.Bind<IQuoteQueryService>().To<QuoteQueryService>();
+            kernel.Bind<IQuoteSaveService>().To<QuoteSaveService>();
         }        
     }
 }
