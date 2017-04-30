@@ -102,6 +102,7 @@
     <Compile Include="Services\EmailQueryServiceTest.cs" />
     <Compile Include="Services\EmployerQueryServiceTest.cs" />
     <Compile Include="Services\PhoneQueryServiceTest.cs" />
+    <Compile Include="Services\ProfilePhotoQueryServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
