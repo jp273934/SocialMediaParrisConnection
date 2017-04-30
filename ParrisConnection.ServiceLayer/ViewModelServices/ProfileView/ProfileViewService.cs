@@ -1,13 +1,12 @@
-﻿using System.Linq;
-using ParrisConnection.DataLayer.DataAccess;
+﻿using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.ServiceLayer.Models;
-using ParrisConnection.ServiceLayer.Services;
 using ParrisConnection.ServiceLayer.Services.Education.Queries;
 using ParrisConnection.ServiceLayer.Services.Email.Queries;
 using ParrisConnection.ServiceLayer.Services.Employer.Queries;
 using ParrisConnection.ServiceLayer.Services.Phone.Queries;
 using ParrisConnection.ServiceLayer.Services.ProfilePhoto.Queries;
 using ParrisConnection.ServiceLayer.Services.Quote.Queries;
+using System.Linq;
 
 namespace ParrisConnection.ServiceLayer.ViewModelServices.ProfileView
 {
@@ -37,7 +36,7 @@ namespace ParrisConnection.ServiceLayer.ViewModelServices.ProfileView
             var viewModel = new ProfileViewModel
             {
                 ProfilePhoto = _profilePhotoQueryService.GetProfilePhoto(userId),
-                Employers = _employerQueryService.GetEmployers().Where(e => e.UserId == userId),
+                Employers = _employerQueryService.GetEmployersByUserId(userId),
                 Quotes = _quoteQueryService.GetQuotes().Where(q => q.UserId == userId),
                 Phones = _phoneQueryService.GetPhones().Where(p => p.UserId == userId),
                 Emails = _emailQueryService.GetEmails().Where(e => e.UserId == userId),
