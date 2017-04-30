@@ -32,7 +32,8 @@ namespace ParrisConnection.ServiceLayer.Services.Quote.Queries
 
         public QuoteData GetQuoteById(int id)
         {
-            return _mapper.Map<QuoteData>(_dataAccess.Quotes.GetById(id));
+            var quote = _mapper.Map<QuoteData>(_dataAccess.Quotes.GetById(id));
+            return quote ?? new QuoteData();
         }
     }
 }
