@@ -2,6 +2,7 @@
 using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.ServiceLayer.Data;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParrisConnection.ServiceLayer.Services.Quote.Queries
 {
@@ -22,6 +23,11 @@ namespace ParrisConnection.ServiceLayer.Services.Quote.Queries
         public IEnumerable<QuoteData> GetQuotes()
         {
             return _mapper.Map<IEnumerable<QuoteData>>(_dataAccess.Quotes.GetAll());
+        }
+
+        public IEnumerable<QuoteData> GetQuotesByUserId(string userId)
+        {
+            return _mapper.Map<IEnumerable<QuoteData>>(_dataAccess.Quotes.GetAll().Where(q => q.UserId == userId));
         }
 
         public QuoteData GetQuoteById(int id)

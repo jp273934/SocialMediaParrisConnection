@@ -37,7 +37,7 @@ namespace ParrisConnection.ServiceLayer.ViewModelServices.ProfileView
             {
                 ProfilePhoto = _profilePhotoQueryService.GetProfilePhoto(userId),
                 Employers = _employerQueryService.GetEmployersByUserId(userId),
-                Quotes = _quoteQueryService.GetQuotes().Where(q => q.UserId == userId),
+                Quotes = _quoteQueryService.GetQuotesByUserId(userId),
                 Phones = _phoneQueryService.GetPhones().Where(p => p.UserId == userId),
                 Emails = _emailQueryService.GetEmails().Where(e => e.UserId == userId),
                 PhoneTypes = _phoneQueryService.GetPhoneTypes(),
