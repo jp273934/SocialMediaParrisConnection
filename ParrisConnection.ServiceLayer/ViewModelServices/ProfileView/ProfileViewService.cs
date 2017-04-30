@@ -42,7 +42,7 @@ namespace ParrisConnection.ServiceLayer.ViewModelServices.ProfileView
                 Emails = _emailQueryService.GetEmailsByUserId(userId),
                 PhoneTypes = _phoneQueryService.GetPhoneTypes(),
                 EmailTypes = _dataAccess.EmailTypes.GetAll().ToList(),
-                Educations = _educationQueryService.GetAllEducation().Where(e => e.UserId == userId)
+                Educations = _educationQueryService.GetEducationByUserId(userId)
             };
 
             return viewModel;

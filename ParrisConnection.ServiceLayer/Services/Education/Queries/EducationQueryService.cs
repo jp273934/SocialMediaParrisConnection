@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using ParrisConnection.DataLayer.DataAccess;
 using ParrisConnection.ServiceLayer.Data;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ParrisConnection.ServiceLayer.Services.Education.Queries
 {
@@ -22,6 +23,11 @@ namespace ParrisConnection.ServiceLayer.Services.Education.Queries
         public IEnumerable<EducationData> GetAllEducation()
         {
             return _mapper.Map<IEnumerable<EducationData>>(_dataAccess.Educations.GetAll());
+        }
+
+        public IEnumerable<EducationData> GetEducationByUserId(string userId)
+        {
+            return _mapper.Map<IEnumerable<EducationData>>(_dataAccess.Educations.GetAll().Where(e => e.UserId == userId));
         }
 
         public EducationData GetEducationById(int id)
